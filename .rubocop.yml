@@ -22,7 +22,7 @@ AllCops:
 
 # Layout
 Layout/LineLength:
-  Max: 120
+  Max: 200
   Enabled: true
 Layout/AssignmentIndentation:
   Enabled: true

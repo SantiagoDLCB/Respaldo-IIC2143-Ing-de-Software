@@ -14,13 +14,18 @@
  *= require_self
  */
 
+body {
+    background-color: #89abbd; /* Establece el color de fondo de la página */
+}
+  
+
 .display-4 {
-    color: green; /* Cambiar el color del texto */
+    color: rgb(48, 79, 90); /* Cambiar el color del texto */
 }
 
 .display-4:hover {
     /* Hacer un gradient en color */
-    color: greenyellow;
+    color: rgb(85, 47, 255);
     font-size: 3em; /* Cambiar el tamaño del texto al doble */
 }
 
@@ -49,6 +54,7 @@
     display: block; /* Asegura que la imagen se comporte como un bloque */
     margin-left: 20px; /* Centra la imagen horizontalmente */
     margin-right: 20px; /* Centra la imagen horizontalmente */
+    border-radius: 100px;
   }
 
 .imagen-container {

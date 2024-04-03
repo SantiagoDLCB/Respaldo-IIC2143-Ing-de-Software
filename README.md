@@ -1,6 +1,6 @@
 # Proyecto Grupo 67 - IIC2413💻
 
-Entrega 0 del proyecto semestral de Ingeniería de Software.
+Entrega del Sprint 0 del proyecto semestral de Ingeniería de Software.
 
 ## Participantes
 

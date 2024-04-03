@@ -13,3 +13,30 @@
  *= require_tree .
  *= require_self
  */
+
+.display-4:hover {
+    /* Hacer un gradient en color */
+    color: green;
+    font-size: 4em; /* Cambiar el tamaño del texto al doble */
+}
+
+@keyframes example {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+  
+.col {
+    animation: example 3s infinite; /* Aplicar la animación al div con clase 'col' */
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+}
+
+.imagen {
+    width: 200px;
+    height: auto; /* Mantener la proporción original */
+    display: block; /* Asegura que la imagen se comporte como un bloque */
+    margin-left: auto; /* Centra la imagen horizontalmente */
+    margin-right: auto; /* Centra la imagen horizontalmente */
+  }

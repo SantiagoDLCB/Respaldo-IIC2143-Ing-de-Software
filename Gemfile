@@ -71,3 +71,5 @@ end
 gem 'rubocop', require: false
 
 gem "devise"
+
+gem "rolify"

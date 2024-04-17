@@ -11,4 +11,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :email, presence: true, format: { with: /\A[^@\s]+@uc\.cl\z/, message: "El mail debe ser un Mail UC" }
   validates :username, presence: true, uniqueness: true
+  validates :name, presence: true
+  validates :last_name, presence: true
 end

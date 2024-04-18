@@ -1,12 +1,17 @@
 <!-- app/views/iniciativas/new.html.erb -->
 
 <%= form_with(model: @initiative, url: initiatives_path) do |form| %>
+  <% if flash.now[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash.now[:alert] %>
+    </div>
+  <% end %>
   <%= form.label :name %>
-  <%= form.text_field :name %>
+  <%= form.text_field :name, required: true %>
   <%= form.label :topic %>
-  <%= form.text_field :topic %>
+  <%= form.text_field :topic, required: true %>
   <%= form.label :description %>
-  <%= form.text_area :description %>
+  <%= form.text_area :description, required: true %>
 
   <%= form.submit "Crear Iniciativa" %>
 <% end %>

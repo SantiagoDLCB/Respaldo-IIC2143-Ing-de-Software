@@ -9,4 +9,6 @@ class Initiative < ApplicationRecord
     validates :name, uniqueness: true,  presence: true
     validates :topic, presence: true
     validates :description, presence: true
+
+    
 end

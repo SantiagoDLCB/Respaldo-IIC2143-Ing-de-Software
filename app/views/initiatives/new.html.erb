@@ -1,0 +1,12 @@
+<!-- app/views/iniciativas/new.html.erb -->
+
+<%= form_with(model: @initiative, url: initiatives_path) do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :topic %>
+  <%= form.text_field :topic %>
+  <%= form.label :description %>
+  <%= form.text_area :description %>
+
+  <%= form.submit "Crear Iniciativa" %>
+<% end %>

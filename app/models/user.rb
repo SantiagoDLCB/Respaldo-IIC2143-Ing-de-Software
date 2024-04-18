@@ -9,7 +9,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :email, presence: true, format: { with: /\A[^@\s]+@uc\.cl\z/, message: "El mail debe ser un Mail UC" }
+  validates :email, presence: true, format: { with: /\A[^@\s]+@uc\.cl\z/, message: "debe ser un Mail UC" }
   validates :username, presence: true, uniqueness: true
   validates :name, presence: true
   validates :last_name, presence: true

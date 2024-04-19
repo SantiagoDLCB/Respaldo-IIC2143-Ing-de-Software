@@ -15,9 +15,8 @@
  */
 
 body {
-    background-color: #89abbd; /* Establece el color de fondo de la página */
+    background-color: #9dbccc; /* Establece el color de fondo de la página */
 }
-  
 
 .display-4 {
     color: rgb(48, 79, 90); /* Cambiar el color del texto */
@@ -63,5 +62,16 @@ body {
 
 .imagen-container p {
     margin-top: 5px; /* Espacio entre la imagen y la descripción */
+    margin-bottom: 20px; /* Espacio entre la descripción y el siguiente elemento */
 }
   
+.footer {
+    padding: 10px;
+    background-color: #1c2833; /* Color de fondo del footer */
+    color: #a7a7a7; /* Color del texto del footer */
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}

@@ -1,0 +1,15 @@
+<h1>Welcome to the Initiatives Page</h1>
+
+<h2>All Initiatives</h2>
+<ul>
+    <% @initiatives.each do |initiative| %>
+        <li><%= initiative.name %></li>
+    <% end %>
+</ul>
+
+<h2>Enrolled Initiatives</h2>
+<ul>
+    <% @enrolled_initiatives.each do |enrolled_initiative| %>
+        <li><%= enrolled_initiative.name %></li>
+    <% end %>
+</ul>

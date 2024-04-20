@@ -62,10 +62,11 @@
     <h1><%=@initiative.name%></h1>
     <button onclick="window.location.href = '<%= root_path %>';" style="float: right;">Volver al Inicio</button>
     <% if current_user.has_role?(:admin_initiative, @initiative) %>
+    <button onclick="window.location.href = '<%= initiative_requests_path(@initiative) %>';" style="float: right;">Solicitudes</button>
       <%= button_to "Editar", edit_initiative_path(@initiative), class: "btn btn-primary" %>
       <%= button_to "Eliminar", initiative_path(@initiative), method: :delete, data: { confirm: "¿Estás seguro de que deseas eliminar esta iniciativa?" }, class: "btn btn-danger" %>
     <% elsif current_user.has_role?(:member, @initiative) %>
-      <%= button_to "Salirse", request_path(@initiative.get_request(current_user)), method: :delete, data: { confirm: "¿Estás seguro de que deseas dejar de ser miembro de esta iniciativa?" }, class: "btn btn-danger" %>
+      <%= button_to "Salirse", remove_initiative_user_role_path(@initiative, current_user, role: :member), method: :delete, data: { confirm: "¿Estás seguro de que deseas dejar de ser miembro de esta iniciativa?" }, class: "btn btn-danger" %>
     <% elsif @initiative.get_request(current_user).nil? or not @initiative.get_request(current_user).pending? %>
       <%= button_to "Unirse", requests_path, method: :post, params: { request: { initiative: @initiative.id, status: :pending } }, class: "btn btn-primary" %>    
     <% elsif @initiative.get_request(current_user).pending? %>
@@ -80,6 +81,7 @@
     <p><%=@initiative.description%></p>
     
     <div>
+      
       <h2>Eventos de la Iniciativa:</h2>
       <ul>
         <li>Evento 1</li>
@@ -93,9 +95,9 @@
     <div>
       <h2>Miembros de la Iniciativa:</h2>
       <ul>
-        <li>Miembro 1</li>
-        <li>Miembro 2</li>
-        <li>Miembro 3</li>
+        <% @members.each do |member| %> 
+          <li><%= member.name %> <%= member.last_name %></li>
+        <% end %>
         <!-- Add more members here -->
       </ul>
     </div>

@@ -1,4 +1,10 @@
 class RequestsController < ApplicationController
+  def index
+    @initiative = Initiative.find(params[:initiative_id])
+    @all_requests = @initiative.requests
+    @active_requests = @initiative.requests.where(status: :pending)
+    @old_requests = @initiative.requests.where(status: [:accepted, :denied])
+  end
   def create
     @request = Request.new
     @request.user = current_user
@@ -17,8 +23,15 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
     @request.status = request_params[:status]
     if @request.save
-      flash[:notice] = "Solicitud actualizada exitosamente"
-      redirect_to initiative_path(@request.initiative)
+      flash[:notice] =  @request.status
+      if @request.status == "accepted"
+        @request.user.add_role(:member, @request.initiative)
+        redirect_to initiative_requests_path(@request.initiative)
+      elsif @request.status == "denied"
+        redirect_to initiative_requests_path(@request.initiative)
+      else
+        redirect_to initiative_path(@request.initiative)
+      end
     else
       flash[:alert] = "Error al actualizar la solicitud"
       redirect_to initiative_path(@request.initiative)

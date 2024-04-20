@@ -24,7 +24,9 @@ class InitiativesController < ApplicationController
 
   def show
     @initiative = Initiative.find(params[:id])
+    @members = @initiative.get_members
   end
+
 
 
 

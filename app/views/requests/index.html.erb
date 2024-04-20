@@ -1,0 +1,24 @@
+<% if current_user.has_role?(:admin_initiative, @initiative) %>
+    <h1 style="text-align: center;">Solicitudes: <%= @initiative.name %></h1>
+    <% if @active_requests.present? %>
+        <ul style="list-style-type: none; padding: 0;">
+            <% @active_requests.each do |request| %>
+                <li style="margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center;">
+                        <span style="margin-right: 10px;"><%= request.user.name %>  <%=request.user.last_name %></span>
+                        
+                        <%= button_to "Aceptar",  request_path(request), method: :patch, params: { request: {status: :accepted} },style: "padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px;", remote: true %>
+                        <%= button_to "Rechazar", request_path(request), method: :patch, params: { request: {status: :denied} }, method: :patch, style: "padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
+                        
+                    </div>
+                </li>
+            <% end %>
+        </ul>
+    <% else %>
+        <p>No hay solicitudes.</p>
+    <% end %>
+    </ul>
+<% else %>
+    <h1 style="text-align: center;">No tienes permisos para ver esta página</h1>
+<% end %>
+

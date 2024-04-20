@@ -19,6 +19,10 @@ class InitiativesController < ApplicationController
           redirect_to root_path, notice: error1
       end
     end
+
+    def index
+      @all_initiatives = Initiative.all
+    end
     private
 
     def initiative_params

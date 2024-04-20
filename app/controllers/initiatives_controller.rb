@@ -18,6 +18,10 @@ class InitiativesController < ApplicationController
       end
     end
 
+    def index
+      @all_initiatives = Initiative.all
+    end
+
     def show
       @initiative = Initiative.find(params[:id])
     end

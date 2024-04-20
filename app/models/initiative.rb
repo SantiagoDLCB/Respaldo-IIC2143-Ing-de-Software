@@ -19,4 +19,8 @@ class Initiative < ApplicationRecord
     requests.where(user: user).last
   end
 
+  def get_members
+    roles.where(name: 'member').includes(:users).map(&:users).flatten.uniq
+  end
+
 end

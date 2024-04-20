@@ -17,6 +17,21 @@ Rails.application.routes.draw do
   # config/routes.rb
 
   resources :initiatives
+  resources :initiatives do
+    resources :requests, only: [:index]
+  end
+
+  #quitar rol a usuario
+  resources :initiatives do
+    resources :user_roles do
+      member do
+        delete 'destroy', as: 'remove'
+      end
+    end
+  end
+
+
+
   resources :requests, only: [:create, :update]
 
 end

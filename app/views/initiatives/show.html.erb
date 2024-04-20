@@ -58,11 +58,19 @@
     </style>
 </head>
 <body>
-  <% if user_signed_in? %>
   <div class="container">
     <h1><%=@initiative.name%></h1>
-    <button onclick="window.location.href = '/home/andresinfantep/2024-1-grupo-67/app/views/inicio.html';" style="float: right;">Volver al Inicio</button>
-    <button onclick="window.location.href = '/home/andresinfantep/2024-1-grupo-67/app/views/solicitar_unirse.html';" style="float: right;">Solicitar Unirse</button>
+    <button onclick="window.location.href = '<%= root_path %>';" style="float: right;">Volver al Inicio</button>
+    <% if current_user.has_role?(:admin_initiative, @initiative) %>
+      <%= button_to "Editar", edit_initiative_path(@initiative), class: "btn btn-primary" %>
+      <%= button_to "Eliminar", initiative_path(@initiative), method: :delete, data: { confirm: "¿Estás seguro de que deseas eliminar esta iniciativa?" }, class: "btn btn-danger" %>
+    <% elsif current_user.has_role?(:member, @initiative) %>
+      <%= button_to "Salirse", request_path(@initiative.get_request(current_user)), method: :delete, data: { confirm: "¿Estás seguro de que deseas dejar de ser miembro de esta iniciativa?" }, class: "btn btn-danger" %>
+    <% elsif @initiative.get_request(current_user).nil? or not @initiative.get_request(current_user).pending? %>
+      <%= button_to "Unirse", requests_path, method: :post, params: { request: { initiative: @initiative.id, status: :pending } }, class: "btn btn-primary" %>    
+    <% elsif @initiative.get_request(current_user).pending? %>
+      <%= button_to "Cancelar ", request_path(@initiative.get_request(current_user)), method: :patch, params: { request: {status: :cancelled} }, class: "btn btn-primary" %>
+    <% end %>
     <h2>Tema:</h2>
     <p><%=@initiative.topic%></p>
     <h2>Administrador de la Iniciativa:</h2>
@@ -94,8 +102,5 @@
     
       
   </div>
-  <% else %>
-  <h1>Debes iniciar sesión para ver esta página</h1>
-  <% end %>
 </body>
 </html>

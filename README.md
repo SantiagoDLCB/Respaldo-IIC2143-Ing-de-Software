@@ -1,6 +1,8 @@
 # Proyecto Grupo 67 - IIC2413💻
 
-Entrega del Sprint 0 del proyecto semestral de Ingeniería de Software.
+Repositorio del proyecto semestral de Ingeniería de Software.
+
+Actualmente en: **Sprint 1**
 
 ## Participantes
 
@@ -10,10 +12,14 @@ Entrega del Sprint 0 del proyecto semestral de Ingeniería de Software.
 
 ## Fecha de entrega
 
-Viernes 5 de abril, 23:59.
+Viernes 26 de abril, 23:59.
 
 ## Ruta de la aplicación
 
 La aplicación puede ser accedida en el siguiente enlace:
 
 [Iniciativas Estudiantiles](https://iiee.onrender.com/)
+
+La página de desarrollo se encuentra en el siguiente enlace:
+
+[Dev](https://dev67.onrender.com/)

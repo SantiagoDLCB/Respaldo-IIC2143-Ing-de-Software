@@ -5,7 +5,7 @@ class RequestsController < ApplicationController
     @request.status = params[:request][:status]
     @request.initiative = Initiative.find(params[:request][:initiative])
     if @request.save
-      flash[:notice] = "Solicitud creada exitosamente"
+      flash[:notice] = "Solicitud enviada correctamente"
       redirect_to initiative_path(params[:request][:initiative])
     else
       flash[:alert] = "Error al crear la solicitud"

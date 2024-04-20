@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'render#index'
   # config/routes.rb
-  resources :initiatives, only: [:new, :create]
+
+  resources :initiatives
+  get 'initiatives/:id/admin', to: 'initiatives#get_admin', as: 'get_admin'
 
 end

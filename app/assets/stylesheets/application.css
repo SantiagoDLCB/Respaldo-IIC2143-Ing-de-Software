@@ -14,110 +14,12 @@
  *= require_self
  */
 
- body {
+body {
     background-color: #314e68; /* Color de fondo del encabezado */
     padding: 50px; /* Espaciado interno */
     margin-bottom: 20px; /* Espacio inferior */
     margin-top: -30px;
     height: 800px;
-}
-
-.first {
-    display: flex;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.first::after {
-    content: "";
-    background: url('campus_sj.jpg');
-    opacity: 0.2;
-    top: 0;
-    left: -60px;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;   
-    width:1300px; height:auto;
-}
-
-.titulo {
-    color: #ffffff;
-    width: 50%; /* Ancho del encabezado */
-    font-size: 25px; /* Tamaño del texto */
-    font-family: 'Courier', monospace;
-    font-weight: bold;
-    float: left;
-    text-align: center;
-}
-
-.titulo h1:hover {
-    color: #a7a7a7; /* Color del texto al pasar el cursor */
-}
-
-.titulo p {
-    font-size: 18px; /* Tamaño del texto */
-    font-weight: normal;
-    margin-left: 10px;
-}
-
-.inicio-sesion {
-    background-color: #e4e4e4;
-    padding: 50px; /* Espaciado interno */
-    margin-top: 60px;
-    margin-bottom: 60px; /* Espacio inferior */
-    margin-left: 70px;
-    border-radius: 40px;
-    width: 25%; /* Ancho del encabezado */
-    height: 400px;
-}
-
-h2 {
-    font-size: 30px; /* Tamaño del texto */
-    font-family: 'Courier', monospace;
-    font-weight: bold;
-    color: white;
-}
-.second {
-    margin-top: 20px;
-    height: 400px;
-    display: flex;
-    margin-bottom: 40px;
-}
-
-.gallery:hover {
-    border: 2px solid white;
-}
-
-.gallery img {
-    margin: 20px;
-    height: 300px;
-    width: auto;
-}
-
-.desc {
-    padding: 10px;
-    text-align: center;
-    color: #e4e4e4;
-}
-
-
-.footer {
-    padding-top: 30px;
-    padding-left: 80px;
-    background-color: #e4e4e4;
-    color: #000000;
-    align-items: center;
-    font-size: 8px;
-    font-family: 'Courier', monospace;
-    width: 103%;
-    position: relative;
-    bottom: 0;
-    margin-right: -70px;
-    margin-left: -56px;
-    height: 200px;
-    display: flex;
 }
 
 .header {
@@ -128,11 +30,50 @@ h2 {
     border-end-start-radius: 40px;
     position: relative;
     margin-top: -20px;
-    height: 20px;
+    margin-left: 0px;
+    height: 25px;
     display: flex;
-    padding-left: 30px;
+    padding-left: 20px;
 }
 
 .header > * {
     margin-left: 15px;
-  }
+}
+
+.header > * > * {
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 100;
+    min-height: 10px;
+    width: 80px;
+    padding: 6px 14px;
+    text-align: center;
+    margin-top: 0px;
+    font-family: 'Roboto', sans-serif;
+    background: #314e68;
+}
+
+.header > * > *:hover {
+    background-color: #4B91F7;
+    color: #ffffff;
+}
+
+.footer {
+    padding-top: 30px;
+    padding-left: 80px;
+    background-color: #e4e4e4;
+    color: #000000;
+    align-items: center;
+    font-size: 8px;
+    font-family: 'Courier', monospace;
+    width: 110%;
+    position: relative;
+    bottom: 0;
+    margin-right: -70px;
+    margin-left: -56px;
+    height: 200px;
+    display: flex;
+}

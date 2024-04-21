@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>IIEE 👀🔐</title>
+    <title>Iniciativas Estudiantiles UC</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,15 +14,16 @@
 
 
     <body>
-
-    <% if user_signed_in? %>
-      <%= link_to "Edit", edit_user_registration_path %>
-      <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-      <%= link_to "Crear Iniciativa", new_initiative_path, method: :delete %>
-    <% else %>
-      <%= link_to "Sign in", new_user_session_path %>
-      <%= link_to "Sign up", new_user_registration_path %>
-    <% end %>
+    <div class="header">
+      <% if user_signed_in? %>
+        <%= link_to "Edit", edit_user_registration_path %>
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+        <%= link_to "Crear Iniciativa", new_initiative_path, method: :delete %>
+      <% else %>
+        <%= button_to "Sign in", new_user_session_path %>
+        <%= button_to "Sign up", new_user_registration_path %>
+      <% end %>
+    </div>
 
     <% if flash[:notice] %>
       <p class="notice"><%= flash[:notice] %></p>

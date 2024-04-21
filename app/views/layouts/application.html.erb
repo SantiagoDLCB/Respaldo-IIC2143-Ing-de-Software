@@ -10,30 +10,38 @@
     <%= javascript_importmap_tags %>
 
     <link rel="icon" type="image/png" href="<%= asset_path 'jorge-munoz.jpg' %>">
+    <style>
+    /* CSS styles for flash messages */
+    .flash-message {
+      animation: fadeOut 5s forwards;
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+  </style>
   </head>
+  <body>
 
+  <div class="header">
+  <% if user_signed_in? %>
+    <%= link_to "Edit", edit_user_registration_path %>
+    <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+    <%= link_to "Crear Iniciativa", new_initiative_path %>
+  <% else %>
+    <%= link_to "Sign in", new_user_session_path %>
+    <%= link_to "Sign up", new_user_registration_path %>
+  <% end %>
+  </div>
+   
+  <% flash.each do |name, msg| %>
+  <div class="flash-message" id="flash_<%= name %>">
+    <%= msg %>
+  </div>
+  <% end %>
 
-    <body>
-    <div class="header">
-      <% if user_signed_in? %>
-        <%= link_to "Edit", edit_user_registration_path %>
-        <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-        <%= link_to "Crear Iniciativa", new_initiative_path, method: :delete %>
-      <% else %>
-        <%= button_to "Sign in", new_user_session_path %>
-        <%= button_to "Sign up", new_user_registration_path %>
-      <% end %>
-    </div>
-
-    <% if flash[:notice] %>
-      <p class="notice"><%= flash[:notice] %></p>
-    <% end %>
-
-    <% if flash[:alert] %>
-      <p class="alert"><%= flash[:alert] %></p>
-    <% end %>
-
-    <%= yield %>
+  <%= yield %>
 
   </body>
 </html>

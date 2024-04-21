@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
- 
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }, 
+
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' },
                    path: '', path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'}
 
   get 'render/index'
@@ -17,6 +17,21 @@ Rails.application.routes.draw do
   # config/routes.rb
 
   resources :initiatives
-  get 'initiatives/:id/admin', to: 'initiatives#get_admin', as: 'get_admin'
+  resources :initiatives do
+    resources :requests, only: [:index]
+  end
+
+  #quitar rol a usuario
+  resources :initiatives do
+    resources :user_roles do
+      member do
+        delete 'destroy', as: 'remove'
+      end
+    end
+  end
+
+
+
+  resources :requests, only: [:create, :update]
 
 end

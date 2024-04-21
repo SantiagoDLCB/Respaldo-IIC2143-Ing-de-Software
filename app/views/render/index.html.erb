@@ -1,17 +1,45 @@
 <main class="container">
-  <div class="row text-center justify-content-center">
-    <div class="col_special">
-      <h1 class="display-4">Central de Iniciativas Estudiantiles</h1>
-    </div>
-    <div class="col">
-      <div class="imagen-container">
-        <p>de la Universidad Católica</p>
-        <img src="https://i.ibb.co/dP2Pgjz/logo-png.png" alt="Logo UC">
+  <div class="first">
+      <div class="titulo">
+      <!-- Encabezado de la página -->
+        <br><br><br>
+        <h1 class="display-4">Central de Iniciativas Estudiantiles</h1>
+        <p>Explora una variedad de iniciativas estudiantiles que enriquecerán tu experiencia universitaria</p>
       </div>
-      <br><br><br><br><br><br>
+
+      <div class="inicio-sesion">
+        <!-- Botones de inicio de sesión y unirse -->
+        <p> Botones de inicio acá </p>
+      </div>
+  </div>
+
+  <br><hr><br>
+
+  <h2> Galería de fotos </h2>
+  <div class="second">
+    <div class="gallery">
+      <img src="<%= asset_path 'jorge-munoz.jpg' %>" alt="Foto 1">
+      <div class="desc">Descripción foto 1</div>
+    </div>
+
+    <div class="gallery">
+        <img src="<%= asset_path 'jorge-munoz2.jpg' %>" alt="Foto 2">
+      </a>
+      <div class="desc">Descripción foto 2</div>
+    </div>
+
+    <div class="gallery">
+        <img src="<%= asset_path 'jorge-munoz3.jpg' %>" alt="Foto 3">
+      </a>
+      <div class="desc">Descripción foto 3</div>
     </div>
   </div>
+
+  <br>
+
   <div class="footer">
-    <h1>Grupo 67 - IIC2143 <br> Santiago de la Carrera <br> Andres Infante <br> Vicente San Martin</h1>
+    <img src="<%= asset_path 'logo_uc.png' %>" alt="Logo UC" style="height: 120px;">
+    <div style="border-left:1px solid #000; height:160px; margin:40px;"></div>
+    <h1>Grupo 67 @ IIC2143 2024-1 <br> Santiago de la Carrera <br> Andres Infante <br> Vicente San Martin <br> © 2024</h1>
   </div>
 </main>

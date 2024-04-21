@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>IIEE 👀🔐</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Iniciativas Estudiantiles UC</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -24,22 +24,24 @@
   </head>
   <body>
 
-<% flash.each do |name, msg| %>
+  <div class="header">
+  <% if user_signed_in? %>
+    <%= link_to "Edit", edit_user_registration_path %>
+    <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+    <%= link_to "Crear Iniciativa", new_initiative_path %>
+  <% else %>
+    <%= link_to "Sign in", new_user_session_path %>
+    <%= link_to "Sign up", new_user_registration_path %>
+  <% end %>
+  </div>
+   
+  <% flash.each do |name, msg| %>
   <div class="flash-message" id="flash_<%= name %>">
     <%= msg %>
   </div>
-<% end %>
+  <% end %>
 
-    <% if user_signed_in? %>
-      <%= link_to "Edit", edit_user_registration_path %>
-      <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-      <%= link_to "Crear Iniciativa", new_initiative_path %>
-    <% else %>
-      <%= link_to "Sign in", new_user_session_path %>
-      <%= link_to "Sign up", new_user_registration_path %>
-    <% end %>
-
-    <%= yield %>
+  <%= yield %>
 
   </body>
 </html>

@@ -14,70 +14,125 @@
  *= require_self
  */
 
-body {
-    background-color: #9dbccc; /* Establece el color de fondo de la página */
+ body {
+    background-color: #314e68; /* Color de fondo del encabezado */
+    padding: 50px; /* Espaciado interno */
+    margin-bottom: 20px; /* Espacio inferior */
+    margin-top: -30px;
+    height: 800px;
 }
 
-.display-4 {
-    color: rgb(48, 79, 90); /* Cambiar el color del texto */
-}
-
-.display-4:hover {
-    /* Hacer un gradient en color */
-    color: rgb(85, 47, 255);
-    font-size: 3em; /* Cambiar el tamaño del texto al doble */
-}
-
-@keyframes example {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-.col {
+.first {
     display: flex;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
-}
-  
-.col_special {
-    animation: example 3s infinite; /* Aplicar la animación al div con clase 'col' */
-    display: flex;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
 }
 
-.imagen {
-    height: 200px;
-    width: auto; /* Mantener la proporción original */
-    display: block; /* Asegura que la imagen se comporte como un bloque */
-    margin-left: 20px; /* Centra la imagen horizontalmente */
-    margin-right: 20px; /* Centra la imagen horizontalmente */
-    border-radius: 100px;
-  }
-
-.imagen-container {
-    text-align: center; /* Centrar el texto */
-}
-
-.imagen-container p {
-    margin-top: 5px; /* Espacio entre la imagen y la descripción */
-    margin-bottom: 20px; /* Espacio entre la descripción y el siguiente elemento */
-}
-
-p {
-    font-size: 25px;
-    font-family: 'Calibri';
-}
-  
-.footer {
-    padding: 10px;
-    background-color: #1c2833; /* Color de fondo del footer */
-    color: #a7a7a7; /* Color del texto del footer */
-    text-align: center;
-    font-size: 15px;
-    padding: 20px;
-    width: 100%;
-    position: absolute;
+.first::after {
+    content: "";
+    background: url('campus_sj.jpg');
+    opacity: 0.2;
+    top: 0;
+    left: -60px;
     bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+    width:1300px; height:auto;
 }
+
+.titulo {
+    color: #ffffff;
+    width: 50%; /* Ancho del encabezado */
+    font-size: 25px; /* Tamaño del texto */
+    font-family: 'Courier', monospace;
+    font-weight: bold;
+    float: left;
+    text-align: center;
+}
+
+.titulo h1:hover {
+    color: #a7a7a7; /* Color del texto al pasar el cursor */
+}
+
+.titulo p {
+    font-size: 18px; /* Tamaño del texto */
+    font-weight: normal;
+    margin-left: 10px;
+}
+
+.inicio-sesion {
+    background-color: #e4e4e4;
+    padding: 50px; /* Espaciado interno */
+    margin-top: 60px;
+    margin-bottom: 60px; /* Espacio inferior */
+    margin-left: 70px;
+    border-radius: 40px;
+    width: 25%; /* Ancho del encabezado */
+    height: 400px;
+}
+
+h2 {
+    font-size: 30px; /* Tamaño del texto */
+    font-family: 'Courier', monospace;
+    font-weight: bold;
+    color: white;
+}
+.second {
+    margin-top: 20px;
+    height: 400px;
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.gallery:hover {
+    border: 2px solid white;
+}
+
+.gallery img {
+    margin: 20px;
+    height: 300px;
+    width: auto;
+}
+
+.desc {
+    padding: 10px;
+    text-align: center;
+    color: #e4e4e4;
+}
+
+
+.footer {
+    padding-top: 30px;
+    padding-left: 80px;
+    background-color: #e4e4e4;
+    color: #000000;
+    align-items: center;
+    font-size: 8px;
+    font-family: 'Courier', monospace;
+    width: 103%;
+    position: relative;
+    bottom: 0;
+    margin-right: -70px;
+    margin-left: -56px;
+    height: 200px;
+    display: flex;
+}
+
+.header {
+    background-color: #e4e4e4;
+    padding: 10px;
+    width: 100%;
+    border-end-end-radius: 40px;
+    border-end-start-radius: 40px;
+    position: relative;
+    margin-top: -20px;
+    height: 20px;
+    display: flex;
+    padding-left: 30px;
+}
+
+.header > * {
+    margin-left: 15px;
+  }

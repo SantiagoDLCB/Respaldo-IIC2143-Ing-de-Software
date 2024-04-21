@@ -85,13 +85,6 @@
     height: 400px;
 }
 
-h2 {
-    font-size: 30px; /* Tamaño del texto */
-    font-family: 'Courier', monospace;
-    font-weight: bold;
-    color: white;
-}
-
 .second {
     margin-top: 20px;
     height: 400px;

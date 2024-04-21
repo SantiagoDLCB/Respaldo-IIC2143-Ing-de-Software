@@ -26,15 +26,15 @@
 
   <div class="header">
   <% if user_signed_in? %>
-    <%= link_to "Edit", edit_user_registration_path %>
+    <%= link_to "Ver Perfil", edit_user_registration_path %>
     <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
     <%= link_to "Crear Iniciativa", new_initiative_path %>
+    <%= link_to "Home", initiatives_path %> 
   <% else %>
     <%= button_to "Sign up", new_user_registration_path, method: :get %>
     <%= button_to "Sign in", new_user_session_path, method: :get%>
   <% end %>
   </div>
-   
   <% flash.each do |name, msg| %>
   <div class="flash-message" id="flash_<%= name %>">
     <%= msg %>

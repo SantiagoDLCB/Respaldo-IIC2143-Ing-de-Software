@@ -1,4 +1,20 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Mi Perfil</h2>
+<h3>Personal <%= resource_name.to_s.humanize %> Info </h3>
+<p>Correo: <%= current_user.email %></p>
+<p>Nombre: <%= current_user.name %></p>
+<p>Apellido: <%= current_user.last_name %></p>
+<p>Username: <%= current_user.username %></p>
+<p>Contraseña: <%= current_user.encrypted_password %></p>
+
+<h3><%= resource_name.to_s.humanize %> Initiatives </h3>
+<ul style="padding: 0;">
+  <% current_user.initiatives.each do |initiative| %>
+    <p><%= "#{initiative.name} - #{initiative.topic} (#{current_user.roles.find_by(resource: initiative)&.name})" %></p>
+  <% end %>
+</ul>
+
+<hr>
+<h2>Editar Información</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>

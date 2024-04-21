@@ -30,7 +30,6 @@ class InitiativesController < ApplicationController
 
 
 
-
     private
 
   def initiative_params

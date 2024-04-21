@@ -61,6 +61,20 @@ body {
     color: #ffffff;
 }
 
+h2 {
+    font-size: 30px; /* Tamaño del texto */
+    font-family: 'Courier', monospace;
+    font-weight: bold;
+    color: white;
+}
+
+h3 {
+    font-size: 20px; /* Tamaño del texto */
+    font-family: 'Courier', monospace;
+    font-weight: bold;
+    color: rgb(177, 177, 177);
+}
+
 .footer {
     padding-top: 30px;
     padding-left: 80px;
@@ -69,11 +83,11 @@ body {
     align-items: center;
     font-size: 8px;
     font-family: 'Courier', monospace;
-    width: 110%;
+    width: 103%;
     position: relative;
     bottom: 0;
     margin-right: -70px;
     margin-left: -56px;
-    height: 200px;
+    height: 160px;
     display: flex;
 }

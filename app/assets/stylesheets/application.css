@@ -76,6 +76,14 @@ h3 {
     color: rgb(177, 177, 177);
 }
 
+h4 {
+    font-size: 15px; /* Tamaño del texto */
+    font-family: 'Courier', monospace;
+    font-weight: bold;
+    color: rgb(180, 0, 0);
+    text-shadow: 1px 1px 1px black;
+}
+
 .footer {
     padding-top: 10px;
     padding-left: 80px;

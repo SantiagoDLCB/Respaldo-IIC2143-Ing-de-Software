@@ -20,7 +20,7 @@ class Initiative < ApplicationRecord
   end
 
   def get_members
-    roles.where(name: 'member').includes(:users).map(&:users).flatten.uniq
+    roles.where(name: 'member', resource_type: 'Initiative').includes(:users).map(&:users).flatten.uniq
   end
 
 end

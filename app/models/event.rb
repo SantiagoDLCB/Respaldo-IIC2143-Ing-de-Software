@@ -1,3 +1,25 @@
 class Event < ApplicationRecord
+  resourcify
+  has_many :roles, class_name: "Role", as: :resource
+  has_many :users, through: :roles, source: :users
   belongs_to :initiative
+  def self.all_roles
+    Role.where(resource_type: 'Event')
+  end
+
+  validates :name,  presence: true
+  validates :description, presence: true
+  validates :capacity, presence: true
+
+  def get_admin
+    roles.find_by(name: 'admin_event')&.users.first
+  end
+
+  def get_members
+    roles.where(name: 'attendant', resource_type: 'Event').includes(:users).map(&:users).flatten.uniq
+  end
+
+  def request_params
+    params.require(:event).permit(:initiative, :name, :description, )
+  end
 end

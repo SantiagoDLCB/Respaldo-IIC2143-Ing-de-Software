@@ -19,7 +19,5 @@ class Event < ApplicationRecord
     roles.where(name: 'attendant', resource_type: 'Event').includes(:users).map(&:users).flatten.uniq
   end
 
-  def request_params
-    params.require(:event).permit(:initiative, :name, :description, )
-  end
+
 end

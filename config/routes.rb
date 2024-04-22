@@ -31,6 +31,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :initiatives do
+    resources :events, only: [:create]
+  end
+
 resources :events
 
 resources :requests, only: [:create, :update]

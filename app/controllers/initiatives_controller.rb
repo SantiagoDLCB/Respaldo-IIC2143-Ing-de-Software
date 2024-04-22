@@ -28,6 +28,11 @@ class InitiativesController < ApplicationController
     @events = @initiative.get_events
   end
 
+  def destroy
+    @initiative = Initiative.find(params[:id])
+    @initiative.destroy
+    redirect_to root_path, notice: 'La iniciativa fue eliminada.'
+  end
 
 
 

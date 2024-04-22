@@ -1,19 +1,23 @@
-.hidden {
-    display: none;
+body {
+    text-align: justify;
 }
-  
-/* Estilo del enlace para que parezca un botón */
-.edit-profile-button {
+
+.button > *{
     display: inline-block;
     padding: 8px 16px;
     background-color: #007bff;
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
+    cursor: pointer;
 }
-  
-/* Mostrar el formulario cuando el enlace es el objetivo */
-#edit-profile-form:target {
-    display: block;
+
+.button2 > * > *{
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
-  

@@ -1,17 +1,19 @@
-
+<!DOCTYPE html>
+<html>
 <head>
   <link rel="stylesheet" href="<%= asset_path 'profile.css' %>">
 </head>
 
+<body>
 <h2>Mi Perfil</h2>
-<h3>Personal <%= resource_name.to_s.humanize %> Info </h3>
+<h3>Información Personal</h3>
 <p>Correo: <%= current_user.email %></p>
 <p>Nombre: <%= current_user.name %></p>
 <p>Apellido: <%= current_user.last_name %></p>
 <p>Username: <%= current_user.username %></p>
 <p>Contraseña: <%= current_user.encrypted_password %></p>
 
-<h3><%= resource_name.to_s.humanize %> Initiatives </h3>
+<h3>Mis Iniciativas</h3>
 <ul style="padding: 0;">
   <% current_user.initiatives.each do |initiative| %>
     <p><%= "#{initiative.name} - #{initiative.topic} (#{current_user.roles.find_by(resource: initiative)&.name})" %></p>
@@ -19,53 +21,63 @@
 </ul>
 
 <br><hr><br>
-<h2>Editar Información</h2>
-<a href="#edit-profile-form" class="edit-profile-button">Editar Perfil</a>
+<h2>Modificar Perfil</h2>
+<h3>Editar Información</h3>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <p><%= render "devise/shared/error_messages", resource: resource %></p>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :"nuevo_username" %><br />
+    <%= f.text_field :username, autofocus: true %>
+  </div><br>
+
+  <div class="field">
+    <%= f.label :"nuevo_correo" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  </div><br>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :"nueva_contraseña" %> <i><br>Dejar en blanco si no desea cambiarla</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <em><%= @minimum_password_length %> caracteres mínimo</em>
     <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :confirmar_contraseña %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+  </div><br>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :contraseña_actual %> <i>(para confirmar los cambios)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div><br>
+
+  <div class="button">
+    <%= f.submit "Actualizar" %>
   </div>
+<% end %><br>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+<h3>Mi Cuenta</h3>
 
-<h3>Cancel my account</h3>
+<p>Opción de eliminar cuenta</p>
+<div class="button2">
+  <%= button_to "Eliminar", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+</div><br>
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %><br><br><br><br>
+<%= link_to "Volver", :back %><br><br><br><br>
 
 <div class="footer">
   <img src="<%= asset_path 'logo_uc.png' %>" alt="Logo UC" style="height: 100px;">
   <div style="border-left:1px solid #000; height:100px; margin:40px;"></div>
   <h1>Grupo 67 @ IIC2143 2024-1 <br> Santiago de la Carrera <br> Andres Infante <br> Vicente San Martin <br> © 2024</h1>
 </div>
+</body>
+</html>

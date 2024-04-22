@@ -3,10 +3,10 @@
 <head>
   <title>Detalles de la Iniciativa Estudiantil</title>
 
-</head>
+  </head>
 <body>
   <div>
-    <h1><%=@initiative.name%></h1>
+    <h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;"><%=@initiative.name%></h1>
     <button onclick="window.location.href = '<%= root_path %>';" style="float: right;">Volver al Inicio</button>
     <% if current_user.has_role?(:admin_initiative, @initiative) %>
       <button onclick="window.location.href = '<%= initiative_requests_path(@initiative) %>';" style="float: right;">Solicitudes</button>

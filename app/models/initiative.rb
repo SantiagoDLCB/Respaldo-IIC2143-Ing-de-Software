@@ -3,6 +3,7 @@ class Initiative < ApplicationRecord
   has_many :roles, class_name: "Role", as: :resource
   has_many :users, through: :roles, source: :users
   has_many :requests
+  has_many :events
   def self.all_roles
     Role.where(resource_type: 'Initiative')
   end
@@ -20,7 +21,7 @@ class Initiative < ApplicationRecord
   end
 
   def get_members
-    roles.where(name: 'member').includes(:users).map(&:users).flatten.uniq
+    roles.where(name: 'member', resource_type: 'Initiative').includes(:users).map(&:users).flatten.uniq
   end
 
 end

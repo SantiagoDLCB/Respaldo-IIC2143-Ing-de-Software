@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   # config/routes.rb
 
   resources :initiatives
+
   resources :initiatives do
     resources :requests, only: [:index]
   end
@@ -32,6 +33,10 @@ Rails.application.routes.draw do
 
 
 
-  resources :requests, only: [:create, :update]
+resources :requests, only: [:create, :update]
+
+resources :initiatives do
+  resources :events, only: [:new, :create]
+end
 
 end

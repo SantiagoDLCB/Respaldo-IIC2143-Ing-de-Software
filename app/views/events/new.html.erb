@@ -1,0 +1,15 @@
+
+<%= form_with(model: [@initiative, @event], url: initiative_events_path(@initiative), method: "post") do |form| %>
+  <% if flash.now[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash.now[:alert] %>
+    </div>
+  <% end %>
+  <%= form.label :name %>
+  <%= form.text_field :name, required: true %>
+  <%= form.label :description %>
+  <%= form.text_area :description, required: true %>
+  <%= form.label :capacity %>
+  <%= form.number_field :capacity, required: true %>
+  <%= form.submit "Crear Iniciativa" %>
+<% end %>

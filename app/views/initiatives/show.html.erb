@@ -2,86 +2,37 @@
 <html>
 <head>
   <title>Detalles de la Iniciativa Estudiantil</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 20px;
-    }
-    
-    h1 {
-      color: white;
-      text-align: center;
-      background-color: #4CAF50;
-      padding: 12px; 
-    }
 
-    h2 {
-      color: #666;
-    }
-
-    p {
-      color: #999;
-    }
-
-    button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-      margin-right: 10px;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    li {
-      margin-bottom: 5px;
-    }
-    
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: white;
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    </style>
 </head>
 <body>
-  <div class="container">
+  <div>
     <h1><%=@initiative.name%></h1>
     <button onclick="window.location.href = '<%= root_path %>';" style="float: right;">Volver al Inicio</button>
     <% if current_user.has_role?(:admin_initiative, @initiative) %>
-    <button onclick="window.location.href = '<%= initiative_requests_path(@initiative) %>';" style="float: right;">Solicitudes</button>
-      <%= button_to "Editar", edit_initiative_path(@initiative), class: "btn btn-primary" %>
-      <%= button_to "Eliminar", initiative_path(@initiative), method: :delete, data: { confirm: "¿Estás seguro de que deseas eliminar esta iniciativa?" }, class: "btn btn-danger" %>
+      <button onclick="window.location.href = '<%= initiative_requests_path(@initiative) %>';" style="float: right;">Solicitudes</button>
+      <div class="button">
+        <%= button_to "Crear Evento", new_initiative_event_path(@initiative), method: :get, class: "btn btn-primary", style: "float: left" %>
+
+        <%= button_to "Editar", edit_initiative_path(@initiative), class: "btn btn-primary", style: "float: left" %>
+        <%= button_to "Eliminar", initiative_path(@initiative), method: :delete, data: { confirm: "¿Estás seguro de que deseas eliminar esta iniciativa?" }, class: "btn btn-danger", style: "float: left;" %>
+      </div>
     <% elsif current_user.has_role?(:member, @initiative) %>
       <%= button_to "Salirse", remove_initiative_user_role_path(@initiative, current_user, role: :member), method: :delete, data: { confirm: "¿Estás seguro de que deseas dejar de ser miembro de esta iniciativa?" }, class: "btn btn-danger" %>
     <% elsif @initiative.get_request(current_user).nil? or not @initiative.get_request(current_user).pending? %>
-      <%= button_to "Unirse", requests_path, method: :post, params: { request: { initiative: @initiative.id, status: :pending } }, class: "btn btn-primary" %>    
+      <%= button_to "Unirse", requests_path, method: :post, params: { request: { initiative: @initiative.id, status: :pending } }, class: "btn btn-primary" %>
     <% elsif @initiative.get_request(current_user).pending? %>
       <%= button_to "Cancelar ", request_path(@initiative.get_request(current_user)), method: :patch, params: { request: {status: :cancelled} }, class: "btn btn-primary" %>
     <% end %>
-    <h2>Tema:</h2>
+    <br><h2>Tema:</h2>
     <p><%=@initiative.topic%></p>
     <h2>Administrador de la Iniciativa:</h2>
     <p><%= @initiative.get_admin.name%> <%= @initiative.get_admin.last_name%></p>
 
     <h2>Descripción:</h2>
     <p><%=@initiative.description%></p>
-    
+
     <div>
-      
+
       <h2>Eventos de la Iniciativa:</h2>
       <ul>
         <li>Evento 1</li>
@@ -89,20 +40,25 @@
         <li>Evento 3</li>
         <!-- Add more events here -->
       </ul>
-      
+
     </div>
-    
+
     <div>
       <h2>Miembros de la Iniciativa:</h2>
       <ul>
-        <% @members.each do |member| %> 
+        <% @members.each do |member| %>
           <li><%= member.name %> <%= member.last_name %></li>
         <% end %>
         <!-- Add more members here -->
       </ul>
     </div>
-    
-      
+
+
+  </div>
+  <div class="footer">
+  <img src="<%= asset_path 'logo_uc.png' %>" alt="Logo UC" style="height: 120px;">
+  <div style="border-left:1px solid #000; height:140px; margin:40px;"></div>
+  <h1>Grupo 67 @ IIC2143 2024-1 <br> Santiago de la Carrera <br> Andres Infante <br> Vicente San Martin <br> © 2024</h1>
   </div>
 </body>
 </html>

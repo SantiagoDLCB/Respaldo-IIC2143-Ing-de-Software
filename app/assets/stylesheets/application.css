@@ -61,6 +61,13 @@ body {
     color: #ffffff;
 }
 
+h1 {
+    font-size: 45px; /* Tamaño del texto */
+    font-family: 'Courier', monospace;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
 h2 {
     font-size: 30px; /* Tamaño del texto */
     font-family: 'Courier', monospace;

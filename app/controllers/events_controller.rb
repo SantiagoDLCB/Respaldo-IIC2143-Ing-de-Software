@@ -1,20 +1,23 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_initiative, only: [:new, :create]
   def new
-    @initiative = Initiative.find(params[:initiative])
-    @event= Event.new
+    @event = @initiative.events.build
   end
 
   def create
-    @event = Event.new(params[:initiative])
+    @event = @initiative.events.build(event_params)
     if @event.save
-      current_user.add_role :admin_event, @event
-      redirect_to iniciative_path(@initiative.id) , notice: 'Event was successfully created.'
+      redirect_to initiative_path(@initiative.id), notice: 'Evento creado exitosamente.'
     else
-      error1 = "No se ha podido crear el evento, por favor revise que los datos esten bien ingresados."
-      redirect_to root_path, notice: error1
+      redirect_to initiative_path(@initiative.id), notice: 'Evento no ha podido ser creado.'
     end
+    current_user.add_role :admin_event, @event
   end
+  def set_initiative
+    @initiative = Initiative.find(params[:initiative_id])
+  end
+
   def event_params
     params.require(:event).permit(:initiative, :name, :description, :capacity)
   end

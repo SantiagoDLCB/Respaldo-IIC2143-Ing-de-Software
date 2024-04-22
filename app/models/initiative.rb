@@ -3,6 +3,7 @@ class Initiative < ApplicationRecord
   has_many :roles, class_name: "Role", as: :resource
   has_many :users, through: :roles, source: :users
   has_many :requests
+  has_many :events
   def self.all_roles
     Role.where(resource_type: 'Initiative')
   end

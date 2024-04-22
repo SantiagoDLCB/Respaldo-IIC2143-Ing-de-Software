@@ -1,6 +1,5 @@
-<!-- app/views/iniciativas/new.html.erb -->
 
-<%= form_with(model: @event, url: initiatives_path) do |form| %>
+<%= form_with(model: [@initiative, @event], url: initiative_events_path(@initiative), method: "post") do |form| %>
   <% if flash.now[:alert] %>
     <div class="alert alert-danger">
       <%= flash.now[:alert] %>

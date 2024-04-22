@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Detalles de la Iniciativa Estudiantil</title>
+  <title>Detalles del Evento</title>
 
   </head>
 <body>
   <div>
-    <h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;"><%=@initiative.name%></h1>
+    <h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;"><%=@event.name%></h1>
     <button onclick="window.location.href = '<%= root_path %>';" style="float: right;">Volver al Inicio</button>
-    <% if current_user.has_role?(:admin_initiative, @initiative) %>
+    <% if current_user.has_role?(:admin_event, @event) %>
       <button onclick="window.location.href = '<%= initiative_requests_path(@initiative) %>';" style="float: right;">Solicitudes</button>
       <div class="button">
         <%= button_to "Crear Evento", new_initiative_event_path(@initiative), method: :get, class: "btn btn-primary", style: "float: left" %>
@@ -23,35 +23,15 @@
     <% elsif @initiative.get_request(current_user).pending? %>
       <%= button_to "Cancelar ", request_path(@initiative.get_request(current_user)), method: :patch, params: { request: {status: :cancelled} }, class: "btn btn-primary" %>
     <% end %>
-    <br><h2>Tema:</h2>
-    <p><%=@initiative.topic%></p>
-    <h2>Administrador de la Iniciativa:</h2>
-    <p><%= @initiative.get_admin.name%> <%= @initiative.get_admin.last_name%></p>
+    <br><h2>Iniciativa</h2>
+    <p><%=@initiative.name%></p>
 
     <h2>Descripción:</h2>
-    <p><%=@initiative.description%></p>
+    <p><%=@event.description%></p>
 
-    <div>
+    <h2>Capacidad:</h2>
+    <p><%=@event.capacity%></p>
 
-      <h2>Eventos de la Iniciativa:</h2>
-      <ul>
-      <% @events.each do |event| %>
-        <li><%=link_to event.name, event_path(event) %></li>
-      <% end %>
-        <!-- Add more events here -->
-      </ul>
-
-    </div>
-
-    <div>
-      <h2>Miembros de la Iniciativa:</h2>
-      <ul>
-        <% @members.each do |member| %>
-          <li><%= member.name %> <%= member.last_name %></li>
-        <% end %>
-        <!-- Add more members here -->
-      </ul>
-    </div>
 
 
   </div>

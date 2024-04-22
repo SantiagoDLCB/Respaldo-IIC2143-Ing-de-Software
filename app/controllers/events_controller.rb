@@ -17,6 +17,10 @@ class EventsController < ApplicationController
   def set_initiative
     @initiative = Initiative.find(params[:initiative_id])
   end
+  def show
+    @event = Event.find(params[:id])
+    @initiative = @event.initiative
+  end
 
   def event_params
     params.require(:event).permit(:initiative, :name, :description, :capacity)

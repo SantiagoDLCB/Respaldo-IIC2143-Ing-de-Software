@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   # config/routes.rb
 
   resources :initiatives
+  resources :events
 
   resources :initiatives do
     resources :requests, only: [:index]

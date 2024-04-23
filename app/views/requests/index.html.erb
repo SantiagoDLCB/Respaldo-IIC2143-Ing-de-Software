@@ -1,5 +1,5 @@
 <% if current_user.has_role?(:admin_initiative, @initiative) %>
-    <h1 style="text-align: center;">Solicitudes: <%= @initiative.name %></h1>
+    <br><h2 style="text-align: center;">Solicitudes de unión <%= @initiative.name %></h2>
     <% if @active_requests.present? %>
         <ul style="list-style-type: none; padding: 0;">
             <% @active_requests.each do |request| %>
@@ -15,10 +15,13 @@
             <% end %>
         </ul>
     <% else %>
-        <p>No hay solicitudes.</p>
+        <p">No hay solicitudes.</p>
     <% end %>
     </ul>
 <% else %>
     <h1 style="text-align: center;">No tienes permisos para ver esta página</h1>
 <% end %>
-
+<!-- Botón en el centro para volver a la iniciativa -->
+<div class="button3">
+    <button onclick="window.location.href = '<%= initiative_path(@initiative) %>';">Volver a <%= @initiative.name %></button>
+</div>

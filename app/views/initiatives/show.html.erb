@@ -19,7 +19,7 @@
         <%= button_to "Eliminar", initiative_path(@initiative), method: :delete, style: "float: left" %>
       </div>
     <% elsif current_user.has_role?(:member, @initiative) %>
-    <div class="button">
+    <div class="button2">
       <%= button_to "Salirse", remove_initiative_user_role_path(@initiative, current_user, role: :member), method: :delete, data: { confirm: "¿Estás seguro de que deseas dejar de ser miembro de esta iniciativa?" }, class: "btn btn-danger" %>
     </div>
     <% elsif @initiative.get_request(current_user).nil? or not @initiative.get_request(current_user).pending? %>
@@ -27,7 +27,7 @@
       <%= button_to "Unirse", requests_path, method: :post, params: { request: { initiative: @initiative.id, status: :pending } }, class: "btn btn-primary" %>
     </div>
     <% elsif @initiative.get_request(current_user).pending? %>
-    <div class="button">
+    <div class="button2">
       <%= button_to "Cancelar ", request_path(@initiative.get_request(current_user)), method: :patch, params: { request: {status: :cancelled} }, class: "btn btn-primary" %>
     </div>
     <% end %>

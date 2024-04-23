@@ -1,64 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Detalles de la Iniciativa Estudiantil</title>
+  <link rel="stylesheet" href="<%= asset_path 'show_initiative.css' %>">
+</head>
 
-  </head>
 <body>
-  <div>
-    <h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;"><%=@initiative.name%></h1>
-    <button onclick="window.location.href = '<%= root_path %>';" style="float: right;">Volver al Inicio</button>
+    <br><h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;"><%=@initiative.name%></h1>
+    <div class="button3">
+      <button onclick="window.location.href = '<%= root_path %>';" style="float: right;">Volver al Inicio</button>
+    </div>
     <% if current_user.has_role?(:admin_initiative, @initiative) %>
-      <button onclick="window.location.href = '<%= initiative_requests_path(@initiative) %>';" style="float: right;">Solicitudes</button>
-      <div class="button">
+      <div class="button3">
+        <button onclick="window.location.href = '<%= initiative_requests_path(@initiative) %>';" style="float: right;">Solicitudes</button>
+      </div>
+      <div class="button2">
         <%= button_to "Crear Evento", new_initiative_event_path(@initiative), method: :get, class: "btn btn-primary", style: "float: left" %>
-
         <%= button_to "Editar", edit_initiative_path(@initiative), class: "btn btn-primary", style: "float: left" %>
-        <%= button_to "Eliminar", initiative_path(@initiative), method: :delete, style: "float: left;" %>
+        <%= button_to "Eliminar", initiative_path(@initiative), method: :delete, style: "float: left" %>
       </div>
     <% elsif current_user.has_role?(:member, @initiative) %>
+    <div class="button">
       <%= button_to "Salirse", remove_initiative_user_role_path(@initiative, current_user, role: :member), method: :delete, data: { confirm: "¿Estás seguro de que deseas dejar de ser miembro de esta iniciativa?" }, class: "btn btn-danger" %>
+    </div>
     <% elsif @initiative.get_request(current_user).nil? or not @initiative.get_request(current_user).pending? %>
+    <div class="button2">
       <%= button_to "Unirse", requests_path, method: :post, params: { request: { initiative: @initiative.id, status: :pending } }, class: "btn btn-primary" %>
+    </div>
     <% elsif @initiative.get_request(current_user).pending? %>
+    <div class="button">
       <%= button_to "Cancelar ", request_path(@initiative.get_request(current_user)), method: :patch, params: { request: {status: :cancelled} }, class: "btn btn-primary" %>
+    </div>
     <% end %>
-    <br><h2>Tema:</h2>
+
+    <br><br><h3>Tema</h3>
     <p><%=@initiative.topic%></p>
-    <h2>Administrador de la Iniciativa:</h2>
+    <h3>Administrador de la Iniciativa</h3>
     <p><%= @initiative.get_admin.name%> <%= @initiative.get_admin.last_name%></p>
 
-    <h2>Descripción:</h2>
+    <h3>Descripción</h3>
     <p><%=@initiative.description%></p>
 
     <div>
 
-      <h2>Eventos de la Iniciativa:</h2>
+      <h3>Eventos de la Iniciativa</h3>
+      <% if @events.empty? %>
+        <p><em>Esta iniciativa no tiene eventos activos.</em></p>
+      <% end %>
       <ul>
       <% @events.each do |event| %>
         <li><%=link_to event.name, event_path(event) %></li>
       <% end %>
-        <!-- Add more events here -->
       </ul>
 
     </div>
 
     <div>
-      <h2>Miembros de la Iniciativa:</h2>
+      <h3>Miembros de la Iniciativa</h3>
+      <% if @members.empty? %>
+        <p><em>Esta iniciativa no tiene miembros.</em></p>
+      <% end %>
       <ul>
         <% @members.each do |member| %>
           <li><%= member.name %> <%= member.last_name %></li>
         <% end %>
         <!-- Add more members here -->
       </ul>
-    </div>
+    </div><br><br><br><br><br><br><br><br><br>
 
-
-  </div>
-  <div class="footer">
-  <img src="<%= asset_path 'logo_uc.png' %>" alt="Logo UC" style="height: 120px;">
-  <div style="border-left:1px solid #000; height:140px; margin:40px;"></div>
-  <h1>Grupo 67 @ IIC2143 2024-1 <br> Santiago de la Carrera <br> Andres Infante <br> Vicente San Martin <br> © 2024</h1>
-  </div>
 </body>
 </html>

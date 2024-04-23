@@ -26,10 +26,10 @@
 
   <div class="header">
   <% if user_signed_in? %>
-    <%= link_to "Ver Perfil", edit_user_registration_path %>
-    <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete %>
-    <%= link_to "Crear Iniciativa", new_initiative_path %>
-    <%= link_to "Inicio", initiatives_path %> 
+    <%= button_to "Inicio", initiatives_path, method: :get%>
+    <%= button_to "Crear Iniciativa", new_initiative_path, method: :get %>
+    <%= button_to "Ver Perfil", edit_user_registration_path, method: :get %>
+    <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete %> 
   <% else %>
     <%= button_to "Registrarse", new_user_registration_path, method: :get %>
     <%= button_to "Iniciar sesión", new_user_session_path, method: :get%>

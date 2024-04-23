@@ -1,9 +1,11 @@
-<h1 style="text-align: center;">All Initiatives</h1>
+<br>
+<h2 style="text-align: center;">Página de Inicio</h2>
+<h3 style="text-align: center;">Iniciativas</h3>
 
-<ul style="list-style-type: none; padding: 0;">
+<ul style="list-style-type: none; padding: 0; text-align: center;">
     <% @all_initiatives.each do |initiative| %>
         <li style="margin-bottom: 10px;">
-            <%= link_to initiative.name, initiative_path(initiative), style: "text-decoration: none; color: #333; background-color: #f5f5f5; padding: 10px; border-radius: 5px; display: block;" %>
+            <%= link_to initiative.name, initiative_path(initiative), style: "text-decoration: none; color: #333; background-color: #f5f5f5; padding: 10px; border-radius: 5px; display: block;  width: 300px; margin: 0 auto;" %>
         </li>
     <% end %>
 </ul>

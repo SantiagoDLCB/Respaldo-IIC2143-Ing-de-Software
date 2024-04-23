@@ -5,7 +5,7 @@ class RenderController < ApplicationController
 
 
   def index
-    @recent_initiatives = Initiative.order(created_at: :desc).limit(5)
+    @recent_initiatives = Initiative.order(created_at: :desc).limit(3)
   end
 
   private

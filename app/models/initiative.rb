@@ -1,9 +1,9 @@
 class Initiative < ApplicationRecord
   resourcify
-  has_many :roles, class_name: "Role", as: :resource
+  has_many :roles, class_name: "Role", as: :resource, dependent: :delete_all
   has_many :users, through: :roles, source: :users
-  has_many :requests
-  has_many :events
+  has_many :requests, dependent: :delete_all
+  has_many :events, dependent: :delete_all
   def self.all_roles
     Role.where(resource_type: 'Initiative')
   end

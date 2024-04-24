@@ -8,7 +8,7 @@ class InitiativesController < ApplicationController
     @initiative = Initiative.new(initiative_params)
     if @initiative.save
       current_user.add_role :admin_initiative, @initiative
-      redirect_to initiative_path(@initiative.id) , notice: 'Initiative was successfully created.'
+      redirect_to initiative_path(@initiative.id) , notice: 'La iniciativa fue creada de manera exitosa.'
     else
       error1 = "No se ha podido crear la iniciativa, por favor revise que los datos esten bien ingresados."
       if @initiative.errors[:name].include?("has already been taken")

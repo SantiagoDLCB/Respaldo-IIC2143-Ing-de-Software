@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   resourcify
-  has_many :roles, class_name: "Role", as: :resource
+  has_many :roles, class_name: "Role", as: :resource, dependent: :delete_all
   has_many :users, through: :roles, source: :users
   belongs_to :initiative
   def self.all_roles

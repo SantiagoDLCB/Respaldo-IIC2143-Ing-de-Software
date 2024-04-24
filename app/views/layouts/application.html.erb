@@ -31,6 +31,8 @@
     <%= button_to "Ver Perfil", edit_user_registration_path, method: :get %>
     <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete %> 
   <% else %>
+    <!-- Boton a root path -->
+    <%= button_to "Inicio", root_path, method: :get%>
     <%= button_to "Registrarse", new_user_registration_path, method: :get %>
     <%= button_to "Iniciar sesión", new_user_session_path, method: :get%>
   <% end %>

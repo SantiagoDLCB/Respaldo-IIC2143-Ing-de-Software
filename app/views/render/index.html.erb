@@ -16,7 +16,17 @@
       <div class="inicio-sesion">
         <!-- Botones de inicio de sesión y unirse -->
         <h2 style="font-size:16px; color: black;"> ¡Regístrate o inicia sesión para explorar las iniciativas y unirte a ellas! </h2>
-        
+        <div class="main-button">
+          <% if user_signed_in? %>
+            <%= button_to "Inicio", initiatives_path, method: :get%>
+            <%= button_to "Crear Iniciativa", new_initiative_path, method: :get %>
+            <%= button_to "Ver Perfil", edit_user_registration_path, method: :get %>
+            <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete %> 
+          <% else %>
+            <%= button_to "Registrarse", new_user_registration_path, method: :get %>
+            <%= button_to "Iniciar sesión", new_user_session_path, method: :get%>
+          <% end %>
+        </div>
       </div>
   </div>
 

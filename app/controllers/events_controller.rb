@@ -21,11 +21,25 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @initiative = @event.initiative
   end
+
   def destroy
     @event = Event.find(params[:id])
     @initiative = @event.initiative
     @event.destroy
     redirect_to initiative_path(@initiative), notice: 'El evento fue eliminado.'
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    @user = current_user
+    @user.add_role(:attendant, @event)
+    redirect_to event_path(@event), notice: 'Te has inscrito al evento.'
+  end
+
+  def leave
+    @event = Event.find(params[:id])
+    current_user.remove_role(:attendant, @event)
+    redirect_to event_path(@event), notice: 'Te has salido del evento.'
   end
 
   def event_params

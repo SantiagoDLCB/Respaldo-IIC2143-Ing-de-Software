@@ -1,6 +1,30 @@
 class User < ApplicationRecord
   rolify
   after_create :assign_default_role
+  before_destroy :delete_associated_resources
+  before_destroy :delete_associated_requests
+
+  def delete_associated_resources
+    self.initiatives.each do |initiative|
+      if self.has_role?(:admin_initiative, initiative)
+        initiative.destroy
+      elsif self.has_role?(:member, initiative)
+        self.remove_role(:member, initiative)
+      end
+    end
+
+    self.events.each do |event|
+      if self.has_role?(:admin, event)
+        event.destroy
+      elsif self.has_role?(:attendant, event)
+        self.remove_role(:attendant, event)
+      end
+    end
+  end
+
+  def delete_associated_requests
+    self.requests.destroy_all
+  end
 
   def assign_default_role
     self.add_role(:normal_user) if self.roles.blank?

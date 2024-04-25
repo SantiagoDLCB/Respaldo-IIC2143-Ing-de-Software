@@ -7,16 +7,18 @@ class EventsController < ApplicationController
 
   def create
     @event = @initiative.events.build(event_params)
-    current_user.add_role :admin_event, @event
     if @event.save
+      current_user.add_role :admin_event, @event
       redirect_to initiative_path(@initiative.id), notice: 'Evento creado exitosamente.'
     else
       redirect_to initiative_path(@initiative.id), notice: 'Evento no ha podido ser creado.'
     end
   end
+
   def set_initiative
     @initiative = Initiative.find(params[:initiative_id])
   end
+
   def show
     @event = Event.find(params[:id])
     @initiative = @event.initiative
@@ -33,8 +35,13 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     @user = current_user
-    @user.add_role(:attendant, @event)
-    redirect_to event_path(@event), notice: 'Te has inscrito al evento.'
+
+    if @event.users.count < @event.capacity
+      @user.add_role(:attendant, @event)
+      redirect_to event_path(@event), notice: 'Te has inscrito al evento.'
+    else
+      redirect_to event_path(@event), notice: 'No hay capacidad disponible para unirse a este evento.'
+    end
   end
 
   def leave

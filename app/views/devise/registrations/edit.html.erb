@@ -18,7 +18,16 @@
 <h3>Mis Iniciativas</h3>
 <ul style="padding: 0;">
   <% current_user.initiatives.each do |initiative| %>
-    <p><%= "#{initiative.name} - #{initiative.topic} (#{current_user.roles.find_by(resource: initiative)&.name})" %></p>
+    <p><%= "#{initiative.name} - #{initiative.topic} (#{traducir_rol(current_user.roles.find_by(resource: initiative)&.name)})" %></p>
+  <% end %>
+</ul>
+
+<br>
+
+<h3>Mis Eventos</h3>
+<ul style="padding: 0;">
+  <% current_user.events.each do |event| %>
+    <p><%= "#{event.name} - #{event.description} (#{traducir_rol(current_user.roles.find_by(resource: event)&.name)})" %></p>
   <% end %>
 </ul>
 

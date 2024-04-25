@@ -20,6 +20,7 @@ class InitiativesController < ApplicationController
 
   def index
     @all_initiatives = Initiative.all
+    
   end
 
   def show

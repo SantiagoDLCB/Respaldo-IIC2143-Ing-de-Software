@@ -33,13 +33,13 @@ Rails.application.routes.draw do
   end
 
   resources :events do
-    member do
+    attendant do
       post 'add_user_role', to: 'events#update', as: 'add_user_role'
     end
   end
 
   resources :events do
-    member do
+    attendant do
       delete 'remove_user_role', to: 'events#leave', as: 'remove_user_role'
     end
   end

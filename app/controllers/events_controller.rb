@@ -20,6 +20,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @initiative = @event.initiative
+    @attendants = @event.get_attendants
   end
   def destroy
     @event = Event.find(params[:id])

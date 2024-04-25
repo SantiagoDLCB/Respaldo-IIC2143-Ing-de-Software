@@ -15,7 +15,7 @@ class Event < ApplicationRecord
     roles.find_by(name: 'admin_event')&.users.first
   end
 
-  def get_members
+  def get_attendants
     roles.where(name: 'attendant', resource_type: 'Event').includes(:users).map(&:users).flatten.uniq
   end
 

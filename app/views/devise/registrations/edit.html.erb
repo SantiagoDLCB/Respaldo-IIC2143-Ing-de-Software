@@ -24,6 +24,17 @@
 
 <br>
 
+<h3>Mis Solicitudes</h3>
+<!-- Se muestra solo la ultima solicitud de cada iniciativa -->
+<ul style="padding: 0;">
+  <% current_user.requests.group_by(&:initiative_id).each do |initiative_id, requests| %>
+    <% last_request = requests.last %>
+    <p><%= "Iniciativa: #{last_request.initiative.name}, Estado: #{last_request.status}" if last_request %></p>
+  <% end %>
+</ul>
+
+<br>
+
 <h3>Mis Eventos</h3>
 <ul style="padding: 0;">
   <% current_user.events.each do |event| %>

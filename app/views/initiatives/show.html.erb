@@ -48,7 +48,7 @@
       <% end %>
       <ul>
       <% @events.each do |event| %>
-        <li><%=link_to event.name, event_path(event) %></li>
+        <li><%=button_to event.name, event_path(event), method: :get, class: "btn btn-primary" %></li>
       <% end %>
       </ul>
 

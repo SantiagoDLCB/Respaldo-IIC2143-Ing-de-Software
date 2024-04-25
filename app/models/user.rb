@@ -11,6 +11,7 @@ class User < ApplicationRecord
   #has_and_belongs_to_many :roles, :join_table => :users_roles
   has_many :initiatives, through: :roles, source: :resource, source_type: 'Initiative'
   has_many :events, through: :roles, source: :resource, source_type: 'Event'
+  has_many :requests
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

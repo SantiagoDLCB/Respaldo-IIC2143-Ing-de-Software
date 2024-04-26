@@ -83,7 +83,7 @@
   </div><br>
 
   <div class="button">
-    <%= f.submit "Actualizar" %>
+    <%= f.submit "Actualizar", data: { turbo_confirm: "¿Estás seguro de actualizar tu información?" } %>
   </div>
 <% end %><br>
 
@@ -94,7 +94,7 @@
 
 <p>Opción de eliminar cuenta</p>
 <div class="button2">
-  <%= button_to "Eliminar", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Si estás seguro de eliminar tu cuenta,\
+  <%= button_to "Eliminar", registration_path(resource_name), data: { turbo_confirm: "Si estás seguro de eliminar tu cuenta,\
  haz click en 'Aceptar'" }, method: :delete %>
 </div><br>
 

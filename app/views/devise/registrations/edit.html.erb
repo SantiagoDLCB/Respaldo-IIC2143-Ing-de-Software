@@ -1,43 +1,103 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="<%= asset_path 'profile.css' %>">
+</head>
+
+<body>
+<h2>Mi Perfil</h2>
+<h3>Información Personal</h3>
+<p>Username: <%= current_user.username %></p>
+<p>Correo: <%= current_user.email %></p>
+<p>Nombre: <%= current_user.name %></p>
+<p>Apellido: <%= current_user.last_name %></p>
+<!-- <p>Contraseña: <%= current_user.encrypted_password %></p> -->
+
+<br>
+
+<h3>Mis Iniciativas</h3>
+<ul style="padding: 0;">
+  <% current_user.initiatives.each do |initiative| %>
+    <p><%= "#{initiative.name} - #{initiative.topic} (#{traducir_rol(current_user.roles.find_by(resource: initiative)&.name)})" %></p>
+  <% end %>
+</ul>
+
+<br>
+
+<h3>Mis Solicitudes</h3>
+<!-- Se muestra solo la ultima solicitud de cada iniciativa -->
+<ul style="padding: 0;">
+  <% current_user.requests.group_by(&:initiative_id).each do |initiative_id, requests| %>
+    <% last_request = requests.last %>
+    <p><%= "Iniciativa: #{last_request.initiative.name}, Estado: #{last_request.status}" if last_request %></p>
+  <% end %>
+</ul>
+
+<br>
+
+<h3>Mis Eventos</h3>
+<ul style="padding: 0;">
+  <% current_user.events.each do |event| %>
+    <p><%= "#{event.name} - #{event.description} (#{traducir_rol(current_user.roles.find_by(resource: event)&.name)})" %></p>
+  <% end %>
+</ul>
+
+<br><hr><br>
+<h2>Modificar Perfil</h2>
+<h3>Editar Información</h3>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <h4><%= render "devise/shared/error_messages", resource: resource %></h4>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :username, "Nuevo username" %><br />
+    <%= f.text_field :username, autofocus: true, placeholder: "usuario" %>
+  </div><br>
+
+  <div class="field">
+    <%= f.label :email, "Nuevo correo" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  </div><br>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :password, "Nueva contraseña" %> <i><br>Dejar en blanco si no desea cambiarla</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <em><%= @minimum_password_length %> caracteres mínimo</em>
     <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, "Confirmar contraseña" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+  </div><br>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :current_password, "Contraseña actual" %> <i>(para confirmar los cambios)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div><br>
+
+  <div class="button">
+    <%= f.submit "Actualizar", data: { turbo_confirm: "¿Estás seguro de actualizar tu información?" } %>
   </div>
+<% end %><br>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+<h3>Mi Cuenta</h3>
 
-<h3>Cancel my account</h3>
+<p>Creación de la cuenta: <%= current_user.created_at %></p>
+<p>Última modificación: <%= current_user.updated_at %></p>
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+<p>Opción de eliminar cuenta</p>
+<div class="button2">
+  <%= button_to "Eliminar", registration_path(resource_name), data: { turbo_confirm: "Si estás seguro de eliminar tu cuenta,\
+ haz click en 'Aceptar'" }, method: :delete %>
+</div><br>
 
-<%= link_to "Back", :back %>
+<%= link_to "Volver", :back %><br><br><br><br>
+</body>
+</html>

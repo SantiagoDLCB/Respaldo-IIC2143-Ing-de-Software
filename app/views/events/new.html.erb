@@ -1,0 +1,25 @@
+
+<h2>Nuevo Evento de <%= @initiative.name %></h2>
+<h3>Datos del evento</h3>
+
+
+<%= form_with(model: [@initiative, @event], url: initiative_events_path(@initiative), method: "post") do |form| %>
+  <% if flash.now[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash.now[:alert] %>
+    </div>
+  <% end %>
+
+  <%= form.label :Nombre %><br>
+  <%= form.text_field :name, required: true %><br><br>
+
+  <%= form.label :Descripción %><br>
+  <%= form.text_area :description, required: true %><br><br>
+
+  <%= form.label :Capacidad %><br>
+  <%= form.number_field :capacity, required: true, placeholder: "100" %><br><br>
+
+  <div class="button">
+    <%= form.submit "Crear Evento" %>
+  </div>
+<% end %>

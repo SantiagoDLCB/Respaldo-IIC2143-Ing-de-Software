@@ -15,53 +15,129 @@
  */
 
 body {
-    background-color: #89abbd; /* Establece el color de fondo de la página */
-}
-  
-
-.display-4 {
-    color: rgb(48, 79, 90); /* Cambiar el color del texto */
-}
-
-.display-4:hover {
-    /* Hacer un gradient en color */
-    color: rgb(85, 47, 255);
-    font-size: 3em; /* Cambiar el tamaño del texto al doble */
+    background-color: #314e68; /* Color de fondo del encabezado */
+    padding: 50px; /* Espaciado interno */
+    margin-bottom: 20px; /* Espacio inferior */
+    margin-top: -30px;
+    height: 800px;
+    overflow-x: hidden;
 }
 
-@keyframes example {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-.col {
+.header {
+    background-color: #e4e4e4;
+    padding: 10px;
+    width: 100%;
+    border-end-end-radius: 40px;
+    border-end-start-radius: 40px;
+    position: relative;
+    margin-top: -20px;
+    margin-left: 0px;
+    height: 25px;
     display: flex;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
+    padding-left: 20px;
 }
-  
-.col_special {
-    animation: example 3s infinite; /* Aplicar la animación al div con clase 'col' */
+
+.header > * {
+    margin-left: 15px;
+}
+
+.header > * > * {
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 100;
+    min-height: 10px;
+    width: auto;
+    padding: 6px 14px;
+    text-align: center;
+    margin-top: 0px;
+    font-family: 'Roboto', sans-serif;
+    background: #314e68;
+}
+
+.header > * > *:hover {
+    background-color: #4B91F7;
+    color: #ffffff;
+}
+
+h2 {
+    font-size: 30px; /* Tamaño del texto */
+    font-family: 'Courier', monospace;
+    font-weight: bold;
+    color: white;
+}
+
+h3 {
+    font-size: 20px; /* Tamaño del texto */
+    font-family: 'Courier', monospace;
+    font-weight: bold;
+    color: rgb(177, 177, 177);
+}
+
+h4 {
+    font-size: 15px; /* Tamaño del texto */
+    font-family: 'Courier', monospace;
+    font-weight: bold;
+    color: rgb(180, 0, 0);
+    text-shadow: 1px 1px 1px black;
+}
+
+.button2 > * > *{
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button3 > *{
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* CSS styles for flash messages */
+.flash-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: #9dc476;
+    color: #fff;
+    border: 1px solid #798a68;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    animation: fadeOut 4s forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+
+.footer {
+    padding-top: 10px;
+    padding-left: 80px;
+    background-color: #e4e4e4;
+    color: #000000;
+    align-items: center;
+    font-size: 7px;
+    font-family: 'Courier', monospace;
+    width: 110%;
+    position: relative;
+    bottom: 0;
+    margin-right: -70px;
+    margin-left: -56px;
+    height: 140px;
     display: flex;
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
 }
-
-.imagen {
-    height: 200px;
-    width: auto; /* Mantener la proporción original */
-    display: block; /* Asegura que la imagen se comporte como un bloque */
-    margin-left: 20px; /* Centra la imagen horizontalmente */
-    margin-right: 20px; /* Centra la imagen horizontalmente */
-    border-radius: 100px;
-  }
-
-.imagen-container {
-    text-align: center; /* Centrar el texto */
-}
-
-.imagen-container p {
-    margin-top: 5px; /* Espacio entre la imagen y la descripción */
-}
-  

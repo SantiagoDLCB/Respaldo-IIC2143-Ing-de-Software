@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
- 
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }, 
+
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' },
                    path: '', path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'}
 
   get 'render/index'
@@ -14,4 +14,42 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'render#index'
+  # config/routes.rb
+
+  resources :initiatives
+  resources :events
+
+  resources :initiatives do
+    resources :requests, only: [:index]
+  end
+
+  #quitar rol a usuario
+  resources :initiatives do
+    resources :user_roles do
+      member do
+        delete 'destroy', as: 'remove'
+      end
+    end
+  end
+
+  resources :events do
+    member do
+      post 'add_user_role', to: 'events#update', as: 'add_user_role'
+    end
+  end
+
+  resources :events do
+    member do
+      delete 'remove_user_role', to: 'events#leave', as: 'remove_user_role'
+    end
+  end
+
+
+
+resources :requests, only: [:create, :update]
+
+resources :initiatives do
+  resources :events, only: [:new, :create]
+end
+
 end

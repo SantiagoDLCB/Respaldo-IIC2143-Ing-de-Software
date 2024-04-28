@@ -17,7 +17,7 @@
   <%= form.text_area :description, required: true %><br><br>
 
   <%= form.label :Capacidad %><br>
-  <%= form.number_field :capacity, required: true, placeholder: "100" %><br><br>
+  <%= form.number_field :capacity, required: true, placeholder: "100", min:1 %><br><br>
 
   <div class="button">
     <%= form.submit "Crear Evento" %>

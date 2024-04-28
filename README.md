@@ -29,3 +29,11 @@ La aplicación puede ser accedida en el siguiente enlace:
 La página de desarrollo se encuentra en el siguiente enlace:
 
 [Dev Iniciativas Estudiantiles](https://dev67.onrender.com/)
+
+## Credenciales para la corrección
+
+| Username | Correo | Contraseña |
+|----------|--------|------------|
+| vjsm    | <vjsm@uc.cl>    | DCClave    |
+| ainfantep   | <a.infante@uc.cl>    | DCContraseña    |
+| sa.dlcb    | <sa.delacarrera@uc.cl>    | DCCifrado    |

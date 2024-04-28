@@ -1,4 +1,5 @@
 class RequestsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @initiative = Initiative.find(params[:initiative_id])
     @all_requests = @initiative.requests

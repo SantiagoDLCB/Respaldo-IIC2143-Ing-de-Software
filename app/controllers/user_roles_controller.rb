@@ -1,4 +1,5 @@
 class UserRolesController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_initiative
   before_action :find_user
 

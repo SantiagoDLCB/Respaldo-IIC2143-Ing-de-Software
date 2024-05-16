@@ -3,7 +3,7 @@ class User < ApplicationRecord
   after_create :assign_default_role
   before_destroy :delete_associated_resources
   before_destroy :delete_associated_requests
-
+  has_many :messages, dependent: :delete_all
   def delete_associated_resources
     self.initiatives.each do |initiative|
       if self.has_role?(:admin_initiative, initiative)

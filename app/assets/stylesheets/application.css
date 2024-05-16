@@ -15,9 +15,12 @@
  */
 
 body {
-    background-color: #314e68; /* Color de fondo del encabezado */
-    padding: 50px; /* Espaciado interno */
-    margin-bottom: 20px; /* Espacio inferior */
+    background-color: #314e68;
+    /* Color de fondo del encabezado */
+    padding: 50px;
+    /* Espaciado interno */
+    margin-bottom: 20px;
+    /* Espacio inferior */
     margin-top: -30px;
     height: 800px;
     overflow-x: hidden;
@@ -37,11 +40,11 @@ body {
     padding-left: 20px;
 }
 
-.header > * {
+.header>* {
     margin-left: 15px;
 }
 
-.header > * > * {
+.header>*>* {
     cursor: pointer;
     border: none;
     border-radius: 6px;
@@ -57,34 +60,37 @@ body {
     background: #314e68;
 }
 
-.header > * > *:hover {
+.header>*>*:hover {
     background-color: #4B91F7;
     color: #ffffff;
 }
 
 h2 {
-    font-size: 30px; /* Tamaño del texto */
+    font-size: 30px;
+    /* Tamaño del texto */
     font-family: 'Courier', monospace;
     font-weight: bold;
     color: white;
 }
 
 h3 {
-    font-size: 20px; /* Tamaño del texto */
+    font-size: 20px;
+    /* Tamaño del texto */
     font-family: 'Courier', monospace;
     font-weight: bold;
     color: rgb(177, 177, 177);
 }
 
 h4 {
-    font-size: 15px; /* Tamaño del texto */
+    font-size: 15px;
+    /* Tamaño del texto */
     font-family: 'Courier', monospace;
     font-weight: bold;
     color: rgb(180, 0, 0);
     text-shadow: 1px 1px 1px black;
 }
 
-.button2 > * > *{
+.button2>*>* {
     display: inline-block;
     padding: 8px 16px;
     background-color: #007bff;
@@ -94,7 +100,7 @@ h4 {
     cursor: pointer;
 }
 
-.button3 > *{
+.button3>* {
     display: inline-block;
     padding: 8px 16px;
     background-color: #007bff;
@@ -120,8 +126,13 @@ h4 {
 }
 
 @keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
 }
 
 

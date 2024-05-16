@@ -52,4 +52,8 @@ resources :initiatives do
   resources :events, only: [:new, :create]
 end
 
+resources :initiatives do
+  resources :messages, only: [:create]
+end
+
 end

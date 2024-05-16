@@ -20,13 +20,14 @@ class InitiativesController < ApplicationController
 
   def index
     @all_initiatives = Initiative.all
-    
   end
 
   def show
     @initiative = Initiative.find(params[:id])
+    @message = Message.new
     @members = @initiative.get_members
     @events = @initiative.get_events
+    @chat = @initiative.messages
   end
 
   def destroy

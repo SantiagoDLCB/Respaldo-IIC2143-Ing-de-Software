@@ -69,44 +69,7 @@
     </div>
     <div>
     <!-- chat_banner.html.erb -->
-    <% if user_signed_in? %>
-      <% if current_user.has_role?(:member, @initiative) || current_user.has_role?(:admin, @initiative) %>
-        <% if @chat.empty? %>
-          <p><em>Esta iniciativa no tiene conversaciones. ¡Sé el primero en hablar!</em></p>
-        <% end %>
-        <input type="checkbox" id="toggle-chat" class="toggle-checkbox">
-        <div id="chat-banner" class="closed">
-         
-
-          <div id="chat-header">Chat
-            <label for="toggle-chat" id="toggle-chat-label" class="toggle-label">Abrir/Cerrar</label>
-
-          </div>
-          <div id="chat-content">
-            <% if @chat.empty? %>
-              <strong>Esta iniciativa no tiene conversaciones. ¡Sé el primero en hablar!</strong>
-            <% end %>
-              <!-- Muestra mensajes anteriores -->
-              <% @chat.each do |message| %>
-                <div class="message">
-                  <strong><%= message.user.username %>:</strong>
-                  <%= message.content %>
-                </div>
-              <% end %>
-          </div>
-          <div id="chat-input">
-            <%= form_with(model: @message, url: initiative_messages_path(@initiative), method: :post) do |form| %>
-              <%= form.text_area :content, placeholder: "Escribe tu mensaje aquí" %>
-              <%= form.hidden_field :user_id, value: current_user.id %>
-              <%= form.submit "Enviar mensaje", class: "btn btn-primary" %>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+    <%= render 'chat_banner' %>
     
-    
-    <br><br><br><br><br><br><br><br><br>
-
 </body>
 </html>

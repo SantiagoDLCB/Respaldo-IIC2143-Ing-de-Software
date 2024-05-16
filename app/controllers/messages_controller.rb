@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
   def index
     @initiative = Initiative.find(params[:initiative_id])
-    @all_messages = @initiative.messages
+    @messages = @initiative.messages.order(created_at: :asc)
   end
   def create
     @message = Message.new(message_params)
@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
     @message.initiative = Initiative.find(params[:initiative_id])
 
     if @message.save!
-      redirect_to initiative_path(@message.initiative), notice: 'Mensaje enviado.'
+      redirect_to initiative_path(@message.initiative)
     else
       render :new
     end

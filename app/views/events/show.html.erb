@@ -57,5 +57,24 @@
     <h3>Capacidad</h3>
     <p><%= @event.users.count %>/<%=@event.capacity%></p>
 
+   
+
+    <div>
+      <div><h3>Reseña<aside></aside></h3>
+      <%= render 'review_popup' %>
+      </div>
+      <% if @reviews.empty? %>
+        <p><em>Este evento no tiene reviews.</em></p>
+      <% end %>
+
+        <% @reviews.each do |review| %>
+        <ul>
+          <strong><%= review.user.username %>:</strong>
+         <%= review.calification %> --->
+         <%= review.content %></ul>
+
+        <% end %>
+
+    </div>
 </body>
 </html>

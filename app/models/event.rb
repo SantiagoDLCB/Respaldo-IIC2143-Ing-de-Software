@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   has_many :roles, class_name: "Role", as: :resource, dependent: :delete_all
   has_many :users, through: :roles, source: :users
   belongs_to :initiative
+  has_many :reviews
   def self.all_roles
     Role.where(resource_type: 'Event')
   end

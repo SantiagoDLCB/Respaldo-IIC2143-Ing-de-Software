@@ -1,0 +1,23 @@
+
+<% if user_signed_in? && current_user.has_role?(:attendant, @event) %>
+  <!-- Toggle button -->
+  <label for="popup-toggle" class="open-popup-button">Open Popup Form</label>
+  <input type="checkbox" id="popup-toggle" class="popup-toggle">
+
+  <!-- Overlay -->
+  <div class="popup-overlay"></div>
+
+  <!-- Popup Form -->
+  <div class="popup-form">
+    <div class="close-popup"> 
+        <label for="popup-toggle"><a href="#">Close</a></label> 
+    </div>
+    <h2>Popup Form</h2>
+    <%= form_with(model: @review, url: event_reviews_path(@event), method: :post) do |form| %>
+        <%= form.number_field :calification, placeholder: "Ingresa un número", in: 1..5 %>
+        <%= form.text_area :content, placeholder: "Escribe tu mensaje aquí" %>
+        <%= form.hidden_field :user_id, value: current_user.id %>
+        <%= form.submit "Enviar mensaje", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+<% end %>

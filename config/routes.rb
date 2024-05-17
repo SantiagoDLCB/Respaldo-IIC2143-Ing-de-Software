@@ -52,8 +52,14 @@ resources :initiatives do
   resources :events, only: [:new, :create]
 end
 
+#crear mensaje
 resources :initiatives do
   resources :messages, only: [:create]
+end
+
+#crear review
+resources :events do
+  resources :reviews, only: [:create]
 end
 
 end

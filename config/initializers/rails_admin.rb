@@ -2,7 +2,7 @@ RailsAdmin.config do |config|
   config.asset_source = :sprockets
   config.authenticate_with do
     unless current_user && current_user.has_role?(:admin)
-      redirect_to main_app.root_path, alert: 'You are not authorized to access this page.'
+      redirect_to main_app.root_path, alert: 'No estas autorizado para entrar a esta pagina.'
     end
   end
 

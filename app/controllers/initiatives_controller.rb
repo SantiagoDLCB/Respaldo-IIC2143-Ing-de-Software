@@ -25,6 +25,7 @@ class InitiativesController < ApplicationController
   def show
     @initiative = Initiative.find(params[:id])
     @message = Message.new
+    @report = Report.new
     @members = @initiative.get_members
     @events = @initiative.get_events
     @chat = @initiative.messages

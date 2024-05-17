@@ -58,6 +58,11 @@ resources :initiatives do
   resources :messages, only: [:create]
 end
 
+#crear reporte
+resources :initiatives do
+  resources :reports, only: [:create]
+end
+
 #crear review
 resources :events do
   resources :reviews, only: [:create]

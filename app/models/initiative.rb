@@ -5,6 +5,7 @@ class Initiative < ApplicationRecord
   has_many :requests, dependent: :delete_all
   has_many :events, dependent: :delete_all
   has_many :messages, dependent: :delete_all
+  has_many :reports, dependent: :delete_all
   def self.all_roles
     Role.where(resource_type: 'Initiative')
   end

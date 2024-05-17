@@ -19,6 +19,9 @@
     <%= button_to "Crear Iniciativa", new_initiative_path, method: :get %>
     <%= button_to "Ver Perfil", edit_user_registration_path, method: :get %>
     <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete %> 
+    <% if current_user.has_role?(:admin) %>
+      <%= button_to "Administrar Pagina Web", rails_admin_path, method: :get %>
+    <% end %>
   <% else %>
     <!-- Boton a root path -->
     <%= button_to "Inicio", root_path, method: :get%>

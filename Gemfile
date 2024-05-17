@@ -73,3 +73,7 @@ gem 'rubocop', require: false
 gem "devise"
 
 gem "rolify"
+
+gem "rails_admin"
+gem "sassc-rails"
+gem 'paper_trail'

@@ -8,6 +8,8 @@ class User < ApplicationRecord
   before_destroy :delete_associated_reviews
   has_many :messages, dependent: :delete_all
   has_many :reports, dependent: :delete_all
+  has_many :reviews, dependent: :delete_all
+  has_one_attached :avatar
 
   def delete_associated_resources
     self.initiatives.each do |initiative|

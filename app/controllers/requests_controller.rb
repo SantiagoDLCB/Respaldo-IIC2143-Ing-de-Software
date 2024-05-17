@@ -25,10 +25,7 @@ class RequestsController < ApplicationController
     @request.status = request_params[:status]
     if @request.save
       flash[:notice] =  @request.status
-      if @request.status == "accepted"
-        @request.user.add_role(:member, @request.initiative)
-        redirect_to initiative_requests_path(@request.initiative)
-      elsif @request.status == "denied"
+      if @request.status == "accepted" or @request.status == "denied"
         redirect_to initiative_requests_path(@request.initiative)
       else
         redirect_to initiative_path(@request.initiative)

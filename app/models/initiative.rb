@@ -14,6 +14,9 @@ class Initiative < ApplicationRecord
   validates :topic, presence: true
   validates :description, presence: true
 
+
+  after_create :create_roles
+
   def get_admin
     roles.find_by(name: 'admin_initiative')&.users.first
   end
@@ -29,5 +32,13 @@ class Initiative < ApplicationRecord
   def get_events
     self.events
   end
+
+
+  private
+  def create_roles
+    Role.create(name: :admin_initiative, resource: self)
+    Role.create(name: :member, resource: self)
+  end
+
 
 end

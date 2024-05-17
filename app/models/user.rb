@@ -5,7 +5,7 @@ class User < ApplicationRecord
   before_destroy :delete_associated_requests
   before_destroy :delete_associated_messages
   before_destroy :delete_associated_reports
-  before_destroy :delete_associated_
+  before_destroy :delete_associated_reviews
   has_many :messages, dependent: :delete_all
   has_many :reports, dependent: :delete_all
 
@@ -30,6 +30,18 @@ class User < ApplicationRecord
   def delete_associated_requests
     self.requests.destroy_all
   end
+
+  def delete_associated_messages
+    self.messages.destroy_all
+  end
+  def delete_associated_reports
+    self.reports.destroy_all
+  end
+  def delete_associated_reviews
+    self.reviews.destroy_all
+  end
+
+
 
   def assign_default_role
     self.add_role(:normal_user) if self.roles.blank?

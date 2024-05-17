@@ -45,6 +45,23 @@ RailsAdmin.config do |config|
     # history_show
   end
   config.model 'User' do
-      exclude_fields :roles if defined?(Rolify)
-    end
+    exclude_fields :roles if defined?(Rolify)
+    exclude_fields :messages
+    exclude_fields :reports
+  end
+
+  config.model 'Event' do
+    exclude_fields :roles
+    exclude_fields :reviews
+
+  end
+
+  config.model 'Initiative' do
+    exclude_fields :roles
+    exclude_fields :requests
+    exclude_fields :reports
+    exclude_fields :messages
+    exclude_fields :events
+  end
+
 end

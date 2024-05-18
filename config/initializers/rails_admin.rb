@@ -51,9 +51,8 @@ RailsAdmin.config do |config|
     exclude_fields :requests
     exclude_fields :reviews
     exclude_fields :reset_password_sent_at
-    show do
-      field :roles
-    end
+    exclude_fields :events
+
   end
 
   config.model 'Event' do

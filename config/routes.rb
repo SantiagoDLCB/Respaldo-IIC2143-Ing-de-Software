@@ -68,4 +68,6 @@ resources :events do
   resources :reviews, only: [:create]
 end
 
+get 'messages/:id', to: 'messages#get_messages', as: 'get_messages'
+
 end

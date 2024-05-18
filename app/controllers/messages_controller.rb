@@ -8,12 +8,15 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.user = current_user
     @message.initiative = Initiative.find(params[:initiative_id])
-
     if @message.save!
-      redirect_to initiative_path(@message.initiative)
-    else
-      render :new
+      render json: { message: "Message saved successfully" }
     end
+  end
+
+  def get_messages
+    @initiative = Initiative.find(params[:id])
+    @messages = @initiative.messages.order(created_at: :asc)
+    render partial: 'messages', locals: { messages: @messages }, formats: :html
   end
 
 

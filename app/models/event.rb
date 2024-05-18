@@ -13,11 +13,6 @@ class Event < ApplicationRecord
   validates :capacity, presence: true
 
 
-
-  def get_admin
-    roles.find_by(name: 'admin_event')&.users.first
-  end
-
   def get_attendants
     roles.where(name: 'attendant', resource_type: 'Event').includes(:users).map(&:users).flatten.uniq
   end
@@ -26,7 +21,6 @@ class Event < ApplicationRecord
 
   private
   def create_roles
-    Role.create(name: :admin_event, resource: self)
     Role.create(name: :attendant, resource: self)
   end
 

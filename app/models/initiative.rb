@@ -17,8 +17,9 @@ class Initiative < ApplicationRecord
 
   after_create :create_roles
 
-  def get_admin
-    roles.find_by(name: 'admin_initiative')&.users.first
+
+  def get_all_admins
+    roles.where(name: 'admin_initiative', resource_type: 'Initiative').includes(:users).map(&:users).flatten.uniq
   end
 
   def get_request(user)
@@ -39,6 +40,7 @@ class Initiative < ApplicationRecord
     Role.create(name: :admin_initiative, resource: self)
     Role.create(name: :member, resource: self)
   end
+
 
 
 end

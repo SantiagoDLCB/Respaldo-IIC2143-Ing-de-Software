@@ -8,6 +8,10 @@ class UserRolesController < ApplicationController
     redirect_to @initiative, notice: "Role removed successfully"
   end
 
+
+
+
+
   private
 
   def find_initiative

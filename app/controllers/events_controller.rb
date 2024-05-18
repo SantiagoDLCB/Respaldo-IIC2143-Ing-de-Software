@@ -8,7 +8,6 @@ class EventsController < ApplicationController
   def create
     @event = @initiative.events.build(event_params)
     if @event.save
-      current_user.add_role :admin_event, @event
       redirect_to initiative_path(@initiative.id), notice: 'Evento creado exitosamente.'
     else
       redirect_to initiative_path(@initiative.id), notice: 'Evento no ha podido ser creado.'

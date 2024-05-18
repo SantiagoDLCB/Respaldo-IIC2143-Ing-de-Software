@@ -30,6 +30,10 @@ La página de desarrollo se encuentra en el siguiente enlace:
 
 [Dev Iniciativas Estudiantiles](https://dev67.onrender.com/)
 
+## Supuestos utilizados
+
+En la capacidad de los eventos no se toman en cuenta los administradores, ya que, como ellos lo organizan, saben cuantos son y lo tendrán en cuenta para cualquier cálculo
+
 ## Credenciales para la corrección
 
 | Username | Correo | Contraseña |

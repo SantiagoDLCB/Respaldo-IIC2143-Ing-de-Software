@@ -10,15 +10,17 @@
       <div class="titulo">
       <!-- Encabezado de la página -->
         <br><br><br>
-        <h1 class="display-4">Central de Iniciativas Estudiantiles</h1>
+        <h1>Central de Iniciativas Estudiantiles</h1>
         <p>Explora una variedad de iniciativas estudiantiles que enriquecerán tu experiencia universitaria</p>
       </div>
+      
+      <br><br>
 
       <div class="is-flex is-justify-content-center is-align-items-center">
-        <div class="box">
+        <div class="box" style="width: 35%;">
           <!-- Botones de inicio de sesión y unirse -->
           <h2 style="font-size:16px; color: black;"> ¡Regístrate o inicia sesión para explorar las iniciativas y unirte a ellas! </h2>
-          <div class="main-button">
+          <div class="main-button button-container">
             <% if user_signed_in? %>
               <%= button_to "Inicio", initiatives_path, method: :get, class: "button is-primary" %>
               <%= button_to "Crear Iniciativa", new_initiative_path, method: :get, class: "button is-primary" %>

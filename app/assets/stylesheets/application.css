@@ -110,6 +110,8 @@ body {
     /* Evitar el desbordamiento horizontal */
     box-sizing: border-box;
     background-color: rgb(30, 102, 190);
+    display: flex;
+    flex-direction: column;
 }
 
 .tab-icon {

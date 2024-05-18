@@ -3,34 +3,19 @@
 .main-button {
     display: inline-block;
     padding: 10px;
-    width: 20%;
+    width: 100%;
     border-radius: 15px;
     position: relative;
-    height: 60px;
+    height: auto;
     padding-left: 30px;
     z-index: 1;
     text-align: center;
 }
 
-.main-button a {
-    cursor: pointer;
-    border: 2px solid #3B3B3B;
-    border-radius: 15px;
-    color: #1A1A1A;
-    font-size: 16px;
-    font-weight: 600;
-    min-height: 60px;
-    width: auto;
-    padding: 16px 80px;
-    text-align: center;
-    margin-top: 40px;
-    background: white;
+.button-container .button {
+    margin-top: 20px;
 }
 
-.main-button a:hover {
-    background-color: #1A1A1A;
-    color: #ffffff;
-}
 
 .first {
     position: relative;
@@ -57,11 +42,15 @@
 
 .titulo {
     color: #ffffff;
-    width: 50%;
+    width: 100%;
     font-size: 25px;
     font-family: 'Courier', monospace;
     font-weight: bold;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .titulo h1:hover {
@@ -71,7 +60,7 @@
 .titulo p {
     font-size: 18px;
     font-weight: normal;
-    margin-left: 10px;
+    width: 60%;
 }
 
 .inicio-sesion {

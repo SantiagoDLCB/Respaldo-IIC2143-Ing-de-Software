@@ -78,3 +78,4 @@ gem "rails_admin"
 gem "sassc-rails"
 gem 'paper_trail'
 gem 'activestorage'
+gem 'kaminari'

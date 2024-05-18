@@ -48,6 +48,11 @@ RailsAdmin.config do |config|
     exclude_fields :roles if defined?(Rolify)
     exclude_fields :messages
     exclude_fields :reports
+    exclude_fields :requests
+    exclude_fields :reviews
+    exclude_fields :reset_password_sent_at
+    exclude_fields :events
+
   end
 
   config.model 'Event' do
@@ -62,6 +67,19 @@ RailsAdmin.config do |config|
     exclude_fields :reports
     exclude_fields :messages
     exclude_fields :events
+  end
+
+
+  config.model 'ActiveStorage::Blob' do
+    visible false
+  end
+
+  config.model 'ActiveStorage::Attachment' do
+    visible false
+  end
+
+  config.model 'ActiveStorage::VariantRecord' do
+    visible false
   end
 
 end

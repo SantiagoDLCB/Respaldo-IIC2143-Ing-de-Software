@@ -53,39 +53,33 @@ class InitiativesController < ApplicationController
       else
         render :edit
       end
-    elsif @type == 'add_admin'
-      @user = User.find(params[:initiative][:user_id])
-      @user.add_role :admin_initiative, @initiative
-      @user.remove_role :member, @initiative
-      if @user.has_role? :admin_initiative, @initiative
-        redirect_to initiative_path(@initiative), notice: 'El usuario ahora es administrador'
-      else
-        render :edit
-      end
-    elsif @type == 'remove_admin'
-      @user = User.find(params[:initiative][:user_id])
-      @user.add_role :member, @initiative
-      @user.remove_role :admin_initiative, @initiative
-      if @user.has_role? :member, @initiative
-        redirect_to initiative_path(@initiative), notice: 'El usuario ya no es administrador'
-      else
-        render :edit
-      end
-    elsif @type == 'remove_member'
-      @user = User.find(params[:initiative][:user_id])
-      @user.remove_role :member, @initiative
-      @user.remove_role :admin_initiative, @initiative
-      @user.remove_role :admin_initiative, @initiative
-      @event
-
-      if !@user.has_role?(:member, @initiative) && !@user.has_role?(:admin_initiative, @initiative)
-        redirect_to initiative_path(@initiative), notice: 'El usuario fue expulsado de la iniciativa'
-      else
-        render :edit
-      end
     else
-      redirect_to initiative_path(@initiative), alert: 'No se pudo realizar la acción solicitada.'
+      @user = User.find(params[:initiative][:user_id])
+      if @type == 'add_admin'
+        add_admin(@user, @initiative)
+      elsif @type == 'remove_admin'
+        @user.add_role :member, @initiative
+        @user.remove_role :admin_initiative, @initiative
+        if @user.has_role? :member, @initiative
+          redirect_to initiative_path(@initiative), notice: 'El usuario ya no es administrador'
+        else
+          render :edit
+        end
+      elsif @type == 'remove_member'
+        @user.remove_role :member, @initiative
+        @user.remove_role :admin_initiative, @initiative
+        @user.remove_role :admin_initiative, @initiative
+        @event
 
+        if !@user.has_role?(:member, @initiative) && !@user.has_role?(:admin_initiative, @initiative)
+          redirect_to initiative_path(@initiative), notice: 'El usuario fue expulsado de la iniciativa'
+        else
+          render :edit
+        end
+      else
+        redirect_to initiative_path(@initiative), alert: 'No se pudo realizar la acción solicitada.'
+
+      end
     end
   end
 
@@ -95,6 +89,23 @@ class InitiativesController < ApplicationController
 
 
     private
+
+  def add_admin(user, initiative)
+    user = User.find(params[:initiative][:user_id])
+    user.remove_role :member, initiative
+    events = @initiative.events
+    events.each do |event|
+      user.remove_role :attendant, event
+    end
+    user.add_role :admin_initiative, initiative
+
+
+    if @user.has_role? :admin_initiative, @initiative
+      redirect_to initiative_path(@initiative), notice: 'El usuario ahora es administrador'
+    else
+      render :edit
+    end
+  end
 
   def initiative_params
     params.require(:initiative).permit(:name, :topic, :description)

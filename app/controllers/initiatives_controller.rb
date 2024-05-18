@@ -96,7 +96,7 @@ class InitiativesController < ApplicationController
 
     private
 
-    def initiative_params
-      params.require(:initiative).permit(:name, :topic, :description)
-    end
+  def initiative_params
+    params.require(:initiative).permit(:name, :topic, :description)
+  end
 end

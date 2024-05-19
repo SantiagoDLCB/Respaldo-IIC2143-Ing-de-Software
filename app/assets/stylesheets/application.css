@@ -78,10 +78,6 @@ h5 {
     color: rgb(180, 180, 180);
 }
 
-a {
-    color: white;
-}
-  
 
 /* Cambia el color del botón cuando está seleccionado */
 .button:hover {

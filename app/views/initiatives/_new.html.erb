@@ -1,0 +1,48 @@
+
+
+
+<div align="right" style="margin: 10px;">
+  <button onclick="openModal('new_initiative_popup');" class="button is-success">
+   Crear Iniciativa
+</button>
+</div>
+
+
+
+<div class="modal" id="new_initiative_popup">
+	<div class="modal-background"></div>
+	<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title">
+				Nueva Iniciativa
+			</p>
+
+      <button onclick="closeModal('new_initiative_popup');" class="delete" aria-label="close"></button>
+
+		</header>
+		<section class="modal-card-body" style="text-align: center;">
+        <h3>Datos de la iniciativa</h3>
+        <!-- Your content -->
+        <%= form_with(model: @initiative, url: initiatives_path, method: "post") do |form| %>
+
+          <%= form.label :Nombre %><br />
+          <%= form.text_field :name, required: true %><br><br>
+
+          <%= form.label :Tema %><br />
+          <%= form.text_field :topic, required: true %><br><br>
+
+          <%= form.label :Descripción %><br>
+          <%= form.text_area :description, required: true %><br>
+          <br>
+          
+		</section>
+		<footer class="modal-card-foot">
+      <%= form.submit "Crear Iniciativa", class: "button is-primary" %>
+        <% end %>
+		
+			<button class="button is-danger" onclick="closeModal('new_initiative_popup');">
+				Cancelar
+			</button>
+    </footer>
+	</div>
+</div>

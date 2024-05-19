@@ -1,23 +1,44 @@
 
 <% if user_signed_in? && current_user.has_role?(:member, @initiative) %>
   <!-- Toggle button -->
-  <label for="popup-toggle" class="open-popup-button">Reportar</label>
-  <input type="checkbox" id="popup-toggle" class="popup-toggle">
-
   <!-- Overlay -->
-  <div class="popup-overlay"></div>
 
-  <!-- Popup Form -->
-  <div class="popup-form">
-    <div class="close-popup"> 
-        <label for="popup-toggle"><a href="#">Close</a></label> 
-    </div>
-    <h2>Popup Form</h2>
-    <%= form_with(model: @report, url: initiative_reports_path(@initiative), method: :post) do |form| %>
+
+<<<<<<< HEAD
+<button onclick="openModal('report_popup');" class="button is-success">
+   Reportar
+=======
+<button class="button is-link js-modal-trigger"  data-target="report_popup">
+  Reportar
+>>>>>>> 70b4d75 (guardar cambios locales)
+</button>
+
+
+
+<div class="modal" id="report_popup">
+	<div class="modal-background"></div>
+	<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title">
+				Reportar
+			</p>
+
+			<button onclick="closeModal('report_popup');" class="delete" aria-label="close"></button>
+		</header>
+		<section class="modal-card-body" style="text-align: center;" id = "chat-body">
+      <%= form_with(model: @report, url: initiative_reports_path(@initiative), method: :post) do |form| %>
         <%= form.text_area  :reason, placeholder: "Motivo del reporte"%>
         <%= form.text_area :content, placeholder: "Describe tu situación" %>
-        <%= form.hidden_field :user_id, value: current_user.id %>
-        <%= form.submit "Enviar Reporte", class: "btn btn-primary" %>
-    <% end %>
-  </div>
+        <%= form.hidden_field :user_id, value: current_user.id %>   
+		</section>
+		<footer class="modal-card-foot">
+       <%= form.submit "Enviar Reporte", class: "btn btn-primary" %>
+        <% end %>
+    </footer>
+	</div>
+</div>
+
+
+
+
 <% end %>

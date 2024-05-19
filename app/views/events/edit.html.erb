@@ -1,0 +1,40 @@
+<div class="columns">
+<div class="column is-half is-offset-one-quarter has-text-centered"> 
+  <% if current_user.has_role?(:admin_initiative, @initiative) %>
+    <br><h2 style="text-align: center;"> Editar Evento <%= @initiative.name %></h2><br/>
+
+  <div class="block">
+    <%= form_with(model: @event, local: true) do |form| %>
+
+      <div class="field">
+        <h5><%= form.label :Nombre %>
+        <%= form.text_field :name %></h5>
+      </div>
+    
+      <div class="field">
+      <h5><%= form.label :Descripción %>
+      <%= form.text_area :description %></h5>
+      </div>
+
+      <div class="field">
+        <h5><%= form.label :Capacidad %>
+        <%= form.text_field :capacity %></h5>
+      </div>
+      
+      <%= form.hidden_field :update_type, value: "data" %>
+
+      <div class="actions">
+        <%= form.submit "Guardar cambios"%>
+      </div>
+
+    <% end %>
+  </div>
+
+  <% else %>
+  <h1 style="text-align: center;">No tienes permisos para ver esta página</h1>
+  <% end %>
+
+  <button onclick="window.location.href = '<%= event_path(@event) %>';" class="button is-primary">Volver a <%= @event.name %></button>
+</div>
+</div>
+

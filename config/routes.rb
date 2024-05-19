@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
   resources :events do
     member do
-      post 'add_user_role', to: 'events#update', as: 'add_user_role'
+      post 'add_user_role', to: 'events#update_attendats', as: 'add_user_role'
     end
   end
 

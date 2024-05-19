@@ -18,6 +18,13 @@ class Event < ApplicationRecord
   def get_attendants
     roles.where(name: 'attendant', resource_type: 'Event').includes(:users).map(&:users).flatten.uniq
   end
+  def modify_capacity(capacity)
+    if capacity >= self.get_attendants.count
+      return true
+    else
+      return false
+    end
+  end
 
   after_create :create_roles
 

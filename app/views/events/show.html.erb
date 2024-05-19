@@ -18,6 +18,7 @@
           Administrar Participantes
         </button>
         <%= render 'attendants_popup' %>
+        <%= button_to "Editar", edit_event_path(@event), method: :get, class: "button is-primary" %>
         <%= button_to "Eliminar evento", event_path(@event), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas eliminar este evento?" }, class: "button is-danger" %>
   
       <!-- Si es miembro del evento -->

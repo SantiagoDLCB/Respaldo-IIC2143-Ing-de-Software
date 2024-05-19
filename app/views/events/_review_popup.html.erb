@@ -1,9 +1,9 @@
 
 <% if user_signed_in? && current_user.has_role?(:attendant, @event) %>
   <!-- Toggle button -->
-  <button class="button is-link js-modal-trigger"  data-target="review_popup">
-    Reseña
-  </button>
+  <button onclick="openModal('review_popup');" class="button is-success">
+   Reseña
+</button>
 
 
 

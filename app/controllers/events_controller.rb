@@ -36,12 +36,26 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     @user = current_user
+    update_type = params['event'][:update_type]
+    puts params
 
-    if @event.users.count < @event.capacity
-      @user.add_role(:attendant, @event)
-      redirect_to event_path(@event), notice: 'Te has inscrito al evento.'
-    else
-      redirect_to event_path(@event), notice: 'No hay capacidad disponible para unirse a este evento.'
+    if  update_type  == 'join'
+
+      if @event.users.count < @event.capacity
+        @user.add_role(:attendant, @event)
+        redirect_to event_path(@event), notice: 'Te has inscrito al evento.'
+      else
+        redirect_to event_path(@event), notice: 'No hay capacidad disponible para unirse a este evento.'
+      end
+    elsif  update_type  == 'remove_attendant'
+      user = User.find(params['event'][:user_id])
+      user.remove_role(:attendant, @event)
+      if not user.has_role?(:attendant, @event)
+        redirect_to event_path(@event), notice: 'Se ha quitado al usuario del evento.'
+      else
+        redirect_to event_path(@event), notice: 'No se ha podido quitar al usuario del evento.'
+      end
+
     end
   end
 

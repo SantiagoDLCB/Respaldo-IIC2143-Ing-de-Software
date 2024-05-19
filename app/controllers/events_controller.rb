@@ -51,7 +51,8 @@ class EventsController < ApplicationController
         else
           render :edit
         end
-     elsif  update_type  == 'remove_attendant'
+      end
+    elsif  @type  == 'remove_attendant'
       user = User.find(params['event'][:user_id])
       user.remove_role(:attendant, @event)
       if not user.has_role?(:attendant, @event)

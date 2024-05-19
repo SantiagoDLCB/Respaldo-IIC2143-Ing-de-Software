@@ -40,10 +40,11 @@
           <%= msg %>
         </div>
       <% end %>
+      <%= yield %>
 
-      
     </div>
 
+    
     <footer class="footer">
       <img src="<%= asset_path 'logo_uc.png' %>" alt="Logo UC" style="height: 100px;">
       <div class="content has-text-centered">
@@ -60,4 +61,3 @@
   </body>
 
 </html>
-<%= yield %>

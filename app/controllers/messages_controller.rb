@@ -8,15 +8,14 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.user = current_user
     @message.initiative = Initiative.find(params[:initiative_id])
-    if @message.save!
-      render json: { message: "Message saved successfully" }
+    if @message.save
+      # Create a new turbo_stream for the updated chat messages
+      render turbo_stream: turbo_stream.replace(@message.initiative, partial: 'initiatives/chat',
+locals: { initiative: @message.initiative, chat: @message.initiative.messages.order(created_at: :asc) })
+    else
+      # Render the errors if the message is not saved successfully
+      render turbo_stream: turbo_stream.update('chat-body', partial: 'initiatives/chat', locals: { initiative: @message.initiative, chat: @message.initiative.messages.order(created_at: :asc) })
     end
-  end
-
-  def get_messages
-    @initiative = Initiative.find(params[:id])
-    @messages = @initiative.messages.order(created_at: :asc)
-    render partial: 'messages', locals: { messages: @messages }, formats: :html
   end
 
 

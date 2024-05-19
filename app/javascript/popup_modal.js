@@ -1,42 +1,35 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // Functions to open and close a modal
-  function openModal($el) {
-    $el.classList.add('is-active');
-  }
+// Function to open the modal
+function openModal(id) {
+  // Add is-active class on the modal
+  document.getElementById(id)
+    .classList.add("is-active");
+}
 
-  function closeModal($el) {
-    $el.classList.remove('is-active');
-  }
+// Function to close the modal
+function closeModal(id) {
+  document.getElementById(id)
+    .classList.remove("is-active");
+}
 
-  function closeAllModals() {
-    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-      closeModal($modal);
-    });
-  }
+// Add event listeners to close the modal
+// whenever user click outside modal
+document.querySelectorAll(
+  ".modal-background, .modal-close,.modal-card-head .delete, .modal-card-foot .button"
+).forEach(($el) => {
+  const $modal = $el.closest(".modal");
+  $el.addEventListener("click", () => {
 
-  // Add a click event on buttons to open a specific modal
-  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-    const modal = $trigger.dataset.target;
-    const $target = document.getElementById(modal);
-
-    $trigger.addEventListener('click', () => {
-      openModal($target);
-    });
+    // Remove the is-active class from the modal
+    $modal.classList.remove("is-active");
   });
+});
 
-  // Add a click event on various child elements to close the parent modal
-  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-    const $target = $close.closest('.modal');
+// Adding keyboard event listeners to close the modal
+document.addEventListener("keydown", (event) => {
+  const e = event || window.event;
+  if (e.keyCode === 27) {
 
-    $close.addEventListener('click', () => {
-      closeModal($target);
-    });
-  });
-
-  // Add a keyboard event to close all modals
-  document.addEventListener('keydown', (event) => {
-    if (event.key === "Escape") {
-      closeAllModals();
-    }
-  });
+    // Using escape key 
+    closeModal();
+  }
 });

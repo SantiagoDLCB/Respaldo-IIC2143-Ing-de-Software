@@ -1,0 +1,11 @@
+<% if chat.empty? %>
+  <strong>Esta iniciativa no tiene conversaciones. ¡Sé el primero en hablar!</strong>
+<% else %>
+  <!-- Muestra mensajes anteriores -->
+  <% chat.each do |message| %>
+    <div class="message">
+      <strong><%= message.user.username %>:</strong>
+      <%= message.content %>
+    </div>
+  <% end %>
+<% end %>

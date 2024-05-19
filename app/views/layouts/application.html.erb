@@ -9,8 +9,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag 'application' %>
-    <script src="<%= asset_path('popup_modal.js') %>"></script>
-
+    <%= javascript_include_tag 'popup_modal.js' %>">
 
     <link rel="icon" type="image/png" href="<%= asset_path 'jorge-munoz.jpg' %>">
   </head>
@@ -21,7 +20,6 @@
               <img src="<%= asset_path 'jorge-munoz.jpg' %>" alt="Logo" class="tab-icon">
               <% if user_signed_in? %>
                 <li><a href="<%= initiatives_path %>">Inicio</a></li>
-                <li><a href="<%= new_initiative_path %>">Crear Iniciativa</a></li>
                 <li><a href="<%= edit_user_registration_path %>">Ver Perfil</a></li>
               <li> <%= link_to "Cerrar sesión", destroy_user_session_path, data: { turbo_method: :delete } %> </a></li>
                 <% if current_user.has_role?(:admin) %>

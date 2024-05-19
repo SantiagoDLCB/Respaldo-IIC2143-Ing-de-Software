@@ -68,6 +68,6 @@ resources :events do
   resources :reviews, only: [:create]
 end
 
-get 'messages/:id', to: 'messages#get_messages', as: 'get_messages'
 
+get 'initiatives/:id/chat_reload', to: 'initiatives#chat_reload', as: :chat_reload
 end

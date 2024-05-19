@@ -5,7 +5,8 @@ class InitiativesController < ApplicationController
   end
 
   def create
-    @initiative = Initiative.new(initiative_params)
+    @initiative = Initiative.new(new_initiative_params)
+
     if @initiative.save
       current_user.add_role :admin_initiative, @initiative
       redirect_to initiative_path(@initiative.id) , notice: 'La iniciativa fue creada de manera exitosa.'
@@ -86,6 +87,11 @@ class InitiativesController < ApplicationController
   def search_users
     @users = User.where("email LIKE ?", "%#{params[:query]}%")
   end
+  def chat_reload
+    @initiative = Initiative.find(params[:id])
+    @chat = @initiative.messages
+    render partial: 'chat', locals: { initiative: @initiative, chat: @chat }
+  end
 
 
     private
@@ -109,5 +115,8 @@ class InitiativesController < ApplicationController
 
   def initiative_params
     params.require(:initiative).permit(:name, :topic, :description)
+  end
+  def new_initiative_params
+    params.permit(:name, :topic, :description)
   end
 end

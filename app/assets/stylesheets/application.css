@@ -72,10 +72,15 @@ h4 {
 }
 
 h5 {
-    font-size: 15px;
+    font-size: 18px;
     /* Tamaño del texto */
     font-family: 'Courier', monospace;
     color: rgb(180, 180, 180);
+}
+
+/* Cambia el color del botón cuando está seleccionado */
+.button:hover {
+    background-color: #a1e0d7;
 }
 
 .button2 {

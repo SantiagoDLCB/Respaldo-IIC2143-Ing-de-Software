@@ -1,8 +1,8 @@
  
  
  <% if user_signed_in? && (current_user.has_role?(:member, @initiative) or current_user.has_role?(:admin_initiative, @initiative)) %>
-        <button class="button is-link js-modal-trigger"  data-target="chat_popup">
-           Chat
+        <button onclick="openModal('chat_popup');" class="button is-success">
+          Chat
         </button>
 
           <div id="chat_popup" class="modal" data-initiative-id="<%= @initiative.id %>">
@@ -33,13 +33,7 @@
               </div>
           </div>
 
-  <button class="modal-close is-large" aria-label="close"></button>
-   
-<div align="right" style="margin: 10px;">
-  <button onclick="openModal('chat_popup');" class="button is-success">
-   Chat
-</button>
-</div>
+  <button onclick="closeModal('chat_popup');" class="modal-close is-large" aria-label="close"></button>
 
 
 

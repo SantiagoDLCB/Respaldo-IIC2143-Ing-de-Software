@@ -9,7 +9,6 @@
 </button>
 
 
-
 <div class="modal" id="report_popup">
 	<div class="modal-background"></div>
 	<div class="modal-card">
@@ -22,8 +21,8 @@
 		</header>
 		<section class="modal-card-body" style="text-align: center;" id = "chat-body">
       <%= form_with(model: @report, url: initiative_reports_path(@initiative), method: :post) do |form| %>
-        <%= form.text_area  :reason, placeholder: "Motivo del reporte"%>
-        <%= form.text_area :content, placeholder: "Describe tu situación" %>
+        <%= form.text_area  :reason, placeholder: "Motivo del reporte", class: "textarea is-small"%>
+        <%= form.text_area :content, placeholder: "Describe tu situación", class: "textarea" %>
         <%= form.hidden_field :user_id, value: current_user.id %>   
 		</section>
 		<footer class="modal-card-foot">
@@ -32,8 +31,6 @@
     </footer>
 	</div>
 </div>
-
-
 
 
 <% end %>

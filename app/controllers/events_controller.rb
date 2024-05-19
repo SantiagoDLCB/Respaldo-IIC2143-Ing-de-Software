@@ -42,6 +42,7 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
+
     @type = params[:event][:update_type]
     if @type == 'data'
       if @event.modify_capacity(params[:event][:capacity].to_i)
@@ -50,8 +51,13 @@ class EventsController < ApplicationController
         else
           render :edit
         end
+     elsif  update_type  == 'remove_attendant'
+      user = User.find(params['event'][:user_id])
+      user.remove_role(:attendant, @event)
+      if not user.has_role?(:attendant, @event)
+        redirect_to event_path(@event), notice: 'Se ha quitado al usuario del evento.'
       else
-        redirect_to event_path(@event), notice: 'No se puede reducir la capacidad a un número menor de asistentes.'
+        redirect_to event_path(@event), notice: 'No se ha podido quitar al usuario del evento.'
       end
 
     else

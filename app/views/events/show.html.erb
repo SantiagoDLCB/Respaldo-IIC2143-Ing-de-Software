@@ -6,30 +6,36 @@
 </head>
 
 <body>
-  <h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;">Evento <%=@event.name%></h1>
-  <div class="columns">
-    <div class="column is-half is-offset-1">
-      <div class="buttons">
-        <button onclick="window.location.href = '<%= initiative_path(@initiative) %>';" class="button is-primary">Volver a la iniciativa</button>
 
-        <!-- Si es admin del evento -->
-        <% if current_user.has_role?(:admin_initiative, @initiative) %>
-          <%= button_to "Editar", edit_event_path(@event), method: :get, class: "button is-primary" %>
-          <%= button_to "Eliminar evento", event_path(@event), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas eliminar este evento?" }, class: "button is-danger" %>
-
-
-        <!-- Si es miembro del evento -->
-        <% elsif current_user.has_role?(:attendant, @event) %>
-          <%= button_to "Salir del evento", remove_user_role_event_path(@event), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas salirte de este evento?" }, class: "button is-danger" %>
-
-        <!-- Si no es miembro del evento (los eventos no tienen necesitan solicitudes, todos se unen automaticamente) -->
-        <% elsif not current_user.has_role?(:attendant, @event) %>
-        <%= button_to "Unirse al evento", add_user_role_event_path(@event), method: :post, class: "button is-primary" %>
-
-        <% end %>
-      </div>
+  <div>
+    <h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;">Evento <%=@event.name%></h1>
+    <div class="button3">
+      <button onclick="window.location.href = '<%= initiative_path(@initiative) %>';" style="float: right;">Volver a la iniciativa</button>
     </div>
-  </div>
+      <!-- Si es admin del evento -->
+    <% if current_user.has_role?(:admin_initiative, @initiative) %>
+        <button onclick="openModal('attendants_popup');" class="button is-success">
+          Administrar Participantes
+        </button>
+        <%= render 'attendants_popup' %>
+        <%= button_to "Editar", edit_event_path(@event), method: :get, class: "button is-primary" %>
+        <%= button_to "Eliminar evento", event_path(@event), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas eliminar este evento?" }, class: "button is-danger" %>
+  
+      <!-- Si es miembro del evento -->
+    <% elsif current_user.has_role?(:attendant, @event) %>
+      <div class="button2">
+        <%= button_to "Salir del evento", remove_user_role_event_path(@event), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas salirte de este evento?" }, class: "btn btn-danger" %>
+      </div>
+
+    <!-- Si no es miembro del evento (los eventos no tienen necesitan solicitudes, todos se unen automaticamente) -->
+    <% elsif not current_user.has_role?(:attendant, @event) %>
+      <%= form_with(model: @event, url: event_path(@event), method: :patch) do |form| %>
+        <%= form.hidden_field :update_type, value: 'join' %>
+        <button type="submit" class="button is-primary">Unirse al evento</button>     
+      <% end %>
+
+    <% end %>
+
 
   <div class="columns">
     <div class="column is-four-fifths is-offset-1">

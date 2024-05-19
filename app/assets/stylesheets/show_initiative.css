@@ -79,21 +79,3 @@ body {
 .message {
     margin-bottom: 10px;
 }
-
-
-
-/* Estilo del botón */
-.button {
-    display: inline-block;
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    text-decoration: none;
-}
-
-/* Cambia el color del botón cuando está seleccionado */
-.button:hover {
-    background-color: #dc3545;
-}

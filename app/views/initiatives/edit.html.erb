@@ -1,71 +1,84 @@
-<h1>Editar Administradores de la Iniciativa</h1>
+<div class="columns">
+<div class="column is-half is-offset-one-quarter has-text-centered"> 
+  <% if current_user.has_role?(:admin_initiative, @initiative) %>
+    <br><h2 style="text-align: center;"> Editar Iniciativa <%= @initiative.name %></h2><br/>
 
-<div>
-    <h2>Administradores actuales</h2>
-
-    <ul>
-    <%= current_user.name %> <%= current_user.last_name %> (Yo)
-      <% @admins.each do |admin| %>
-        <% unless admin == current_user %>
-        <div  style="display: flex; align-items: center;" >
-        <%= admin.name %> <%= admin.last_name %>
-        <%= button_to "Volver Miembro",  initiative_path(@initiative), method: :patch, params: { initiative: {user_id: admin.id, update_type: 'remove_admin'} },style: "padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
-        <%= button_to "Expulsar",  initiative_path(@initiative), method: :patch, params: { initiative: {user_id: admin.id, update_type: 'remove_member'} },style: "padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
-        </div>
-        <% end %>
-      <% end %>
-    </ul>
-</div>
-<div>
-   <h2>Miembros</h2>
-   <ul>
-   <% @members.each do |member| %>
-      <div style="display: flex; align-items: center;">
-      <%= member.name %>
-      <%= member.last_name %>
-      <%= button_to "Hacer Administrador",  initiative_path(@initiative), method: :patch, params: { initiative: {user_id: member.id, update_type: 'add_admin'} },style: "padding: 5px 10px; background-color: #4CAF50; color: white; border: 5px; border-radius: 5px;  margin-left: 5px;", remote: true %>
-      <%= button_to "Expulsar",  initiative_path(@initiative), method: :patch, params: { initiative: {user_id: member.id, update_type: 'remove_member'} },style: "padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
-      </div>
-      <% end %>
-    </ul>
-</div>
-
-<h1>Editar Iniciativa</h1>
-
-<%= form_with(model: @initiative, local: true) do |form| %>
-  <% if @initiative.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@initiative.errors.count, "error") %> prohibited this initiative from being saved:</h2>
+  <div class="block">
+      <h3>Administradores actuales</h3>
 
       <ul>
-      <% @initiative.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+      <h5><%= current_user.name %> <%= current_user.last_name %> (Yo) </h5>
+        <% @admins.each do |admin| %>
+          <% unless admin == current_user %>
+          <div style="display: flex; align-items: center;" >
+          <h5><%= admin.name %> <%= admin.last_name %></h5>
+          <%= button_to "Volver Miembro",  initiative_path(@initiative), method: :patch, params: { initiative: {user_id: admin.id, update_type: 'remove_admin'} },style: "padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
+          <%= button_to "Expulsar",  initiative_path(@initiative), method: :patch, params: { initiative: {user_id: admin.id, update_type: 'remove_member'} },style: "padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
+          </div>
+          <% end %>
+        <% end %>
       </ul>
-    </div>
+  </div>
+
+  <div class="block">
+    <h3>Miembros</h3>
+    <ul>
+    <% @members.each do |member| %>
+        <div style="display: flex; align-items: center;">
+          <h5><%= member.name %></h5>
+          <h5><%= member.last_name %></h5>
+          <%= button_to "Hacer Administrador",  initiative_path(@initiative), method: :patch, params: { initiative: {user_id: member.id, update_type: 'add_admin'} },style: "padding: 5px 10px; background-color: #4CAF50; color: white; border: 5px; border-radius: 5px;  margin-left: 5px;", remote: true %>
+          <%= button_to "Expulsar",  initiative_path(@initiative), method: :patch, params: { initiative: {user_id: member.id, update_type: 'remove_member'} },style: "padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
+        </div>
+        <% end %>
+      </ul>
+  </div>
+
+  <div class="block">
+    <h3>Editar Iniciativa</h3>
+
+    <%= form_with(model: @initiative, local: true) do |form| %>
+      <% if @initiative.errors.any? %>
+        <div id="error_explanation">
+          <h4><%= pluralize(@initiative.errors.count, "error") %> prohibited this initiative from being saved:</h4>
+
+          <ul>
+          <% @initiative.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <h5><%= form.label :Nombre %>
+        <%= form.text_field :name %></h5>
+      </div>
+
+      <div class="field">
+        <h5><%= form.label :Tema %>
+        <%= form.text_field :topic %></h5>
+      </div>
+
+      <div class="field">
+        <h5><%= form.label :Descripción %>
+        <%= form.text_area :description %></h5>
+      </div>
+
+      <%= form.hidden_field :update_type, value: "data" %>
+
+      <div class="actions">
+        <%= form.submit "Guardar cambios"%>
+      </div>
+
+    <% end %>
+  </div>
+
+  <% else %>
+  <h1 style="text-align: center;">No tienes permisos para ver esta página</h1>
   <% end %>
 
-  <div class="field">
-    <%= form.label :Nombre %>
-    <%= form.text_field :name %>
-  </div>
+  <button onclick="window.location.href = '<%= initiative_path(@initiative) %>';" class="button is-primary">Volver a <%= @initiative.name %></button>
+</div>
+</div>
 
-  <div class="field">
-    <%= form.label :Tema %>
-    <%= form.text_field :topic %>
-  </div>
-
-  <div class="field">
-    <%= form.label :Descripción %>
-    <%= form.text_area :description %>
-  </div>
-
-  <%= form.hidden_field :update_type, value: "data" %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-
-<% end %>
-
-<%= link_to 'Volver', initiative_path(@initiative) %>

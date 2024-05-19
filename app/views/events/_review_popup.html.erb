@@ -1,27 +1,32 @@
 
 <% if user_signed_in? && current_user.has_role?(:attendant, @event) %>
   <!-- Toggle button -->
-  <button class="button is-primary js-modal-trigger"  data-target="review_popup">
-    Reseña
+  <button onclick="openModal('review_popup');" class="button is-success">
+   Reseña
   </button>
 
 
-  <div id="review_popup" class="modal">
-  <div class="modal-background"></div>
 
-  <div class="modal-content">
-    <div class="box">
-      <p>Reseña</p>
-      <!-- Your content -->
+
+<div class="modal" id="review_popup">
+	<div class="modal-background"></div>
+	<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title">
+				Reseña
+			</p>
+			<button onclick="closeModal('review_popup');" class="delete" aria-label="close"></button>
+		</header>
+		<section class="modal-card-body" style="text-align: center;" id = "chat-body">
       <%= form_with(model: @review, url: event_reviews_path(@event), method: :post) do |form| %>
         <%= form.number_field :calification, placeholder: "Ingresa un número", in: 1..5 %>
         <%= form.text_area :content, placeholder: "Escribe tu mensaje aquí" %>
         <%= form.hidden_field :user_id, value: current_user.id %>
-        <%= form.submit "Enviar mensaje", class: "btn btn-primary" %>
+		</section>
+		<footer class="modal-card-foot">
+       <%= form.submit "Enviar reseña", class: "btn btn-primary" %>
       <% end %>
-    </div>
-  </div>
-
-  <button class="modal-close is-large" aria-label="close"></button>
+    </footer>
+	</div>
 </div>
 <% end %>

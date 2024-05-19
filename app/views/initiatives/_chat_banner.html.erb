@@ -1,4 +1,5 @@
  <% if user_signed_in? && (current_user.has_role?(:member, @initiative) or current_user.has_role?(:admin_initiative, @initiative)) %>
+
         <div align="right" style="margin: 10px;">
             <button onclick="openModal('chat_popup');" class="button is-success">
             Chat
@@ -30,7 +31,6 @@
         </div>
       </div>
 
-<% end %>
 
 <script>
   const modal = document.getElementById('chat_popup');

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Iniciativas Estudiantiles UC</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,9 +32,15 @@
                 <li><a href="<%= root_path %>">Inicio</a>
                 <li><a href="<%= new_user_registration_path %>">Registrarse</a></li>
                 <li><a href="<%= new_user_session_path %>">Iniciar sesión</a></li>
+
               <% end %>
-            </ul>
-        </div>
+            <% else %>
+              <li><a href="<%= root_path %>">Inicio</a></li>
+              <li><a href="<%= new_user_registration_path %>">Registrarse</a></li>
+              <li><a href="<%= new_user_session_path %>">Iniciar sesión</a></li>
+            <% end %>
+          </ul>
+      </div>
 
       <% flash.each do |name, msg| %>
         <div class="notification is-success" id="flash_<%= name %>">
@@ -49,15 +56,16 @@
       <img src="<%= asset_path 'logo_uc.png' %>" alt="Logo UC" style="height: 100px;">
       <div class="content has-text-centered">
 
-        <strong>Iniciativas Estudiantiles UC</strong>
+
+      <strong>Iniciativas Estudiantiles UC</strong>
 
 
-         &copy; 2024
+        &copy; 2024
 
-      </div>
-      <h1>Grupo 67 @ IIC2143 2024-1</h1>
-      </div>
-    </footer>
-  </body>
+    </div>
+    <h1>Grupo 67 @ IIC2143 2024-1</h1>
+    </div>
+  </footer>
+</body>
 
 </html>

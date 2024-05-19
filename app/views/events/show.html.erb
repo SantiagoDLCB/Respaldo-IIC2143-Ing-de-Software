@@ -4,7 +4,9 @@
   <title>Detalles del Evento</title>
   <link rel="stylesheet" href="<%= asset_path 'show_event.css' %>">
 </head>
+
 <body>
+
   <div>
     <h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;">Evento <%=@event.name%></h1>
     <div class="button3">
@@ -33,17 +35,25 @@
 
     <% end %>
 
-    <br><br><h3>Iniciativa que organiza</h3>
-    <p><%= @initiative.name %></p>
 
-    <h3>Descripción</h3>
-    <p><%=@event.description%></p>
+  <div class="columns">
+    <div class="column is-four-fifths is-offset-1">
+
+    <div class="block">
+      <br><h3>Iniciativa que organiza</h3>
+      <h5><%= @initiative.name %></h5>
+    </div>
+
+    <div class="block">
+      <h3>Descripción</h3>
+      <h5><%=@event.description%></h5>
+    </div>
 
 
-    <div>
+    <div class="block">
       <h3>Miembros actuales</h3>
       <% if @event.get_attendants.empty? %>
-        <p><em>Este evento no tiene miembros.</em></p>
+        <h5><em>Este evento no tiene miembros.</em></h5>
       <% end %>
       <ul>
         <% @event.get_attendants.each do |user| %>
@@ -51,29 +61,32 @@
         <% end %>
       </ul>
     </div>
+    
+    <div class="block">
+      <!-- Mostrar la cantidad de miembros actuales / capacidad total -->
+      <h3>Capacidad</h3>
+      <h5><%= @event.get_attendants.count %>/<%=@event.capacity%></h5>
+    </div>
 
-    <!-- Mostrar la cantidad de miembros actuales / capacidad total -->
-    <h3>Capacidad</h3>
-    <p><%= @event.get_attendants.count %>/<%=@event.capacity%></p>
 
-
-
-    <div>
+    <div class="block">
       <div><h3>Reseña<aside></aside></h3>
       <%= render 'review_popup' %>
       </div>
       <% if @reviews.empty? %>
-        <p><em>Este evento no tiene reviews.</em></p>
+        <h5><em>Este evento no tiene reviews.</em></h5>
       <% end %>
 
         <% @reviews.each do |review| %>
         <ul>
-          <strong><%= review.user.username %>:</strong>
-         <%= review.calification %> --->
-         <%= review.content %></ul>
+          <h5><strong><%= review.user.username %>:</strong>
+          <%= review.calification %> -->
+          <%= review.content %></h5>
+        </ul>
 
         <% end %>
-
     </div>
+  </div>
+
 </body>
 </html>

@@ -71,6 +71,13 @@ h4 {
     text-shadow: 1px 1px 1px black;
 }
 
+h5 {
+    font-size: 15px;
+    /* Tamaño del texto */
+    font-family: 'Courier', monospace;
+    color: rgb(180, 180, 180);
+}
+
 .button2 {
     display: inline-block;
     padding: 8px 16px;
@@ -101,8 +108,7 @@ h4 {
     color: #ffffff;
 }
 
-html,
-body {
+html, body {
     height: 100%;
     margin: 0;
     padding: 0;

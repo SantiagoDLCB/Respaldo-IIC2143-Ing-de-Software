@@ -22,13 +22,13 @@
           <h2 style="font-size:16px; color: black;"> ¡Regístrate o inicia sesión para explorar las iniciativas y unirte a ellas! </h2>
           <div class="main-button button-container">
             <% if user_signed_in? %>
-              <%= button_to "Inicio", initiatives_path, method: :get, class: "button is-primary" %>
-              <%= button_to "Crear Iniciativa", new_initiative_path, method: :get, class: "button is-primary" %>
-              <%= button_to "Ver Perfil", edit_user_registration_path, method: :get, class: "button is-primary" %>
-              <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "button is-primary" %>
+              <%= button_to "Inicio", initiatives_path, method: :get, class: "button is-link" %>
+              <%= button_to "Crear Iniciativa", new_initiative_path, method: :get, class: "button is-link" %>
+              <%= button_to "Ver Perfil", edit_user_registration_path, method: :get, class: "button is-link" %>
+              <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "button is-link" %>
             <% else %>
-              <%= button_to "Registrarse", new_user_registration_path, method: :get, class: "button is-primary" %>
-              <%= button_to "Iniciar sesión", new_user_session_path, method: :get, class: "button is-primary" %>
+              <%= button_to "Registrarse", new_user_registration_path, method: :get, class: "button is-link" %>
+              <%= button_to "Iniciar sesión", new_user_session_path, method: :get, class: "button is-link" %>
             <% end %>
           </div>
         </div>
@@ -41,13 +41,13 @@
   <ul style="list-style-type: none; padding: 0;">
     <% @recent_initiatives.each do |initiative| %>
       <li>
-        <h3><strong><%= initiative.name %></strong></h3>
-        Temática: <%= initiative.topic %><br>
-        Descripción: <%= initiative.description %>
+        <h3><%= initiative.name %></h3>
+        <h5>Temática: <%= initiative.topic %><br></h5>
+        <h5>Descripción: <%= initiative.description %></h5>
       </li>
     <% end %>
   </ul>
-
+    
   <br><hr><br>
 
   <h2> Galería de fotos </h2>
@@ -69,5 +69,5 @@
     </div>
   </div>
 </main>
-  <br><br><br><br><br><br>
+<br>
 </body>

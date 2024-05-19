@@ -4,6 +4,8 @@
 <body style="text-align: center;">
 <h2>Registro</h2>
 
+<div class="column is-half is-offset-one-quarter">
+<div class="box" style="background-color: rgba(255, 255, 255, 0.5);">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -45,14 +47,19 @@
   <%= f.file_field :avatar %>
 </div>
 
-
   <br>
-
-
-  <%= f.submit "Sign up", class: "button is-primary" %>
-  
-
+  <div class="field">
+  <div class="control">
+    <div class="buttons is-centered">
+      <%= f.submit "Registrarse", class: "button is-link" %>
+      <%= link_to "Cancelar", root_path, class: "button is-link is-light" %>
+    </div>
+  </div>
+  </div>
 <% end %><br>
+
+</div>
+</div>
 
 <!--<%= render "devise/shared/links" %> -->
 </body>

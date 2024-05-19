@@ -1,8 +1,8 @@
 
 <% if user_signed_in? && current_user.has_role?(:attendant, @event) %>
   <!-- Toggle button -->
-  <button onclick="openModal('review_popup');" class="button is-success">
-   Reseña
+  <button class="button is-link js-modal-trigger"  data-target="review_popup">
+    Reseña
   </button>
 
 
@@ -22,9 +22,7 @@
         <%= form.number_field :calification, placeholder: "Ingresa un número", in: 1..5 %>
         <%= form.text_area :content, placeholder: "Escribe tu mensaje aquí" %>
         <%= form.hidden_field :user_id, value: current_user.id %>
-		</section>
-		<footer class="modal-card-foot">
-       <%= form.submit "Enviar reseña", class: "btn btn-primary" %>
+        <%= form.submit "Enviar mensaje", class: "btn btn-link" %>
       <% end %>
     </footer>
 	</div>

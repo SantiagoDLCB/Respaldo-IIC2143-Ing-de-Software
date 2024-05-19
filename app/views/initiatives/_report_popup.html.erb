@@ -4,15 +4,9 @@
   <!-- Overlay -->
 
 
-<<<<<<< HEAD
 <button onclick="openModal('report_popup');" class="button is-success">
    Reportar
-=======
-<button class="button is-link js-modal-trigger"  data-target="report_popup">
-  Reportar
->>>>>>> 70b4d75 (guardar cambios locales)
 </button>
-
 
 
 <div class="modal" id="report_popup">
@@ -27,8 +21,8 @@
 		</header>
 		<section class="modal-card-body" style="text-align: center;" id = "chat-body">
       <%= form_with(model: @report, url: initiative_reports_path(@initiative), method: :post) do |form| %>
-        <%= form.text_area  :reason, placeholder: "Motivo del reporte"%>
-        <%= form.text_area :content, placeholder: "Describe tu situación" %>
+        <%= form.text_area  :reason, placeholder: "Motivo del reporte", class: "textarea is-small"%>
+        <%= form.text_area :content, placeholder: "Describe tu situación", class: "textarea" %>
         <%= form.hidden_field :user_id, value: current_user.id %>   
 		</section>
 		<footer class="modal-card-foot">
@@ -37,8 +31,6 @@
     </footer>
 	</div>
 </div>
-
-
 
 
 <% end %>

@@ -2,8 +2,10 @@ class Event < ApplicationRecord
   resourcify
   has_many :roles, class_name: "Role", as: :resource, dependent: :delete_all
   has_many :users, through: :roles, source: :users
-  belongs_to :initiative
   has_many :reviews, dependent: :delete_all
+  belongs_to :initiative
+  before_destroy :delete_associated_reviews
+
   def self.all_roles
     Role.where(resource_type: 'Event')
   end
@@ -22,6 +24,10 @@ class Event < ApplicationRecord
   private
   def create_roles
     Role.create(name: :attendant, resource: self)
+  end
+
+  def delete_associated_reviews
+    self.reviews.destroy_all
   end
 
 end

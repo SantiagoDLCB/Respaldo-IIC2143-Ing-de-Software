@@ -50,6 +50,11 @@ class EventsController < ApplicationController
     elsif  update_type  == 'remove_attendant'
       user = User.find(params['event'][:user_id])
       user.remove_role(:attendant, @event)
+      if not user.has_role?(:attendant, @event)
+        redirect_to event_path(@event), notice: 'Se ha quitado al usuario del evento.'
+      else
+        redirect_to event_path(@event), notice: 'No se ha podido quitar al usuario del evento.'
+      end
 
     end
   end

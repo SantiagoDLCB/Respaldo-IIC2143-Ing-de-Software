@@ -33,11 +33,38 @@ class EventsController < ApplicationController
     redirect_to initiative_path(@initiative), notice: 'El evento fue eliminado.'
   end
 
+  def edit
+    @event = Event.find(params[:id])
+    @initiative = @event.initiative
+    @admins = @initiative.get_all_admins
+    @attendants = @event.get_attendants
+  end
+
   def update
     @event = Event.find(params[:id])
-    @user = current_user
+    @type = params[:event][:update_type]
+    if @type == 'data'
+      if @event.modify_capacity(params[:event][:capacity].to_i)
+        if @event.update(event_params)
+          redirect_to event_path(@event), notice: 'El evento fue actualizado exitosamente.'
+        else
+          render :edit
+        end
+      else
+        redirect_to event_path(@event), notice: 'No se puede reducir la capacidad a un número menor de asistentes.'
+      end
 
-    if @event.users.count < @event.capacity
+    else
+      redirect_to event_path(@event), alert: 'No se pudo realizar la acción solicitada.'
+
+    end
+    
+  end
+  
+  def update_attendats
+    @user = current_user
+    @event = Event.find(params[:id])
+    if @event.get_attendants.count < @event.capacity
       @user.add_role(:attendant, @event)
       redirect_to event_path(@event), notice: 'Te has inscrito al evento.'
     else

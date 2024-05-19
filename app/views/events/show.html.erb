@@ -14,7 +14,7 @@
 
         <!-- Si es admin del evento -->
         <% if current_user.has_role?(:admin_initiative, @initiative) %>
-          <%= button_to "Editar", edit_event_path(@event), class: "button is-primary" %>
+          <%= button_to "Editar", edit_event_path(@event), method: :get, class: "button is-primary" %>
           <%= button_to "Eliminar evento", event_path(@event), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas eliminar este evento?" }, class: "button is-danger" %>
 
 

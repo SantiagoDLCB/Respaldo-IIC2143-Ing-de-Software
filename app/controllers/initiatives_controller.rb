@@ -69,8 +69,6 @@ class InitiativesController < ApplicationController
       elsif @type == 'remove_member'
         @user.remove_role :member, @initiative
         @user.remove_role :admin_initiative, @initiative
-        @user.remove_role :admin_initiative, @initiative
-        @event
 
         if !@user.has_role?(:member, @initiative) && !@user.has_role?(:admin_initiative, @initiative)
           redirect_to initiative_path(@initiative), notice: 'El usuario fue expulsado de la iniciativa'

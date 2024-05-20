@@ -1,5 +1,7 @@
 class InitiativesController < ApplicationController
   before_action :authenticate_user!
+  before_action :current_user_is_admin?, only: [:destroy, :update]
+
   def new
     @initiative = Initiative.new
   end
@@ -27,9 +29,10 @@ class InitiativesController < ApplicationController
     @initiative = Initiative.find(params[:id])
     @message = Message.new
     @report = Report.new
-    @members = @initiative.get_members
     @events = @initiative.get_events
     @chat = @initiative.messages
+    @admins = @initiative.get_all_admins
+    @members = @initiative.get_members
   end
 
   def destroy
@@ -38,16 +41,11 @@ class InitiativesController < ApplicationController
     redirect_to root_path, notice: 'La iniciativa fue eliminada.'
   end
 
-  def edit
-    @initiative = Initiative.find(params[:id])
-    @admins = @initiative.get_all_admins
-    @members = @initiative.get_members
-  end
 
   def update
     @initiative = Initiative.find(params[:id])
     @type =params[:initiative][:update_type]
-    puts @type
+
     if @type == 'data'
       if @initiative.update(initiative_params)
         redirect_to initiative_path(@initiative), notice: 'La iniciativa fue actualizada exitosamente.'
@@ -111,9 +109,18 @@ class InitiativesController < ApplicationController
     end
   end
 
+  def current_user_is_admin?()
+    @initiative = Initiative.find(params[:id])
+    check =current_user.has_role? :admin_initiative, @initiative
+    if !check
+      redirect_to root_path, alert: 'No tienes permisos para realizar esta acción.'
+    end
+  end
+
   def initiative_params
     params.require(:initiative).permit(:name, :topic, :description)
   end
+
   def new_initiative_params
     params.permit(:name, :topic, :description)
   end

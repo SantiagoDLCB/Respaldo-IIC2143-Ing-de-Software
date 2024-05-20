@@ -1,12 +1,16 @@
-// Function to open the modal
+
 function openModal(id) {
+  // Add is-active class on the modal
+  // Clear form inputs
   // Add is-active class on the modal
   document.getElementById(id)
     .classList.add("is-active");
+
 }
 
 // Function to close the modal
 function closeModal(id) {
+
   document.getElementById(id)
     .classList.remove("is-active");
 }
@@ -33,3 +37,7 @@ document.addEventListener("keydown", (event) => {
     closeModal();
   }
 });
+
+
+
+

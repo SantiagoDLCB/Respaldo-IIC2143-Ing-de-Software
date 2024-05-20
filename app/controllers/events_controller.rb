@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
+  before_action :current_user_is_admin?, only: [:destroy, :update]
 
   def new
     @event= Event.new
@@ -30,12 +31,6 @@ class EventsController < ApplicationController
     redirect_to initiative_path(@initiative), notice: 'El evento fue eliminado.'
   end
 
-  def edit
-    @event = Event.find(params[:id])
-    @initiative = @event.initiative
-    @admins = @initiative.get_all_admins
-    @attendants = @event.get_attendants
-  end
 
   def update
     @event = Event.find(params[:id])
@@ -44,9 +39,12 @@ class EventsController < ApplicationController
     if @type == 'data'
       if @event.modify_capacity(params[:event][:capacity].to_i)
         if @event.update(event_params)
-          redirect_to event_path(@event), notice: 'El evento fue actualizado exitosamente.'
+          respond_to do |format|
+            format.js { render js: "window.location.href = '#{event_path(@event)}';" }
+          end
+
         else
-          render :edit
+          redirect_to event_path(@event), notice: 'Error:: Intente nuevamente'
         end
       end
     elsif  @type  == 'remove_attendant'
@@ -79,6 +77,17 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     current_user.remove_role(:attendant, @event)
     redirect_to event_path(@event), notice: 'Te has salido del evento.'
+  end
+
+  private
+
+  def current_user_is_admin?()
+    @event = Event.find(params[:id])
+    @initiative = @event.initiative
+    check =current_user.has_role? :admin_initiative, @initiative
+    if !check
+      redirect_to root_path, alert: 'No tienes permisos para realizar esta acción.'
+    end
   end
 
   def event_params

@@ -1,0 +1,55 @@
+<button onclick="openModal('edit_event_popup');" class="button is-primary">
+   Editar
+</button>
+  
+  <% if current_user.has_role?(:admin_initiative, @initiative) %>
+    <div class="modal" id="edit_event_popup">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">
+            Editar Evento
+          </p>
+          <button onclick="closeModal('edit_event_popup');" class="delete" aria-label="close"></button>
+
+        </header>
+        <section class="modal-card-body" style="text-align: center;">
+          <h3>Datos del Evento</h3>
+          <br />
+          <!-- Your content -->
+          <%= form_with(model: @event,  method: :patch, remote: true) do |form| %>
+            <%= form.label :Nombre %>
+            <%= form.text_field :name %>
+            <br />
+
+            <%= form.label :Descripción %>
+            <%= form.text_area :description %>
+            <br />
+
+            <%= form.label :Capacidad %>
+            <%= form.number_field :capacity, min:1 %>
+            
+            <%= form.hidden_field :update_type, value: "data" %>
+            
+        </section>
+        <footer class="modal-card-foot">
+          
+          <%= form.submit "Guardar cambios", class: "button is-primary"%>
+          <% end %>
+        
+          <button class="button is-danger" onclick="closeModal('edit_event_popup');">
+            Cancelar
+          </button>
+        </footer>
+      </div>
+    </div>
+  
+  
+
+  <% end %>
+
+ 
+
+	
+
+

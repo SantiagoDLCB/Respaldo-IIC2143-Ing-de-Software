@@ -1,0 +1,45 @@
+
+<div align="right" style="margin: 10px;">
+  <button onclick="openModal('new_event_popup');" class="button is-primary">
+   Crear Evento
+</button>
+</div>
+
+
+
+<div class="modal" id="new_event_popup">
+	<div class="modal-background"></div>
+	<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title">
+				Nuevo Evento
+			</p>
+      <button onclick="closeModal('new_event_popup');" class="delete" aria-label="close"></button>
+
+		</header>
+		<section class="modal-card-body" style="text-align: center;">
+        <h3>Datos del Evento</h3>
+        <!-- Your content -->
+        <%= form_with(model: @event, url: events_path(@initiative), method: "post") do |form| %>
+        <%= form.label :Nombre %><br>
+        <%= form.text_field :name, required: true %><br><br>
+
+        <%= form.label :Descripción %><br>
+        <%= form.text_area :description, required: true %><br><br>
+
+        <%= form.label :Capacidad %><br>
+        <%= form.number_field :capacity, required: true, placeholder: "100", min:1 %><br><br>
+        <%= form.hidden_field :initiative, value: @initiative.id %>
+          <br>
+          
+		</section>
+		<footer class="modal-card-foot">
+      <%= form.submit "Crear Evento", class: "button is-primary"%>
+      <% end %>
+		
+			<button class="button is-danger" onclick="closeModal('new_event_popup');">
+				Cancelar
+			</button>
+    </footer>
+	</div>
+</div>

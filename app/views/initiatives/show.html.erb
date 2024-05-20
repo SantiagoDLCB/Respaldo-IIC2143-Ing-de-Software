@@ -28,7 +28,8 @@
         <!-- Botón Editar -->
         <%= button_to "Editar", edit_initiative_path(@initiative), method: :get, class: "button is-primary" %>
         <!-- Botón Crear Evento -->
-        <%= button_to "Crear evento", new_initiative_event_path(@initiative), method: :get, class: "button is-primary" %>
+        <%= render 'events/new' %>
+        
         <!-- Botón Eliminar iniciativa -->
         <%= button_to "Eliminar iniciativa", initiative_path(@initiative), method: :delete, class: "button is-primary", data: { turbo_confirm: "¿Estás seguro de que deseas eliminar esta iniciativa?" } %>
       

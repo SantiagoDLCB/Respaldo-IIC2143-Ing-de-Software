@@ -1,22 +1,19 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_initiative, only: [:new, :create]
+
   def new
-    @event = @initiative.events.build
+    @event= Event.new
   end
 
   def create
-    @event = @initiative.events.build(event_params)
+    @event= Event.new(new_event_params)
     if @event.save
-      redirect_to initiative_path(@initiative.id), notice: 'Evento creado exitosamente.'
+      redirect_to event_path(@event.id), notice: 'Evento creado exitosamente.'
     else
-      redirect_to initiative_path(@initiative.id), notice: 'Evento no ha podido ser creado.'
+      redirect_to event_path(@event.id), notice: 'Evento no ha podido ser creado.'
     end
   end
 
-  def set_initiative
-    @initiative = Initiative.find(params[:initiative_id])
-  end
 
   def show
     @event = Event.find(params[:id])
@@ -65,9 +62,8 @@ class EventsController < ApplicationController
       redirect_to event_path(@event), alert: 'No se pudo realizar la acción solicitada.'
 
     end
-    
   end
-  
+
   def update_attendats
     @user = current_user
     @event = Event.find(params[:id])
@@ -87,5 +83,10 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:initiative, :name, :description, :capacity)
+  end
+  def new_event_params
+    parametros = params.permit(:initiative, :name, :description, :capacity)
+    parametros[:initiative] = Initiative.find(parametros[:initiative])
+    parametros
   end
 end

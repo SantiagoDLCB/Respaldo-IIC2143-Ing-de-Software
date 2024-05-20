@@ -36,8 +36,6 @@
       <% elsif current_user.has_role?(:member, @initiative) %>
         <!-- Botón Salir de iniciativa -->
         <%= button_to "Salir de iniciativa", remove_initiative_user_role_path(@initiative, current_user, role: :member), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas dejar de ser miembro de esta iniciativa?" }, class: "button is-danger" %>
-        <!-- Botón Chat -->
-        <%= button_to "Chat", edit_initiative_path(@initiative), class: "button is-primary" %>
       <% elsif @initiative.get_request(current_user).nil? or not @initiative.get_request(current_user).pending? %>
         <!-- Botón Enviar solicitud -->
         <%= button_to "Enviar solicitud", requests_path, method: :post, params: { request: { initiative: @initiative.id, status: :pending } }, class: "button is-primary" %>
@@ -90,7 +88,7 @@
     <% end %>
     <ul>
       <% @members.each do |member| %>
-        <li><h5><%= member.name %> <%= member.last_name %></h5></li>
+        <li><h5> <%= member.name %> <%= member.last_name %></h5></li>
       <% end %>
       <!-- Add more members here -->
     </ul>

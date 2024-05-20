@@ -20,7 +20,13 @@
               <%= render 'attendants_popup' %>
             </div>
             <%= button_to "Editar", edit_event_path(@event), method: :get, class: "button is-primary" %>
-            <%= button_to "Eliminar evento", event_path(@event), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas eliminar este evento?" }, class: "button is-danger" %>
+            <%= form_with(model: @event, url: event_path(@initiative), method: :patch) do |form| %>
+              <%= form.hidden_field :capacity, value: false  %>
+              <%= form.hidden_field :update_type, value: 'data' %>
+              <button type="submit" class="button is-danger is-primary">
+                  Finalizar evento
+              </button>
+              <% end %>            <%= button_to "Eliminar evento", event_path(@event), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas eliminar este evento?" }, class: "button is-danger" %>
   
         <!-- Si es miembro del evento -->
         <% elsif current_user.has_role?(:attendant, @event) %>
@@ -68,7 +74,11 @@
     <div class="block">
       <!-- Mostrar la cantidad de miembros actuales / capacidad total -->
       <h3>Capacidad</h3>
-      <h5><%= @event.get_attendants.count %>/<%=@event.capacity%></h5>
+      if capacity != false
+        <h5><%= @event.get_attendants.count %>/<%=@event.capacity%></h5>
+      else
+        <h5><em>Evento finalizado</em></h5>
+      end
     </div>
 
 

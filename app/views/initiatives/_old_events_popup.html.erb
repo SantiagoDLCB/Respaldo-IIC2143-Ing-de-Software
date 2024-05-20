@@ -1,0 +1,28 @@
+
+<% if user_signed_in? %>
+  <!-- Toggle button -->
+  <div class="modal" id="old_events_popup">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">
+          Eventos Finalizados
+        </p>
+        <button onclick="closeModal('old_events_popup');" class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body" style="text-align: center;" id="attendants_remove">
+        <div class="box">
+            <% Event.where(capacity: false).each do |event| %>
+            <div class="old_event-item" style="display: flex; align-items: center;">
+                <p style="color: black; margin-right: 10px;"></p>
+                <button type='button' value='Redirect' class="button is-danger is-small">
+                  <%= event.name %>
+                </button>
+            <% end %>
+            </div>
+        </div>
+        </section>
+
+    </div>
+  </div>
+<% end %>

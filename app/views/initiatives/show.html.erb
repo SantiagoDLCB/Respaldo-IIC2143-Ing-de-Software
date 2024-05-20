@@ -12,6 +12,11 @@
       <div class="buttons">
       <!-- Botón Volver al Inicio -->
       <button onclick="window.location.href = '<%= root_path %>';" class="button is-primary">Volver al Inicio</button>
+      <!-- Botón Eventos Finalizados -->
+      <button onclick="openModal('old_events_popup');" class="button is-primary">Eventos Finalizados</button>
+      <div data-theme="light">
+        <%= render 'old_events_popup' %>
+      </div>
 
       <!-- Botón Solicitudes (solo para administradores de la iniciativa) -->
       <% if current_user.has_role?(:admin_initiative, @initiative) %>
@@ -74,7 +79,7 @@
       <h5><em>Esta iniciativa no tiene eventos activos.</em></h5>
     <% end %>
     <ul>
-    <% @events.each do |event| %>
+    <% Event.where.not(capacity: false).each do |event| %>
       <li><%=button_to event.name, event_path(event), method: :get, class: "button is-info is-light is-small" %></li>
     <% end %>
     </ul>

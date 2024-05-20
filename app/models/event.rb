@@ -13,7 +13,12 @@ class Event < ApplicationRecord
   validates :name,  presence: true
   validates :description, presence: true
   validates :capacity, presence: true
-
+  def finished
+    Event.where(capacity: false)
+  end
+  def not_finished
+    Event.where.not(capacity: false)
+  end
 
   def get_attendants
     roles.where(name: 'attendant', resource_type: 'Event').includes(:users).map(&:users).flatten.uniq

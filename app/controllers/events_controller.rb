@@ -48,6 +48,8 @@ class EventsController < ApplicationController
         else
           render :edit
         end
+      else
+        redirect_to event_path(@event), alert: 'No se pudo realizar la acción solicitada.'
       end
     elsif  @type  == 'remove_attendant'
       user = User.find(params['event'][:user_id])

@@ -12,14 +12,11 @@
       </header>
       <section class="modal-card-body" style="text-align: center;" id="attendants_remove">
         <div class="box">
-            <% Event.where(capacity: false).each do |event| %>
+            <% Event.where(capacity: false).where(initiative: @initiative).each do |event| %>
             <div class="old_event-item" style="display: flex; align-items: center;">
-                <p style="color: black; margin-right: 10px;"></p>
-                <button type='button' value='Redirect' class="button is-danger is-small">
-                  <%= event.name %>
-                </button>
-            <% end %>
+              <%= button_to "Ir a #{event.name}", event_path(event), method: :get, class: "button is-small" %>
             </div>
+            <% end %>
         </div>
         </section>
 

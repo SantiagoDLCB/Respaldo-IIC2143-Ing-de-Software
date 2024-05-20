@@ -13,11 +13,12 @@ class Event < ApplicationRecord
   validates :name,  presence: true
   validates :description, presence: true
   validates :capacity, presence: true
-  def finished
-    Event.where(capacity: false)
-  end
-  def not_finished
-    Event.where.not(capacity: false)
+  def is_active?
+    if self.capacity != 0
+      return true
+    else
+      return false
+    end
   end
 
   def get_attendants

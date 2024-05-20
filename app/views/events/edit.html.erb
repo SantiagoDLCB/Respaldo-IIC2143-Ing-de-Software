@@ -18,7 +18,7 @@
 
       <div class="field">
         <h5><%= form.label :Capacidad %>
-        <%= form.text_field :capacity %></h5>
+        <%= form.number_field :capacity, min:1 %></h5>
       </div>
       
       <%= form.hidden_field :update_type, value: "data" %>

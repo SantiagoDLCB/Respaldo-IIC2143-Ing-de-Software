@@ -50,12 +50,16 @@
 
   <div class="columns">
     <div class="column is-four-fifths is-offset-1">
-
+    <% if not @event.is_active? %>
+      <div class="block">
+      <h2>Evento finalizado</h2>
+      </div>
+    <% end %>
     <div class="block">
       <br><h3>Iniciativa que organiza</h3>
       <h5><%= @initiative.name %></h5>
     </div>
-
+    
     <div class="block">
       <h3>Descripción</h3>
       <h5><%=@event.description%></h5>
@@ -80,10 +84,7 @@
       <h3>Capacidad</h3>
       <h5><%= @event.get_attendants.count %>/<%= @event.capacity %></h5>
       </div>
-      <% else %>
-      <div class="block">
-      <h5>Evento finalizado</h5>
-      </div>
+
     <% end %>
     
 

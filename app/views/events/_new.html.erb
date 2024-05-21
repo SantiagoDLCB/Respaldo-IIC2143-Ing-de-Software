@@ -17,21 +17,32 @@
       <button onclick="closeModal('new_event_popup');" class="delete" aria-label="close"></button>
 
 		</header>
+    <%= form_with(model: @event, url: events_path(@initiative), method: "post") do |form| %>
 		<section class="modal-card-body" style="text-align: center;">
-        <h3>Datos del Evento</h3>
-        <!-- Your content -->
-        <%= form_with(model: @event, url: events_path(@initiative), method: "post") do |form| %>
-        <%= form.label :Nombre %><br>
-        <%= form.text_field :name, required: true %><br><br>
+        
+        <div class="field">
+            <%= form.label 'Nombre', class: "label is-medium" %>
+            <div class="control">
+              <%= form.text_field :name, class: "input is-medium", placeholder: "Nombre", required: true %>
+            </div>
+          </div>
 
-        <%= form.label :Descripción %><br>
-        <%= form.text_area :description, required: true %><br><br>
+        <div class="field">
+            <%= form.label 'Descripción', class: "label" %>
+            <div class="control">
+              <%= form.text_area :description, class: "textarea", placeholder: "Descripción", required: true %>
+            </div>
+        </div>
 
-        <%= form.label :Capacidad %><br>
-        <%= form.number_field :capacity, required: true, placeholder: "100", min:1 %><br><br>
+        <div class="field">
+          <%= form.label "Capacidad", class: "label" %>
+          <div class="control">
+            <%= form.number_field :capacity, class: "input", required: true, placeholder: "100", min: 1 %>
+          </div>
+        </div>
+
         <%= form.hidden_field :initiative, value: @initiative.id %>
-          <br>
-          
+
 		</section>
 		<footer class="modal-card-foot">
       <%= form.submit "Crear Evento", class: "button is-primary"%>

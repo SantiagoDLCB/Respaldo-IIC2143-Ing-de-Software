@@ -7,7 +7,7 @@ class Request < ApplicationRecord
   private
 
   def check_status_accepted
-    puts status_change_to_be_saved
+    # puts status_change_to_be_saved
     if status_change_to_be_saved[1] == 'accepted'
       self.user.add_role(:member, self.initiative)
     end

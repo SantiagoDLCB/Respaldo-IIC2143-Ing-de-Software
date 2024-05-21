@@ -1,0 +1,5 @@
+one:
+  user: another_user
+  initiative: one
+  reason: "Inappropriate content"
+  content: "This is the content of the report."

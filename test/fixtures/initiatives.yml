@@ -6,6 +6,6 @@ one:
   description: MyString
 
 two:
-  name: MyString
-  topic: MyString
-  description: MyString
+  name: MyString2
+  topic: MyString2
+  description: MyString2

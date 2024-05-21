@@ -1,11 +1,23 @@
-<% if chat.empty? %>
+<div> <%= link_to @initiative.name %> </div>
+<% if @chat.empty? %>
   <strong>Esta iniciativa no tiene conversaciones. ¡Sé el primero en hablar!</strong>
 <% else %>
   <!-- Muestra mensajes anteriores -->
-  <% chat.each do |message| %>
-    <div class="message">
-      <strong><%= message.user.username %>:</strong>
-      <%= message.content %>
-    </div>
-  <% end %>
+
+  <div class="message-box">
+    <% @chat.each do |message| %>
+      <div class="message">
+        <strong><%= message.user.username %>:</strong>
+        <%= message.content %>
+      </div>
+    <% end %>
+  </div>
+  <div id="messages">
+</div>
+  
 <% end %>
+<%= form_with(model: @message, url: initiative_messages_path(@initiative), method: :post) do |form| %>
+              <%= form.text_area :content, placeholder: "Escribe tu mensaje aquí" %>
+              <%= form.hidden_field :user_id, value: current_user.id %>
+              <%= form.submit "Enviar mensaje", class: "btn btn-primary" %>
+            <% end %>

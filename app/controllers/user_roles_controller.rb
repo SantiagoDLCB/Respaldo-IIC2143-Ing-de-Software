@@ -9,9 +9,6 @@ class UserRolesController < ApplicationController
   end
 
 
-
-
-
   private
 
   def find_initiative

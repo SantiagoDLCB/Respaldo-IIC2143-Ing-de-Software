@@ -1,5 +1,13 @@
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start 'rails' do
+  add_filter '/bin/'
+  add_filter '/test/'
+  add_filter '/config/'
+  add_filter '/app/channels/'
+  add_filter '/app/jobs/'
+  add_filter '/app/mailers/'
+  add_filter '/app/views/'
+end
 
 # frozen_string_literal: true
 

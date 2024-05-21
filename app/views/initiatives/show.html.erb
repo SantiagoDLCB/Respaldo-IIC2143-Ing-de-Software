@@ -14,9 +14,8 @@
       <button onclick="window.location.href = '<%= root_path %>';" class="button is-primary">Volver al Inicio</button>
 
       <!-- Botón Solicitudes (solo para administradores de la iniciativa) -->
-      <% if current_user.has_role?(:admin_initiative, @initiative) %>
-        <button onclick="window.location.href = '<%= initiative_requests_path(@initiative) %>';" class="button is-primary">Solicitudes</button>
-      <% end %>
+      <div data-theme="light"> <%= render 'requests_popup' %></div>
+
       </div>
     </div>
 

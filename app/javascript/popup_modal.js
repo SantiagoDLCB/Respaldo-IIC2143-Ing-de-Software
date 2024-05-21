@@ -38,6 +38,20 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+function handleFlashAndRedirect(message, redirectUrl) {
+  // Display the flash message
+  displayFlashMessage(message);
+
+  // Redirect to the new URL
+  window.location.href = redirectUrl;
+}
+
+function displayFlashMessage(message) {
+  // Implementation to show flash message, e.g., using a modal or a flash message div
+  alert(message); // Simple alert, replace with your flash message display logic
+}
+
+
 
 
 

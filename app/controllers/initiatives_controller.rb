@@ -33,6 +33,9 @@ class InitiativesController < ApplicationController
     @chat = @initiative.messages
     @admins = @initiative.get_all_admins
     @members = @initiative.get_members
+    @all_requests = @initiative.requests
+    @active_requests = @initiative.requests.where(status: :pending)
+    @old_requests = @initiative.requests.where(status: [:accepted, :denied])
   end
 
   def destroy
@@ -48,7 +51,7 @@ class InitiativesController < ApplicationController
 
     if @type == 'data'
       if @initiative.update(initiative_params)
-        redirect_to initiative_path(@initiative), notice: 'La iniciativa fue actualizada exitosamente.'
+        redirect_to initiative_path(@initiative) , notice: "La iniciativa fue actualizada exitosamente"
       else
         render :edit
       end

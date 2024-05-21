@@ -39,6 +39,7 @@ class EventsController < ApplicationController
     if @type == 'data'
       if @event.modify_capacity(params[:event][:capacity].to_i)
         if @event.update(event_params)
+          flash[:notice] = 'El evento fue actualizado exitosamente.'
           respond_to do |format|
             format.js { render js: "window.location.href = '#{event_path(@event)}';" }
           end

@@ -13,30 +13,35 @@
           <button onclick="closeModal('edit_event_popup');" class="delete" aria-label="close"></button>
 
         </header>
+        <%= form_with(model: @event,  method: :patch, remote: true) do |form| %>
         <section class="modal-card-body" style="text-align: center;">
-          <h3>Datos del Evento</h3>
-          <br />
-          <!-- Your content -->
-          <%= form_with(model: @event,  method: :patch, remote: true) do |form| %>
-            <%= form.label :Nombre %>
-            <%= form.text_field :name %>
-            <br />
+          
+            <div class="field">
+            <%= form.label 'Nombre', class: "label is-medium" %>
+            <div class="control">
+              <%= form.text_field :name, class: "input is-medium", placeholder: "Nombre", required: true %>
+            </div>
+          </div>
 
-            <%= form.label :Descripción %>
-            <%= form.text_area :description %>
-            <br />
+        <div class="field">
+            <%= form.label 'Descripción', class: "label" %>
+            <div class="control">
+              <%= form.text_area :description, class: "textarea", placeholder: "Descripción", required: true %>
+            </div>
+        </div>
 
-            <%= form.label :Capacidad %>
-            <%= form.number_field :capacity, min:1 %>
-            
-            <%= form.hidden_field :update_type, value: "data" %>
+        <div class="field">
+          <%= form.label "Capacidad", class: "label" %>
+          <div class="control">
+            <%= form.number_field :capacity, class: "input", required: true, placeholder: "100", min: 1 %>
+          </div>
+        </div>
             
         </section>
         <footer class="modal-card-foot">
-          
-          <%= form.submit "Guardar cambios", class: "button is-primary"%>
-          <% end %>
-        
+            <%= form.submit "Guardar cambios", class: "button is-primary"%>
+            <% end %>
+
           <button class="button is-danger" onclick="closeModal('edit_event_popup');">
             Cancelar
           </button>

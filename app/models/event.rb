@@ -12,7 +12,15 @@ class Event < ApplicationRecord
 
   validates :name,  presence: true
   validates :description, presence: true
-  validates :capacity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1}
+  validates :capacity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0}
+  
+  def is_active?
+    if self.capacity != 0
+      return true
+    else
+      return false
+    end
+  end
 
   def get_attendants
     roles.where(name: 'attendant', resource_type: 'Event').includes(:users).map(&:users).flatten.uniq

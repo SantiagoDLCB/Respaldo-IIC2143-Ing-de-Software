@@ -15,21 +15,30 @@
 
         <!-- Si es admin del evento -->
         <% if current_user.has_role?(:admin_initiative, @initiative) %>
+          <% if @event.is_active? %>
             <button onclick="openModal('attendants_popup');" class="button is-primary">Administrar Participantes</button>
             <div data-theme="light">
               <%= render 'attendants_popup' %>
             </div>
             <div data-theme="light">
-               <%= render 'edit' %>
+              <%= render 'edit' %>
             </div>
-            <%= button_to "Eliminar evento", event_path(@event), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas eliminar este evento?" }, class: "button is-danger" %>
-  
+            <%= form_with(model: @event, url: event_path(@initiative), method: :patch) do |form| %>
+              <%= form.hidden_field :capacity, value: 0  %>
+              <%= form.hidden_field :update_type, value: 'data' %>
+              <button type="submit" class="button is-danger is-primary">
+                Finalizar evento
+              </button>
+            <% end %>
+          <% end %>          
+          <%= button_to "Eliminar evento", event_path(@event), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas eliminar este evento?" }, class: "button is-danger" %>
+
         <!-- Si es miembro del evento -->
         <% elsif current_user.has_role?(:attendant, @event) %>
           <%= button_to "Salir del evento", remove_user_role_event_path(@event), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas salirte de este evento?" }, class: "button is-danger" %>
 
         <!-- Si no es miembro del evento (los eventos no tienen necesitan solicitudes, todos se unen automaticamente) -->
-        <% elsif not current_user.has_role?(:attendant, @event) %>
+        <% elsif not current_user.has_role?(:attendant, @event) && @event.is_active?%>
           <%= form_with(model: @event, url: add_user_role_event_path(@event), method: :post) do |form| %>
             <%= form.hidden_field :update_type, value: 'join' %>
             <button type="submit" class="button is-primary">Unirse al evento</button>     
@@ -43,35 +52,43 @@
 
   <div class="columns">
     <div class="column is-four-fifths is-offset-1">
-
+    <% if not @event.is_active? %>
+      <div class="block">
+      <h2>Evento finalizado</h2>
+      </div>
+    <% end %>
     <div class="block">
       <br><h3>Iniciativa que organiza</h3>
       <h5><%= @initiative.name %></h5>
     </div>
-
+    
     <div class="block">
       <h3>Descripción</h3>
       <h5><%=@event.description%></h5>
     </div>
 
 
-    <div class="block">
-      <h3>Miembros actuales</h3>
-      <% if @event.get_attendants.empty? %>
-        <h5><em>Este evento no tiene miembros.</em></h5>
-      <% end %>
-      <ul>
-        <% @event.get_attendants.each do |user| %>
-          <li><h5><%= user.name %> <%= user.last_name %></h5></li>
+    <% if @event.is_active? %>
+      <div class="block">
+        <h3>Miembros actuales</h3>
+        <% if @event.get_attendants.empty? %>
+          <h5><em>Este evento no tiene miembros.</em></h5>
         <% end %>
-      </ul>
-    </div>
-    
-    <div class="block">
+        <ul>
+          <% @event.get_attendants.each do |user| %>
+            <li><h5><%= user.name %> <%= user.last_name %></h5></li>
+          <% end %>
+        </ul>
+      </div>
+      
+      <div class="block">
       <!-- Mostrar la cantidad de miembros actuales / capacidad total -->
       <h3>Capacidad</h3>
-      <h5><%= @event.get_attendants.count %>/<%=@event.capacity%></h5>
-    </div>
+      <h5><%= @event.get_attendants.count %>/<%= @event.capacity %></h5>
+      </div>
+
+    <% end %>
+    
 
 
     <div class="block">

@@ -12,12 +12,13 @@
       <div class="buttons">
       <!-- Botón Volver al Inicio -->
       <button onclick="window.location.href = '<%= root_path %>';" class="button is-primary">Volver al Inicio</button>
-
+      
       <!-- Botón Solicitudes (solo para administradores de la iniciativa) -->
-      <div data-theme="light"> <%= render 'requests_popup' %></div>
-
+      <% if current_user.has_role?(:admin_initiative, @initiative) %>
+        <div data-theme="light"> <%= render 'requests_popup' %></div>
+      <% end %>
       </div>
-    </div>
+      </div>
 
     <div class="column"></div>
 
@@ -40,7 +41,7 @@
       <% elsif @initiative.get_request(current_user).nil? or not @initiative.get_request(current_user).pending? %>
         <!-- Botón Enviar solicitud -->
         <%= button_to "Enviar solicitud", requests_path, method: :post, params: { request: { initiative: @initiative.id, status: :pending } }, class: "button is-primary" %>
-      <% elsif @initiative.get_request(current_user).pending? %>
+        <% elsif @initiative.get_request(current_user).pending? %>
         <!-- Botón Cancelar solicitud -->
         <%= button_to "Cancelar solicitud", request_path(@initiative.get_request(current_user)), method: :patch, params: { request: {status: :cancelled} }, class: "button is-primary" %>
       <% end %>
@@ -55,27 +56,36 @@
   <div class="block">
     <br><br><h3>Tema</h3>
     <h5><%=@initiative.topic%></h5>
-  </div>
-
-  <div class="block">
+    </div>
+    
+    <div class="block">
     <h3>Administradores de la Iniciativa</h3>
     <% @initiative.get_all_admins.each do |admin| %>
       <h5><%= admin.name %> <%= admin.last_name %></h5>
-    <% end %>
-  </div>
-
-  <div class="block">
-    <h3>Descripción</h3>
+      <% end %>
+      </div>
+      
+      <div class="block">
+      <h3>Descripción</h3>
       <h5><%=@initiative.description%></h5>
-  </div>
+      </div>
+      
+      <div class="block">
+      <h3>Eventos de la Iniciativa</h3>
+      <!-- Botón Eventos Finalizados -->
+      
+      <div class="block">
+      <button onclick="openModal('old_events_popup');" class="button is-small">Eventos Finalizados</button>
+      <div data-theme="light">
+        <%= render 'old_events_popup' %>
+      </div>
+      </div>
 
-  <div class="block">
-    <h3>Eventos de la Iniciativa</h3>
-    <% if @events.empty? %>
-      <h5><em>Esta iniciativa no tiene eventos activos.</em></h5>
+      <% if @events.empty? %>
+      <h5><em>Esta iniciativa no tiene eventos.</em></h5>
     <% end %>
     <ul>
-    <% @events.each do |event| %>
+    <% Event.where.not(capacity: false).where(initiative: @initiative).each do |event| %>
       <li><%=button_to event.name, event_path(event), method: :get, class: "button is-info is-light is-small" %></li>
     <% end %>
     </ul>

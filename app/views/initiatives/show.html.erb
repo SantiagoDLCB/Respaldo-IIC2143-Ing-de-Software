@@ -15,7 +15,7 @@
       
       <!-- Botón Solicitudes (solo para administradores de la iniciativa) -->
       <% if current_user.has_role?(:admin_initiative, @initiative) %>
-      <button onclick="window.location.href = '<%= initiative_requests_path(@initiative) %>';" class="button is-primary">Solicitudes</button>
+        <div data-theme="light"> <%= render 'requests_popup' %></div>
       <% end %>
       </div>
       </div>
@@ -26,9 +26,11 @@
       <div class="buttons">
       <% if current_user.has_role?(:admin_initiative, @initiative) %>
         <!-- Botón Editar -->
-        <%= button_to "Editar", edit_initiative_path(@initiative), method: :get, class: "button is-primary" %>
+        <div data-theme="light"> <%= render 'edit' %></div>
+        <div data-theme="light"> <%= render 'roles_popup' %></div>
         <!-- Botón Crear Evento -->
-        <%= render 'events/new' %>
+        <div data-theme="light"> <%= render 'events/new' %></div>
+        
         
         <!-- Botón Eliminar iniciativa -->
         <%= button_to "Eliminar iniciativa", initiative_path(@initiative), method: :delete, class: "button is-primary", data: { turbo_confirm: "¿Estás seguro de que deseas eliminar esta iniciativa?" } %>

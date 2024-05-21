@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
+  user: another_user
   initiative: one
-  status: MyString
+  status: accepted
 
 two:
-  user: two
-  initiative: two
-  status: MyString
+  user: third_user
+  initiative: one
+  status: pending

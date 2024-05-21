@@ -16,21 +16,23 @@
         <!-- Si es admin del evento -->
         <% if current_user.has_role?(:admin_initiative, @initiative) %>
           <% if @event.is_active? %>
-          <button onclick="openModal('attendants_popup');" class="button is-primary">Administrar Participantes</button>
-          <div data-theme="light">
-            <%= render 'attendants_popup' %>
-          </div>
-          <%= button_to "Editar", edit_event_path(@event), method: :get, class: "button is-primary" %>
+            <button onclick="openModal('attendants_popup');" class="button is-primary">Administrar Participantes</button>
+            <div data-theme="light">
+              <%= render 'attendants_popup' %>
+            </div>
+            <div data-theme="light">
+              <%= render 'edit' %>
+            </div>
             <%= form_with(model: @event, url: event_path(@initiative), method: :patch) do |form| %>
               <%= form.hidden_field :capacity, value: 0  %>
               <%= form.hidden_field :update_type, value: 'data' %>
               <button type="submit" class="button is-danger is-primary">
-                  Finalizar evento
+                Finalizar evento
               </button>
             <% end %>
           <% end %>          
           <%= button_to "Eliminar evento", event_path(@event), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas eliminar este evento?" }, class: "button is-danger" %>
-  
+
         <!-- Si es miembro del evento -->
         <% elsif current_user.has_role?(:attendant, @event) %>
           <%= button_to "Salir del evento", remove_user_role_event_path(@event), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas salirte de este evento?" }, class: "button is-danger" %>

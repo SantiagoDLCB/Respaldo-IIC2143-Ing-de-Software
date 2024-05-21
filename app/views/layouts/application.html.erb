@@ -27,7 +27,7 @@
                 <li> <%= link_to "Cerrar sesión", destroy_user_session_path, data: { turbo_method: :delete }, style: "color: white;" %></li>
                 <% if current_user.has_role?(:admin) %>
                   <li><a style="color: white;" href="<%= rails_admin_path %>">Administrar Pagina Web</a></li>
-                <% end %>
+                <% end %> 
               <% else %>
                 <li><a style="color: white;" href="<%= root_path %>">Inicio</a>
                 <li><a style="color: white;" href="<%= new_user_registration_path %>">Registrarse</a></li>
@@ -40,7 +40,7 @@
       <% flash.each do |name, msg| %>
         <div class="notification is-success" id="flash_<%= name %>">
           <%= msg %>
-        </div>
+        </div>  
       <% end %>
       <%= yield %>
 

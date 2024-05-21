@@ -4,7 +4,7 @@
   <!-- Overlay -->
 
 
-<button onclick="openModal('report_popup');" class="button is-success">
+<button onclick="openModal('report_popup');" class="button is-primary">
    Reportar
 </button>
 
@@ -19,15 +19,29 @@
 
 			<button onclick="closeModal('report_popup');" class="delete" aria-label="close"></button>
 		</header>
+		<%= form_with(model: @report, url: initiative_reports_path(@initiative), method: :post) do |form| %>
 		<section class="modal-card-body" style="text-align: center;" id = "chat-body">
-      <%= form_with(model: @report, url: initiative_reports_path(@initiative), method: :post) do |form| %>
-        <%= form.text_area  :reason, placeholder: "Motivo del reporte", class: "textarea is-small"%>
-        <%= form.text_area :content, placeholder: "Describe tu situación", class: "textarea" %>
-        <%= form.hidden_field :user_id, value: current_user.id %>   
+      
+			<div class="field">
+				<%= form.label 'Motivo', class: "label is-medium" %>
+				<div class="control">
+				<%= form.text_field :reason, class: "input is-medium", placeholder: "Motivo del Reporte", required: true %>
+				</div>
+			</div>
+			<div class="field">
+				<%= form.label 'Contenido', class: "label " %>
+				<div class="control">
+				<%= form.text_area :content, class: "input", placeholder: "Describe tu situación", required: true %>
+				</div>
+			</div>
+			<%= form.hidden_field :user_id, value: current_user.id %>   
 		</section>
 		<footer class="modal-card-foot">
-       <%= form.submit "Enviar Reporte", class: "btn btn-primary" %>
-        <% end %>
+			<%= form.submit "Enviar Reporte", class: "button is-primary" %>
+				<% end %>
+			<button class="button is-danger" onclick="closeModal('report_popup');">
+					Cancelar
+			</button>
     </footer>
 	</div>
 </div>

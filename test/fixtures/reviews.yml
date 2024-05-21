@@ -1,0 +1,11 @@
+default_review:
+  user: default_user
+  event: two
+  calification: "5"
+  content: "This is a default review."
+
+another_review:
+  user: another_user
+  event: one
+  calification: "4"
+  content: "This is another review."

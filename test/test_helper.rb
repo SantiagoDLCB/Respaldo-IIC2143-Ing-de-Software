@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 # frozen_string_literal: true
 
 ENV['RAILS_ENV'] ||= 'test'

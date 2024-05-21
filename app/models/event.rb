@@ -12,12 +12,12 @@ class Event < ApplicationRecord
 
   validates :name,  presence: true
   validates :description, presence: true
-  validates :capacity, presence: true
-
+  validates :capacity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1}
 
   def get_attendants
     roles.where(name: 'attendant', resource_type: 'Event').includes(:users).map(&:users).flatten.uniq
   end
+
   def modify_capacity(capacity)
     if capacity >= self.get_attendants.count
       return true

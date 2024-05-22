@@ -39,6 +39,7 @@
             
         </section>
         <footer class="modal-card-foot">
+            <%= form.hidden_field :update_type, value: 'data' %>
             <%= form.submit "Guardar cambios", class: "button is-primary"%>
             <% end %>
 

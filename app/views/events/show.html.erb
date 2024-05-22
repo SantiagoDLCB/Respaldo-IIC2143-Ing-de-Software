@@ -23,7 +23,7 @@
             <div data-theme="light">
               <%= render 'edit' %>
             </div>
-            <%= form_with(model: @event, url: event_path(@initiative), method: :patch) do |form| %>
+            <%= form_with(model: @event, url: event_path(@event), method: :patch) do |form| %>
               <%= form.hidden_field :capacity, value: 0  %>
               <%= form.hidden_field :update_type, value: 'data' %>
               <button type="submit" class="button is-danger is-primary">

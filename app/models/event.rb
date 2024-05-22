@@ -27,7 +27,7 @@ class Event < ApplicationRecord
   end
 
   def modify_capacity(capacity)
-    if capacity >= self.get_attendants.count
+    if capacity >= self.get_attendants.count or capacity == 0
       return true
     else
       return false

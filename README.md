@@ -41,3 +41,17 @@ La página de desarrollo se encuentra en el siguiente enlace:
 | vjsm    | <vjsm@uc.cl>    | DCClave    |
 | ainfantep   | <a.infante@uc.cl>    | DCContraseña    |
 | sa.dlcb    | <sa.delacarrera@uc.cl>    | DCCifrado    |
+
+## Testing
+
+Para realizar el testing general de la aplicación, se debe ejecutar en consola el siguiente comando:
+
+- `rails test`
+
+Sin embargo, debido a algunos errores que puede presentar la gema SimpleCov al momento de mostrar la cobertura de los test para modelos, controladores y helpers, recomendamos ejecutar los tests por separado. Es decir:
+
+- `rails test test/models/`
+- `rails test test/controllers/`
+- `rails test test/helpers/`
+
+Luego, revisar el coverage abriendo el archivo *coverage/index.html* en el browser.

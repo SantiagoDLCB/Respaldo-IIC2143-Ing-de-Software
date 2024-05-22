@@ -5,46 +5,120 @@
 </head>
 
 <body>
+<div class="columns is-centered">
+<div class="column is-one-third is-offset-1">
+<div class="container">
 <% if current_user.persisted? && current_user.avatar.attached? %>
-  <%= image_tag url_for(current_user.avatar) %>
+<div style="display: flex;justify-content: center;">
+<figure class="image">
+<%= image_tag url_for(current_user.avatar), class: "is-rounded", style: "border-radius: 50%; width: 256px; height: 256px; object-fit: cover" %>
+</figure>
+</div>
+<br>
+<div style="text-align: center;">
+  <span class="tag">@<%= current_user.username %></span>
+</div>
 <% end %>
-<h2>Mi Perfil</h2>
-<h3>Información Personal</h3>
-<p>Username: <%= current_user.username %></p>
-<p>Correo: <%= current_user.email %></p>
-<p>Nombre: <%= current_user.name %></p>
-<p>Apellido: <%= current_user.last_name %></p>
-<!-- <p>Contraseña: <%= current_user.encrypted_password %></p> -->
+</div>
+</div>
+<div class="column">
+<h2 class="has-text-centered">Mi Perfil</h2>
+<div class="card is-small card-custom">
+  <header class="card-header">
+    <h5 class=" has-text-centered card-header-title">Información Personal</h5>
+    <button class="card-header-icon" aria-label="more options">
+      <span class="icon">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </header>
+  <div class="card-content ">
+    <div class="content">
+      <p>Correo: <%= current_user.email %></p>
+      <p>Nombre: <%= current_user.name %></p>
+      <p>Apellido: <%= current_user.last_name %></p>
+      <!-- <p>Contraseña: <%= current_user.encrypted_password %></p> -->
+    </div>
+  </div>
+</div>
+</div>
+</div>
 
-<br>
 
-<h3>Mis Iniciativas</h3>
-<ul style="padding: 0;">
-  <% current_user.initiatives.each do |initiative| %>
-    <p><%= "#{initiative.name} - #{initiative.topic} (#{traducir_rol(current_user.roles.find_by(resource: initiative)&.name)})" %></p>
-  <% end %>
-</ul>
+<div class="columns is-centered">
+<div class="column is-one-third ">
+<div class="card is-small">
+  <header class="card-header">
+    <h5 class=" card-header-title">Mis Iniciativas</h5>
+    <button class="card-header-icon" aria-label="more options">
+      <span class="icon">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </header>
+  <div class="card-content ">
+    <div class="content">
+    
+    <% current_user.initiatives.each do |initiative| %>
+      
+      <p style="display: inline-block;"><%= "#{initiative.name} - #{initiative.topic} " %></p>
+      <span class="tag"><%= traducir_rol(current_user.roles.find_by(resource: initiative)&.name) %></span><br>
+      <% end %>
+    
+    </div>
+  </div>
+</div>
 
-<br>
+</div>
+<div class="column is-one-third">
+<div class="card is-small">
+  <header class="card-header">
+    <h5 class=" card-header-title">Mis Solicitudes</h5>
+    <button class="card-header-icon" aria-label="more options">
+      <span class="icon">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </header>
+  <div class="card-content ">
+    <div class="content">
+    
+    <!-- Se muestra solo la ultima solicitud de cada iniciativa -->
+    <% current_user.requests.group_by(&:initiative_id).each do |initiative_id, requests| %>
+      <% last_request = requests.last %>
+      <p><%= "Iniciativa: #{last_request.initiative.name}, Estado: #{last_request.status}" if last_request %></p>
+    <% end %>
+    
+    </div>
+  </div>
+</div>
 
-<h3>Mis Solicitudes</h3>
-<!-- Se muestra solo la ultima solicitud de cada iniciativa -->
-<ul style="padding: 0;">
-  <% current_user.requests.group_by(&:initiative_id).each do |initiative_id, requests| %>
-    <% last_request = requests.last %>
-    <p><%= "Iniciativa: #{last_request.initiative.name}, Estado: #{last_request.status}" if last_request %></p>
-  <% end %>
-</ul>
+</div>
+<div class="column is-one-third">
 
-<br>
+<div class="card is-small">
+  <header class="card-header">
+    <h5 class=" card-header-title">Mis Eventos</h5>
+    <button class="card-header-icon" aria-label="more options">
+      <span class="icon">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </header>
+  <div class="card-content ">
+    <div class="content">
+    
+    <% current_user.events.each do |event| %>
+      <p><%= "#{event.name} - #{event.description} (#{traducir_rol(current_user.roles.find_by(resource: event)&.name)})" %></p>
+    <% end %>
+    
+    </div>
+  </div>
+</div>
 
-<h3>Mis Eventos</h3>
-<ul style="padding: 0;">
-  <% current_user.events.each do |event| %>
-    <p><%= "#{event.name} - #{event.description} (#{traducir_rol(current_user.roles.find_by(resource: event)&.name)})" %></p>
-  <% end %>
-</ul>
+</div>
 
+</div>
 <br><hr><br>
 <h2>Modificar Perfil</h2>
 <h3>Editar Información</h3>
@@ -102,11 +176,8 @@
     </div>
   </div><br>
 
-  <div class="button">
-    <%= f.submit "Actualizar", data: { turbo_confirm: "¿Estás seguro de actualizar tu información?" } %>
-  </div>
+<%= f.submit "Actualizar", class: "button is-primary", data: { turbo_confirm: "¿Estás seguro de actualizar tu información?" } %>
 
-  
 
 
 <% end %><br>
@@ -117,10 +188,10 @@
 <p>Última modificación: <%= current_user.updated_at %></p>
 
 <p>Opción de eliminar cuenta</p>
-<div class="button2">
-  <%= button_to "Eliminar", registration_path(resource_name), data: { turbo_confirm: "Si estás seguro de eliminar tu cuenta,\
- haz click en 'Aceptar'" }, method: :delete %>
-</div><br>
+
+<%= button_to "Eliminar", registration_path(resource_name),class: "button is-danger is-primary", data: { turbo_confirm: "Si estás seguro de eliminar tu cuenta,\
+haz click en 'Aceptar'" }, method: :delete %>
+<br>
 
 <%= link_to "Volver", :back %><br><br><br><br>
 </body>

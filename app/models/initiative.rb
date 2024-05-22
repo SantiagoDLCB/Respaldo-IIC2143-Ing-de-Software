@@ -36,6 +36,9 @@ class Initiative < ApplicationRecord
   def get_events
     self.events
   end
+  def get_name
+    self.name
+  end
 
 
   private

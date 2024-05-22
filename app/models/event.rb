@@ -28,6 +28,10 @@ class Event < ApplicationRecord
     roles.where(name: 'attendant', resource_type: 'Event').includes(:users).map(&:users).flatten.uniq
   end
 
+  def get_iniative
+    self.initiative
+  end
+
   def modify_capacity(capacity)
     if capacity >= self.get_attendants.count or capacity == 0
       return true

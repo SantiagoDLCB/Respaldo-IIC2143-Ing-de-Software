@@ -37,6 +37,7 @@ class EventsController < ApplicationController
 
     @type = params[:event][:update_type]
     if @type == 'data'
+      puts params[:event][:capacity]
       if @event.modify_capacity(params[:event][:capacity].to_i)
         if @event.update(event_params)
           flash[:notice] = 'El evento fue actualizado exitosamente.'

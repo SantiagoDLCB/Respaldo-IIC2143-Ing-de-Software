@@ -46,6 +46,12 @@ strong {
     flex: 1;
 }
 
+h1 {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Courier', monospace;
+}
+
 h2 {
     font-size: 30px;
     /* Tamaño del texto */

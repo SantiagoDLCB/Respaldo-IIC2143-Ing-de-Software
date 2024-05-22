@@ -35,7 +35,7 @@
 
   <br><hr><br>
 
-  <h2>Iniciativas recientes</h2>
+  <h2>Iniciativas recientes</h2><br/>
   <ul style="list-style-type: none; padding: 0;">
     <% @recent_initiatives.each do |initiative| %>
       <div class="block" data-theme="light">
@@ -44,8 +44,12 @@
         <div class="card-content">
           <div class="media">
             <div class="media-left">
-              <figure class="image is-48x48">
-                <img src="<%= asset_path 'jorge-munoz.jpg' %>" alt="Placeholder image"/>
+              <figure class="image">
+                <% if initiative.persisted? && initiative.image.attached? %>
+                  <%= image_tag url_for(initiative.image), style: "height: 56px; width: auto;" %>
+                <% else %>
+                  <%= image_tag asset_path('campus_sj.jpg'), style: "height: 56px; width: auto;" %>
+                <% end %>
               </figure>
             </div>
             <div class="media-content">
@@ -85,6 +89,7 @@
         <div class="desc">Jorge Muñoz</div>
       </div>
     </div>
+    
   </div>
 </main>
 <br>

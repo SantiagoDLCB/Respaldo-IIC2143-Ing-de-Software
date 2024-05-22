@@ -100,7 +100,7 @@ body {
 
 .button {
     &:hover {
-        background-color: rgb(66, 88, 255, 0.5);
+        background-color: rgba(66, 88, 255, 0.5);
     }
 }
 

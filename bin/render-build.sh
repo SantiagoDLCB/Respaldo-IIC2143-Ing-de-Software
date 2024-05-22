@@ -3,8 +3,6 @@
 
 set -o errexit
 bundle install
-sudo apt install redis-server
-redis-server
 bundle exec rake assets:precompile
 bundle exec rake assets:clean
 bundle exec rake db:migrate

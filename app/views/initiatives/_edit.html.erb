@@ -48,6 +48,13 @@
               <%= form.text_area :description, class: "textarea", placeholder: "Descripción", required: true %>
             </div>
           </div>
+
+          <div class="field">
+          <%= form.label 'Imagen', class: "label" %>
+          <div class="control">
+              <%= form.file_field :image %>
+            </div>
+          </div><br>
           
            
         </section>

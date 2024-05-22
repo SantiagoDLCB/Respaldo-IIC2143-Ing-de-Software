@@ -51,7 +51,7 @@
   </div>
 
   <div class="columns">
-  <div class="column is-four-fifths is-offset-1">
+  <div class="column is-half is-offset-1">
 
   <div class="block">
     <br><br><h3>Tema</h3>
@@ -111,6 +111,13 @@
       <%= render 'report_popup' %>
       <%= render 'chat_banner' %>
     </div>
+  </div>
+  <div class="column is-half is-offset-1">
+  <% if @initiative.persisted? && @initiative.image.attached? %>
+  <figure class="image is-128x128">
+  <%= image_tag url_for(@initiative.image) %>
+</figure>
+  <% end %>
   </div>
   </div>
 

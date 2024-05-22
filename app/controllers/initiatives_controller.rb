@@ -123,10 +123,10 @@ class InitiativesController < ApplicationController
   end
 
   def initiative_params
-    params.require(:initiative).permit(:name, :topic, :description)
+    params.require(:initiative).permit(:name, :topic, :description, :image)
   end
 
   def new_initiative_params
-    params.permit(:name, :topic, :description)
+    params.permit(:name, :topic, :description, :image)
   end
 end

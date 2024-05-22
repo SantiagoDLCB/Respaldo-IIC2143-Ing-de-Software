@@ -1,60 +1,49 @@
- <% if user_signed_in? && (current_user.has_role?(:member, @initiative) or current_user.has_role?(:admin_initiative, @initiative)) %>
+<% if user_signed_in? && (current_user.has_role?(:member, @initiative) or current_user.has_role?(:admin_initiative, @initiative)) %>
 
-        <div align="right" style="margin: 10px;">
-            <button onclick="openModal('chat_popup');" class="button is-primary">
-            Chat
-          </button>
+  <div align="right" style="margin: 10px;">
+    <button onclick="openModal('chat_popup');" class="button is-primary">
+      Chat
+    </button>
+  </div>
+
+  <div class="modal" id="chat_popup">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">
+          Chat
+        </p>
+        <button onclick="closeModal('chat_popup');" class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body" style="text-align: center;" id="chat-body">
+        <%= turbo_stream_from @initiative %>
+        <div id="messages">
+          <%= render @messages %>
         </div>
-        
-        <div class="modal" id="chat_popup">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">
-              Chat
-            </p>
-
-            <button onclick="closeModal('chat_popup');" class="delete" aria-label="close"></button>
-          </header>
-          <section class="modal-card-body" style="text-align: center;" id = "chat-body">
-            <%= render partial: 'chat', locals: { initiative: @initiative, chat: @chat } %>
-
-          </section>
-          <footer class="modal-card-foot">
-            <%= form_with(model: @message, url: initiative_messages_path(@initiative), method: :post) do |form| %>
-              <%= form.text_area :content, placeholder: "Escribe tu mensaje aquí" %>
-              <%= form.hidden_field :user_id, value: current_user.id %>
-              <%= form.submit "Enviar mensaje", class: "btn btn-primary" %>
-            <% end %>
-
-          </footer>
-        </div>
-      </div>
+      </section>
+      <%= form_with(model: @message, url: initiative_messages_path(@initiative), method: :post) do |form| %>
+        <section class="modal-card-body" style="text-align: center;">
+          <div class="field" style="width: 100%;">
+            <div class="control">
+              <%= form.text_area :content, class: "textarea is-fullwidth", placeholder: "Escribe tu mensaje aquí", required: true, rows: 2 %>
+            </div>
+          </div>
+          <%= form.hidden_field :user_id, value: current_user.id %>
+        </section>
+        <footer class="modal-card-foot">
+          <div class="field is-grouped">
+            <div class="control">
+              <%= form.submit "Enviar Mensaje", class: "button is-primary" %>
+            </div>
+            <div class="control">
+              <button type="button" class="button is-danger" onclick="closeModal('report_popup');">
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </footer>
+      <% end %>
+    </div>
+  </div>
 
 <% end %>
-<script>
-  const modal = document.getElementById('chat_popup');
-  function reloadChatBody() {
-      const chatBody = document.getElementById('chat-body');
-      if (modal.classList.contains("is-active")) {
-          if (chatBody) {
-              const xhr = new XMLHttpRequest();
-              xhr.open('GET', '<%= chat_reload_path(@initiative) %>', true);
-              xhr.onload = function () {
-                  if (this.status === 200) {
-                      chatBody.innerHTML = this.responseText;
-                  }
-              };
-              xhr.send();
-          }
-      }
-  };
-  // Add an event listener for the hidden.bs.modal event
-  modal.addEventListener('hidden.bs.modal', function () {
-      // Stop the interval when the modal is hidden
-      clearInterval(reloadChatBodyInterval);
-  });
-  // Call the function initially
-  reloadChatBody();
-  const reloadChatBodyInterval = setInterval(reloadChatBody, 2000);
-</script>

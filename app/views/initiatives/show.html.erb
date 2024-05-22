@@ -105,24 +105,5 @@
   </div>
 
 <br><br><br>
-
-
-
-<%=turbo_stream_from 'Iniciativas'%>
-<div id="Iniciativas">
-  <%= turbo_stream_from @initiative %>
-  <div id="messages">
-
-    <%= render @messages%>
-  </div>
-</div>
-<%= form_with(model: @message, url: initiative_messages_path(@initiative), method: :post) do |form| %>
-              <%= form.text_area :content, placeholder: "Escribe tu mensaje aquí" %>
-              <%= form.hidden_field :user_id, value: current_user.id %>
-              <%= form.submit "Enviar mensaje", class: "btn btn-primary" %>
-            <% end %>
-
-
-
 </body>
 </html>

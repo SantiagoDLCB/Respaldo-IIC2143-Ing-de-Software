@@ -5,4 +5,6 @@ class Message < ApplicationRecord
   validates :initiative, presence: true
   after_create_commit { broadcast_append_to self.initiative }
 
+
+
 end

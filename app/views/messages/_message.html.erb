@@ -1,6 +1,14 @@
+<!-- app/views/messages/_message.html.erb -->
+<!-- _message.html.erb -->
 <div>
-    <div class="message">
-        <strong><%= message.user.username %>:</strong>
+  <div class="is-flex is-justify-content-flex-begin">
+    <div class="message is-success is-small">
+      <div class="message-header">
+        <p><%= message.user.name %></p>
+      </div>
+      <div class="message-body">
         <%= message.content %>
       </div>
+    </div>
+  </div>
 </div>

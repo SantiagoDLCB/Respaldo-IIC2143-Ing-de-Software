@@ -26,7 +26,7 @@ class RequestsController < ApplicationController
     if @request.save
       flash[:notice] =  @request.status
       if @request.status == "accepted" or @request.status == "denied"
-        redirect_to initiative_requests_path(@request.initiative)
+        redirect_to initiative_path(@request.initiative)
       else
         redirect_to initiative_path(@request.initiative)
       end

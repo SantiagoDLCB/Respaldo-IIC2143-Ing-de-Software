@@ -105,10 +105,10 @@ body {
 }
 
 .button.is-danger1 {
-    background-color: rgb(255, 102, 133, 0.5);
+    background-color: rgba(255, 102, 133, 0.5);
 
     &:hover {
-        background-color: rgb(255, 102, 133, 1);
+        background-color: rgba(255, 102, 133, 1);
     }
 }
 

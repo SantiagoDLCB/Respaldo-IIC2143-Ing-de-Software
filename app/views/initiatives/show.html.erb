@@ -5,13 +5,16 @@
 </head>
 
 <body>
-  <br><h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;"><%=@initiative.name%></h1>
-
-  <div class="columns">
+  <main class="container">
+  <section class="hero is-small background-image" style="<% if @initiative.persisted? && @initiative.image.attached? %>background-image: url('<%= url_for(@initiative.image) %>');<% end %>">
+  <div class="hero-body">
+    
+      <br><h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;"><%=@initiative.name%></h1>
+      <div class="columns">
     <div class="column is-one-third is-offset-1">
       <div class="buttons">
       <!-- Botón Volver al Inicio -->
-      <button onclick="window.location.href = '<%= root_path %>';" class="button is-primary">Volver al Inicio</button>
+      <button onclick="window.location.href = '<%= root_path %>';" class="button is-link is-light">Volver al Inicio</button>
 
       <!-- Botón Solicitudes (solo para administradores de la iniciativa) -->
       <% if current_user.has_role?(:admin_initiative, @initiative) %>
@@ -48,10 +51,16 @@
       </div>
     </div>
 
+    
   </div>
+  </main>
+</section>
+
+
+  
 
   <div class="columns">
-  <div class="column is-four-fifths is-offset-1">
+  <div class="column is-half is-offset-1">
 
   <div class="block">
     <br><br><h3>Tema</h3>

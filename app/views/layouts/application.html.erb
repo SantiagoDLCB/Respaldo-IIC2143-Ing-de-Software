@@ -10,6 +10,7 @@
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'popup_modal.js' %>
+     <%= javascript_include_tag 'upload_file.js' %>
     <link rel="icon" type="image/png" href="<%= asset_path 'jorge-munoz.jpg' %>">
 
   </head>
@@ -63,15 +64,5 @@
     </div>
   </footer>
 </body>
- <script>
-    var currentUserIdElement = document.getElementById('currentUserId');
-    var currentUserId = currentUserIdElement.getAttribute('data-user-id');
-    // Get the element
-    if (message.user.id === current_user.id) {
-    // If they are equal, add the Bulma classes dynamically
-    const chatElement = document.getElementById('chat');
-    chatElement.classList.add('is-warning'); // Add any additional Bulma classes as needed
-  }
-  </script>
 
 </html>

@@ -21,9 +21,10 @@
 <% end %>
 </div>
 </div>
+
 <div class="column">
 <h2 class="has-text-centered">Mi Perfil</h2>
-<div class="card is-small card-custom">
+<div class="card is-small card-custom" data-theme="light">
   <header class="card-header">
     <h5 class=" has-text-centered card-header-title">Información Personal</h5>
     <button class="card-header-icon" aria-label="more options">
@@ -47,7 +48,7 @@
 
 <div class="columns is-centered">
 <div class="column is-one-third ">
-<div class="card is-small">
+<div class="card is-small" data-theme="light">
   <header class="card-header">
     <h5 class=" card-header-title">Mis Iniciativas</h5>
     <button class="card-header-icon" aria-label="more options">
@@ -61,7 +62,7 @@
     
     <% current_user.initiatives.each do |initiative| %>
       
-      <p style="display: inline-block;"><%= "#{initiative.name} - #{initiative.topic} " %></p>
+      <p style="display: inline-block;"><%= "#{initiative.name} (#{initiative.topic}) " %></p>
       <span class="tag"><%= traducir_rol(current_user.roles.find_by(resource: initiative)&.name) %></span><br>
       <% end %>
     
@@ -71,7 +72,7 @@
 
 </div>
 <div class="column is-one-third">
-<div class="card is-small">
+<div class="card is-small" data-theme="light">
   <header class="card-header">
     <h5 class=" card-header-title">Mis Solicitudes</h5>
     <button class="card-header-icon" aria-label="more options">
@@ -86,7 +87,7 @@
     <!-- Se muestra solo la ultima solicitud de cada iniciativa -->
     <% current_user.requests.group_by(&:initiative_id).each do |initiative_id, requests| %>
       <% last_request = requests.last %>
-      <p><%= "Iniciativa: #{last_request.initiative.name}, Estado: #{last_request.status}" if last_request %></p>
+      <p><%= "Iniciativa: #{last_request.initiative.name}, Estado: #{last_request.status_before_type_cast}" if last_request %></p>
     <% end %>
     
     </div>
@@ -97,7 +98,7 @@
 <div class="column is-one-third">
 
 <div class="card is-small">
-  <header class="card-header">
+  <header class="card-header" data-theme="light">
     <h5 class=" card-header-title">Mis Eventos</h5>
     <button class="card-header-icon" aria-label="more options">
       <span class="icon">
@@ -109,7 +110,7 @@
     <div class="content">
     
     <% current_user.events.each do |event| %>
-      <p><%= "#{event.name} - #{event.description} (#{traducir_rol(current_user.roles.find_by(resource: event)&.name)})" %></p>
+      <p><%= "#{event.name} (#{event.get_iniative.get_name})" %></p>
     <% end %>
     
     </div>

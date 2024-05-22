@@ -12,7 +12,7 @@
       <div class="buttons">
       <!-- Botón Volver al Inicio -->
       <button onclick="window.location.href = '<%= root_path %>';" class="button is-primary">Volver al Inicio</button>
-      
+
       <!-- Botón Solicitudes (solo para administradores de la iniciativa) -->
       <% if current_user.has_role?(:admin_initiative, @initiative) %>
         <div data-theme="light"> <%= render 'requests_popup' %></div>
@@ -30,11 +30,11 @@
         <div data-theme="light"> <%= render 'roles_popup' %></div>
         <!-- Botón Crear Evento -->
         <div data-theme="light"> <%= render 'events/new' %></div>
-        
-        
+
+
         <!-- Botón Eliminar iniciativa -->
-        <%= button_to "Eliminar iniciativa", initiative_path(@initiative), method: :delete, class: "button is-primary", data: { turbo_confirm: "¿Estás seguro de que deseas eliminar esta iniciativa?" } %>
-      
+        <%= button_to "Eliminar iniciativa", initiative_path(@initiative), method: :delete, class: "button is-danger is-primary", data: { turbo_confirm: "¿Estás seguro de que deseas eliminar esta iniciativa?" } %>
+
       <% elsif current_user.has_role?(:member, @initiative) %>
         <!-- Botón Salir de iniciativa -->
         <%= button_to "Salir de iniciativa", remove_initiative_user_role_path(@initiative, current_user, role: :member), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas dejar de ser miembro de esta iniciativa?" }, class: "button is-danger" %>
@@ -43,7 +43,7 @@
         <%= button_to "Enviar solicitud", requests_path, method: :post, params: { request: { initiative: @initiative.id, status: :pending } }, class: "button is-primary" %>
         <% elsif @initiative.get_request(current_user).pending? %>
         <!-- Botón Cancelar solicitud -->
-        <%= button_to "Cancelar solicitud", request_path(@initiative.get_request(current_user)), method: :patch, params: { request: {status: :cancelled} }, class: "button is-primary" %>
+        <%= button_to "Cancelar solicitud", request_path(@initiative.get_request(current_user)), method: :patch, params: { request: {status: :cancelled} }, class: "button is-danger" %>
       <% end %>
       </div>
     </div>
@@ -57,25 +57,25 @@
     <br><br><h3>Tema</h3>
     <h5><%=@initiative.topic%></h5>
     </div>
-    
+
     <div class="block">
     <h3>Administradores de la Iniciativa</h3>
     <% @initiative.get_all_admins.each do |admin| %>
       <h5><%= admin.name %> <%= admin.last_name %></h5>
       <% end %>
       </div>
-      
+
       <div class="block">
       <h3>Descripción</h3>
       <h5><%=@initiative.description%></h5>
       </div>
-      
+
       <div class="block">
       <h3>Eventos de la Iniciativa</h3>
       <!-- Botón Eventos Finalizados -->
-      
+
       <div class="block">
-      <button onclick="openModal('old_events_popup');" class="button is-small">Eventos Finalizados</button>
+      <button onclick="openModal('old_events_popup');" class="button is-warning is-light is-small">Eventos Finalizados</button>
       <div data-theme="light">
         <%= render 'old_events_popup' %>
       </div>
@@ -104,7 +104,7 @@
       <!-- Add more members here -->
     </ul>
   </div>
-    
+
     <div class="has-text-centered" data-theme="light">
       <!-- chat_banner.html.erb -->
       <!-- The modal -->

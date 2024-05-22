@@ -29,6 +29,7 @@ class InitiativesController < ApplicationController
     @initiative = Initiative.find(params[:id])
     @message = Message.new
     @report = Report.new
+    @current_user = current_user
     @events = @initiative.get_events
     @chat = @initiative.messages
     @messages = @initiative.messages

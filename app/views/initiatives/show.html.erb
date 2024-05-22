@@ -82,7 +82,7 @@
       </div>
 
       <% if @events.empty? %>
-      <h5><em>Esta iniciativa no tiene eventos.</em></h5>
+      <h5><em>Esta iniciativa no tiene eventos activos.</em></h5>
     <% end %>
     <ul>
     <% Event.where.not(capacity: false).where(initiative: @initiative).each do |event| %>

@@ -22,7 +22,9 @@
             </div>
             <div data-theme="light">
               <%= render 'edit' %>
+              <%= render 'notice_popup' %>
             </div>
+            
             <%= form_with(model: @event, url: event_path(@event), method: :patch) do |form| %>
               <%= form.hidden_field :capacity, value: 0  %>
               <%= form.hidden_field :update_type, value: 'data' %>
@@ -114,8 +116,26 @@
     <!-- Por implementar -->
     <div class="block">
       <h3> Anuncios </h3>
-      <h5> Por implementar </h5>
-    </div>
+      <% if @notices.empty? %>
+          <h5><em>Este evento no tiene anuncios.</em></h5>
+      <% end %>
+      <% @notices.each do |notice| %>
+      <div class="card is-small">
+        <header class="card-header">
+          <h5 class="card-header-title"><%= notice.title %></h5>
+          <button class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </button>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <h5><%= notice.content %></h5>
+          </div>
+        </div>
+      </div>
+      <% end %>
 
     </div>
   </div>

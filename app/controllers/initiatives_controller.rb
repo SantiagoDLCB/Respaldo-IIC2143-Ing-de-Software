@@ -31,6 +31,7 @@ class InitiativesController < ApplicationController
     @report = Report.new
     @events = @initiative.get_events
     @chat = @initiative.messages
+    @messages = @initiative.messages
     @admins = @initiative.get_all_admins
     @members = @initiative.get_members
     @all_requests = @initiative.requests

@@ -3,8 +3,10 @@ class Event < ApplicationRecord
   has_many :roles, class_name: "Role", as: :resource, dependent: :delete_all
   has_many :users, through: :roles, source: :users
   has_many :reviews, dependent: :delete_all
+  has_many :notices, dependent: :delete_all
   belongs_to :initiative
   before_destroy :delete_associated_reviews
+  before_destroy :delete_associated_notices
 
   def self.all_roles
     Role.where(resource_type: 'Event')
@@ -43,6 +45,10 @@ class Event < ApplicationRecord
 
   def delete_associated_reviews
     self.reviews.destroy_all
+  end
+
+  def delete_associated_notices
+    self.notices.destroy_all
   end
 
 end

@@ -66,6 +66,7 @@ end
 #crear review
 resources :events do
   resources :reviews, only: [:create]
+  resources :notices, only: [:create]
 end
 
 

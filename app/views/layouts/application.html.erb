@@ -10,8 +10,19 @@
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'popup_modal.js' %>
-     <%= javascript_include_tag 'upload_file.js' %>
+    <%= javascript_include_tag 'upload_file.js' %>
+    <%= javascript_include_tag 'dropdown.js' %>
     <link rel="icon" type="image/png" href="<%= asset_path 'jorge-munoz.jpg' %>">
+    <style>
+  <%= ".msg-#{current_user&.id}" %> {
+  background-color: #48c78e!important;
+  padding: 10px;
+  }
+  <%= ".cont-#{current_user&.id}" %> {
+  display: flex;
+  justify-content: flex-end !important;
+  }
+</style>
 
   </head>
 

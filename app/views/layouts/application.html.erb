@@ -50,12 +50,14 @@
           </ul>
       </div>
 
-      <% flash.each do |name, msg| %>
-        <div class="notification is-success" id="flash_<%= name %>">
-          <%= msg %>
-        </div>  
-      <% end %>
-      <%= yield %>
+     <% flash.each do |name, msg| %>
+      <% flash_class = name == 'alert' ? 'is-danger' : 'is-success' %>
+      <div class="notification <%= flash_class %>" id="flash_<%= name %>" data-timeout="10000">
+        <%= msg %>
+      </div>
+    <% end %>
+    <%= yield %>
+
 
     </div>
 

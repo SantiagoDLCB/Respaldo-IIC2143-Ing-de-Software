@@ -6,7 +6,7 @@
     left: 50%;
     transform: translateX(-50%);
     padding: 10px 20px;
-    animation: fadeOut 4s forwards;
+    animation: fadeOut 10s forwards;
 }
 
 @keyframes fadeOut {

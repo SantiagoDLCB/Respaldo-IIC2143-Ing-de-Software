@@ -19,7 +19,6 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @review = Review.new
-    @notice = Notice.new
     @initiative = @event.initiative
     @attendants = @event.get_attendants
     @reviews = @event.reviews

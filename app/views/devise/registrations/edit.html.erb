@@ -14,6 +14,7 @@
 <%= image_tag url_for(current_user.avatar), class: "is-rounded", style: "border-radius: 50%; width: 256px; height: 256px; object-fit: cover" %>
 </figure>
 </div>
+<br>
 <div style="text-align: center;">
   <span class="tag">@<%= current_user.username %></span>
 </div>
@@ -43,7 +44,7 @@
 </div>
 </div>
 
-<br>
+
 <div class="columns is-centered">
 <div class="column is-one-third ">
 <div class="card is-small">
@@ -59,7 +60,9 @@
     <div class="content">
     
     <% current_user.initiatives.each do |initiative| %>
-      <p><%= "#{initiative.name} - #{initiative.topic} (#{traducir_rol(current_user.roles.find_by(resource: initiative)&.name)})" %></p>
+      
+      <p style="display: inline-block;"><%= "#{initiative.name} - #{initiative.topic} " %></p>
+      <span class="tag"><%= traducir_rol(current_user.roles.find_by(resource: initiative)&.name) %></span><br>
       <% end %>
     
     </div>

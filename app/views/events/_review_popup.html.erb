@@ -1,0 +1,49 @@
+
+<% if user_signed_in? && current_user.has_role?(:attendant, @event) %>
+  <!-- Toggle button -->
+  <button onclick="openModal('review_popup');" class="button is-primary">
+   Reseña
+</button>
+
+
+
+
+<div class="modal" id="review_popup">
+	<div class="modal-background"></div>
+	<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title">
+				Reseña
+			</p>
+			<button onclick="closeModal('review_popup');" class="delete" aria-label="close"></button>
+		</header>
+    <%= form_with(model: @review, url: event_reviews_path(@event), method: :post) do |form| %>
+		<section class="modal-card-body" style="text-align: center;" id = "chat-body">
+        <%= form.hidden_field :user_id, value: current_user.id %>
+
+        <div class="field">
+          <%= form.label  "Calificación", class: "label is-medium" %>
+          <div class="control">
+            <%= form.number_field :calification, class: "input is medium", placeholder: "Ingresa un número", in: 1..5 %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= form.label :content, "Mensaje", class: "label" %>
+          <div class="control">
+            <%= form.text_area :content, class: "textarea", placeholder: "Escribe tu mensaje aquí" %>
+          </div>
+        </div>
+
+
+    </section>
+    <footer class="modal-card-foot">
+      <%= form.submit "Enviar mensaje", class: "button is-primary" %>
+      <% end %>
+      <button class="button is-danger" onclick="closeModal('review_popup');">
+					Cancelar
+			</button>
+    </footer>
+	</div>
+</div>
+<% end %>

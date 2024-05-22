@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' },
                    path: '', path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'}
@@ -34,7 +35,7 @@ Rails.application.routes.draw do
 
   resources :events do
     member do
-      post 'add_user_role', to: 'events#update', as: 'add_user_role'
+      post 'add_user_role', to: 'events#update_attendats', as: 'add_user_role'
     end
   end
 
@@ -52,4 +53,25 @@ resources :initiatives do
   resources :events, only: [:new, :create]
 end
 
+#crear mensaje
+resources :initiatives do
+  resources :messages, only: [:create]
+end
+
+#crear reporte
+resources :initiatives do
+  resources :reports, only: [:create]
+end
+
+#crear review
+resources :events do
+  resources :reviews, only: [:create]
+end
+
+
+get 'initiatives/:id/chat_reload', to: 'initiatives#chat_reload', as: :chat_reload
+
+resources :initiatives do
+  resources :messages
+end
 end

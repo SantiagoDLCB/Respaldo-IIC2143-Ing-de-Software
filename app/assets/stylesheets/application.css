@@ -1,143 +1,137 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+@import "https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css";
 
-body {
-    background-color: #314e68; /* Color de fondo del encabezado */
-    padding: 50px; /* Espaciado interno */
-    margin-bottom: 20px; /* Espacio inferior */
-    margin-top: -30px;
-    height: 800px;
-    overflow-x: hidden;
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    animation: fadeOut 4s forwards;
 }
 
-.header {
-    background-color: #e4e4e4;
-    padding: 10px;
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+strong {
+    color: black;
+}
+
+.footer {
+    padding: 10px 80px;
+    background: #ffffff;
+    color: #000000;
+    bottom: 0;
+    font-size: 20px;
+    font-family: 'Courier', monospace;
     width: 100%;
-    border-end-end-radius: 40px;
-    border-end-start-radius: 40px;
-    position: relative;
-    margin-top: -20px;
-    margin-left: 0px;
-    height: 25px;
+    box-sizing: border-box;
+    /* Include padding and border in the width */
+    height: 110px;
     display: flex;
-    padding-left: 20px;
+    justify-content: space-between;
+    /* Horizontally align items */
+    align-items: center;
+    /* Vertically center items */
+    margin: 0;
 }
 
-.header > * {
-    margin-left: 15px;
-}
-
-.header > * > * {
-    cursor: pointer;
-    border: none;
-    border-radius: 6px;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 100;
-    min-height: 10px;
-    width: auto;
-    padding: 6px 14px;
-    text-align: center;
-    margin-top: 0px;
-    font-family: 'Roboto', sans-serif;
-    background: #314e68;
-}
-
-.header > * > *:hover {
-    background-color: #4B91F7;
-    color: #ffffff;
+.main-content {
+    flex: 1;
 }
 
 h2 {
-    font-size: 30px; /* Tamaño del texto */
+    font-size: 30px;
+    /* Tamaño del texto */
     font-family: 'Courier', monospace;
     font-weight: bold;
     color: white;
 }
 
 h3 {
-    font-size: 20px; /* Tamaño del texto */
+    font-size: 20px;
+    /* Tamaño del texto */
     font-family: 'Courier', monospace;
     font-weight: bold;
     color: rgb(177, 177, 177);
 }
 
 h4 {
-    font-size: 15px; /* Tamaño del texto */
+    font-size: 15px;
+    /* Tamaño del texto */
     font-family: 'Courier', monospace;
     font-weight: bold;
     color: rgb(180, 0, 0);
     text-shadow: 1px 1px 1px black;
 }
 
-.button2 > * > *{
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.button3 > *{
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* CSS styles for flash messages */
-.flash-message {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    background-color: #9dc476;
-    color: #fff;
-    border: 1px solid #798a68;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    animation: fadeOut 4s forwards;
-}
-
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-
-
-.footer {
-    padding-top: 10px;
-    padding-left: 80px;
-    background-color: #e4e4e4;
-    color: #000000;
-    align-items: center;
-    font-size: 7px;
+h5 {
+    font-size: 18px;
+    /* Tamaño del texto */
     font-family: 'Courier', monospace;
-    width: 110%;
-    position: relative;
-    bottom: 0;
-    margin-right: -70px;
-    margin-left: -56px;
-    height: 140px;
+    color: rgb(255, 255, 255);
+}
+
+
+/* Cambia el color del botón cuando está seleccionado */
+.button:hover {
+    background-color: #a1e0d7;
+}
+
+.button2 {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button2:hover {
+    background-color: #4B91F7;
+    color: #ffffff;
+}
+
+.button3 {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button3:hover {
+    background-color: #4B91F7;
+    color: #ffffff;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    /* Evitar el desbordamiento horizontal */
+    box-sizing: border-box;
+    background-color: rgb(49, 78, 104);
     display: flex;
+    flex-direction: column;
+}
+
+.tab-icon {
+    width: 32px;
+    /* Adjust the width as needed */
+    height: 32px;
+    /* Adjust the height as needed */
+    margin-left: 10px;
+    /* Add margin to separate icon from tab text */
 }

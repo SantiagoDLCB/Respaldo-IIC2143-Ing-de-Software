@@ -2,7 +2,7 @@
 
 Repositorio del proyecto semestral de Ingeniería de Software.
 
-Actualmente en: **Sprint 1**.
+Actualmente en: **Sprint 2**.
 
 ## Participantes
 
@@ -16,9 +16,9 @@ Actualmente en: **Sprint 1**.
 
 - Shantal Fabri
 
-## Fecha de entrega
+## Fecha de entrega S2
 
-Domingo 28 de abril, 23:59.
+Domingo 26 de mayo, 23:59.
 
 ## Ruta de la aplicación
 
@@ -29,6 +29,10 @@ La aplicación puede ser accedida en el siguiente enlace:
 La página de desarrollo se encuentra en el siguiente enlace:
 
 [Dev Iniciativas Estudiantiles](https://dev67.onrender.com/)
+
+## Supuestos utilizados
+
+- En la capacidad de los eventos no se toman en cuenta los administradores, ya que, como ellos lo organizan, saben cuántos son y lo tendrán en cuenta para cualquier cálculo.
 
 ## Credenciales para la corrección
 

@@ -1,10 +1,16 @@
 development:
-  adapter: async
+  adapter: redis
+  url: redis://localhost:6379/1
 
 test:
   adapter: test
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  url: <%= ENV.fetch("REDIS_URL") { "redis://red-cp6n7r6v3ddc73fn3cl0:6379" } %>
   channel_prefix: grupo67_production
+
+staging:
+  adapter: redis
+  url: <%= ENV.fetch("STAGING_REDIS_URL") { "redis://red-cp6lpma0si5c73agg020:6379" } %>
+  channel_prefix: grupo67_staging

@@ -1,0 +1,72 @@
+<button onclick="openModal('edit_initiative_popup');" class="button is-primary">
+   Editar
+</button>
+  
+  <% if current_user.has_role?(:admin_initiative, @initiative) %>
+    <div class="modal" id="edit_initiative_popup">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">
+            Editar Inicitiva
+          </p>
+          <button onclick="closeModal('edit_initiative_popup');" class="delete" aria-label="close"></button>
+
+        </header>
+        <%= form_with(model: @initiative,  url: initiative_path(@initiative), method: :patch, local: true) do |form| %>
+        <section class="modal-card-body" style="text-align: center;">
+          
+            <% if @initiative.errors.any? %>
+                <div id="error_explanation">
+                <h4><%= pluralize(@initiative.errors.count, "error") %> prohibited this initiative from being saved:</h4>
+
+                <ul>
+                <% @initiative.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+                </ul>
+                </div>
+            <% end %>
+
+          <div class="field">
+            <%= form.label 'Nombre', class: "label is-medium" %>
+            <div class="control">
+              <%= form.text_field :name, class: "input is-medium", placeholder: "Nombre", required: true %>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= form.label 'Tema', class: "label" %>
+            <div class="control">
+              <%= form.text_field :topic, class: "input", placeholder: "Tema", required: true %>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= form.label 'Descripción', class: "label" %>
+            <div class="control">
+              <%= form.text_area :description, class: "textarea", placeholder: "Descripción", required: true %>
+            </div>
+          </div>
+          
+           
+        </section>
+        <footer class="modal-card-foot">
+          <%= form.hidden_field :update_type, value: "data" %>
+          <%= form.submit "Guardar cambios", class: "button is-primary", onclick: "closeModal('edit_initiative_popup')"  %>
+          <button class="button is-danger" onclick="closeModal('edit_initiative_popup');" data: { turbo: false }>
+            Cancelar
+          </button>
+          <% end %>
+        </footer>
+        
+      </div>
+    </div>
+
+  <% end %>
+
+ 
+
+	
+
+

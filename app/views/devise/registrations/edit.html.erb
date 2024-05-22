@@ -5,6 +5,9 @@
 </head>
 
 <body>
+<% if current_user.persisted? && current_user.avatar.attached? %>
+  <%= image_tag url_for(current_user.avatar) %>
+<% end %>
 <h2>Mi Perfil</h2>
 <h3>Información Personal</h3>
 <p>Username: <%= current_user.username %></p>
@@ -81,10 +84,18 @@
     <%= f.label :current_password, "Contraseña actual" %> <i>(para confirmar los cambios)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div><br>
+  <div class="field">
+  <%= f.label :avatar %>
+  <%= f.file_field :avatar %>
+  </div><br>
 
   <div class="button">
     <%= f.submit "Actualizar", data: { turbo_confirm: "¿Estás seguro de actualizar tu información?" } %>
   </div>
+
+  
+
+
 <% end %><br>
 
 <h3>Mi Cuenta</h3>

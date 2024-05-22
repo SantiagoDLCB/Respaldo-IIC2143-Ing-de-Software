@@ -1,0 +1,50 @@
+
+<% if user_signed_in? && current_user.has_role?(:member, @initiative) %>
+  <!-- Toggle button -->
+  <!-- Overlay -->
+
+
+<button onclick="openModal('report_popup');" class="button is-primary">
+   Reportar
+</button>
+
+
+<div class="modal" id="report_popup">
+	<div class="modal-background"></div>
+	<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title">
+				Reportar
+			</p>
+
+			<button onclick="closeModal('report_popup');" class="delete" aria-label="close"></button>
+		</header>
+		<%= form_with(model: @report, url: initiative_reports_path(@initiative), method: :post) do |form| %>
+		<section class="modal-card-body" style="text-align: center;" id = "chat-body">
+      
+			<div class="field">
+				<%= form.label 'Motivo', class: "label is-medium" %>
+				<div class="control">
+				<%= form.text_field :reason, class: "input is-medium", placeholder: "Motivo del Reporte", required: true %>
+				</div>
+			</div>
+			<div class="field">
+				<%= form.label 'Contenido', class: "label " %>
+				<div class="control">
+				<%= form.text_area :content, class: "input", placeholder: "Describe tu situación", required: true %>
+				</div>
+			</div>
+			<%= form.hidden_field :user_id, value: current_user.id %>   
+		</section>
+		<footer class="modal-card-foot">
+			<%= form.submit "Enviar Reporte", class: "button is-primary" %>
+				<% end %>
+			<button class="button is-danger" onclick="closeModal('report_popup');">
+					Cancelar
+			</button>
+    </footer>
+	</div>
+</div>
+
+
+<% end %>

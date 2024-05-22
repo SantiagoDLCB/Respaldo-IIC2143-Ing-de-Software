@@ -1,0 +1,55 @@
+<div align="right" style="margin: 10px;">
+  <button onclick="openModal('new_initiative_popup');" class="button is-success">
+   Crear Iniciativa
+</button>
+</div>
+
+
+
+<div class="modal" id="new_initiative_popup">
+	<div class="modal-background"></div>
+	<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title">
+				Nueva Iniciativa
+			</p>
+
+      <button onclick="closeModal('new_initiative_popup');" class="delete" aria-label="close"></button>
+
+		</header>
+    <%= form_with(model: @initiative, url: initiatives_path, method: "post") do |form| %>
+		<section class="modal-card-body" style="text-align: center;">
+
+
+          <div class="field">
+            <%= form.label 'Nombre', class: "label is-medium" %>
+            <div class="control">
+              <%= form.text_field :name, class: "input is-medium", placeholder: "Nombre", required: true %>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= form.label 'Tema', class: "label" %>
+            <div class="control">
+              <%= form.text_field :topic, class: "input", placeholder: "Tema", required: true %>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= form.label 'Descripción', class: "label" %>
+            <div class="control">
+              <%= form.text_area :description, class: "textarea", placeholder: "Descripción", required: true %>
+            </div>
+          </div>
+          
+		</section>
+		<footer class="modal-card-foot">
+      <%= form.submit "Crear Iniciativa", class: "button is-primary" %>
+        <% end %>
+		
+			<button class="button is-danger" onclick="closeModal('new_initiative_popup');">
+				Cancelar
+			</button>
+    </footer>
+	</div>
+</div>

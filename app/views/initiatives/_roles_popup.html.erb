@@ -1,0 +1,53 @@
+<% if current_user.has_role?(:admin_initiative, @initiative) %>
+  <button onclick="openModal('roles_popup');" class="button is-primary">
+    Administrar Roles
+  </button>
+  <div class="modal" id="roles_popup">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Administrar Roles</p>
+        <button onclick="closeModal('roles_popup');" class="delete" aria-label="close"></button>
+      </header>
+
+      <section class="modal-card-body">
+        <!-- Administradores actuales -->
+        <div style="margin-bottom: 20px;">
+          <h3 class="subtitle">Administradores actuales</h3>
+          <div style="text-align: center;">
+            <h5 style="margin-right: 10px; color: black;"><%= current_user.name %> <%= current_user.last_name %> (Yo)</h5>
+            <% @admins.each do |admin| %>
+              <% unless admin == current_user %>
+                <div style="display: flex; align-items: center; justify-content: center;">
+                  <h5 style="margin-right: 10px; color: black;"><%= admin.name %> <%= admin.last_name %></h5>
+                  <%= button_to "Volver Miembro", initiative_path(@initiative), method: :patch, params: { initiative: {user_id: admin.id, update_type: 'remove_admin'} }, style: "padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
+                  <%= button_to "Expulsar", initiative_path(@initiative), method: :patch, params: { initiative: {user_id: admin.id, update_type: 'remove_member'} }, style: "padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Miembros -->
+        <div>
+          <h3 class="subtitle">Miembros</h3>
+          <div style="text-align: center;">
+            <% @members.each do |member| %>
+              <div style="display: flex; align-items: center; justify-content: center;">
+                <h5 style="margin-right: 10px; color: black;"><%= member.name %> <%= member.last_name %></h5>
+                <%= button_to "Hacer Administrador", initiative_path(@initiative), method: :patch, params: { initiative: {user_id: member.id, update_type: 'add_admin'} }, style: "padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
+                <%= button_to "Expulsar", initiative_path(@initiative), method: :patch, params: { initiative: {user_id: member.id, update_type: 'remove_member'} }, style: "padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </section>
+
+      <footer class="modal-card-foot">
+        <button class="button is-danger" onclick="closeModal('roles_popup');">
+          Cancelar
+        </button>
+      </footer>
+    </div>
+  </div>
+<% end %>

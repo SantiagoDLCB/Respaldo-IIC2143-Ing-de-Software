@@ -1,0 +1,32 @@
+<% if user_signed_in? && current_user.has_role?(:admin_initiative, @initiative) %>
+  <!-- Toggle button -->
+  <div class="modal" id="attendants_popup">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">
+          Quitar
+        </p>
+        <button onclick="closeModal('attendants_popup');" class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body" style="text-align: center;" id="attendants_remove">
+        <div class="box">
+            <% @attendants.each do |attendant| %>
+            <div class="attendant-item" style="display: flex; align-items: center;">
+                <p style="color: black; margin-right: 10px;"><%= attendant.username %></p>
+                <%= form_with(model: @event, url: event_path(@event), method: :patch) do |form| %>
+                <%= form.hidden_field :user_id, value: attendant.id %>
+                <%= form.hidden_field :update_type, value: 'remove_attendant' %>
+                <button type="submit" class="button is-danger is-small">
+                    Quitar participante
+                </button>
+                <% end %>
+            </div>
+            <% end %>
+        </div>
+        </section>
+        <footer></footer>
+
+    </div>
+  </div>
+<% end %>

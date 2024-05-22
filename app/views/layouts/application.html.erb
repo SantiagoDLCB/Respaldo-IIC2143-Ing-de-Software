@@ -1,38 +1,77 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Iniciativas Estudiantiles UC</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'popup_modal.js' %>
     <link rel="icon" type="image/png" href="<%= asset_path 'jorge-munoz.jpg' %>">
+
+  </head>
+
+</html>
+
   </head>
   <body>
+    <div class="main-content">
+      <div class="tabs">
+            <ul>
+              <img src="<%= asset_path 'jorge-munoz.jpg' %>" alt="Logo" class="tab-icon">
+              <% if user_signed_in? %>
+                <li><a style="color: white;" href="<%= initiatives_path %>">Inicio</a></li>
+                <li><a style="color: white;" href="<%= edit_user_registration_path %>">Ver Perfil</a></li>
+                <li> <%= link_to "Cerrar sesión", destroy_user_session_path, data: { turbo_method: :delete }, style: "color: white;" %></li>
+                <% if current_user.has_role?(:admin) %>
+                  <li><a style="color: white;" href="<%= rails_admin_path %>">Administrar Pagina Web</a></li>
+                <% end %> 
+              <% else %>
+                <li><a style="color: white;" href="<%= root_path %>">Inicio</a>
+                <li><a style="color: white;" href="<%= new_user_registration_path %>">Registrarse</a></li>
+                <li><a style="color: white;" href="<%= new_user_session_path %>">Iniciar sesión</a></li>
 
-  <div class="header">
-  <% if user_signed_in? %>
-    <%= button_to "Inicio", initiatives_path, method: :get%>
-    <%= button_to "Crear Iniciativa", new_initiative_path, method: :get %>
-    <%= button_to "Ver Perfil", edit_user_registration_path, method: :get %>
-    <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete %> 
-  <% else %>
-    <!-- Boton a root path -->
-    <%= button_to "Inicio", root_path, method: :get%>
-    <%= button_to "Registrarse", new_user_registration_path, method: :get %>
-    <%= button_to "Iniciar sesión", new_user_session_path, method: :get%>
-  <% end %>
-  </div>
-  <% flash.each do |name, msg| %>
-  <div class="flash-message" id="flash_<%= name %>">
-    <%= msg %>
-  </div>
-  <% end %>
+              <% end %>
+          </ul>
+      </div>
 
-  <%= yield %>
+      <% flash.each do |name, msg| %>
+        <div class="notification is-success" id="flash_<%= name %>">
+          <%= msg %>
+        </div>  
+      <% end %>
+      <%= yield %>
 
-  </body>
+    </div>
+
+    
+    <footer class="footer">
+      <img src="<%= asset_path 'logo_uc.png' %>" alt="Logo UC" style="height: 100px;">
+      <div class="content has-text-centered">
+
+
+      <strong>Iniciativas Estudiantiles UC</strong>
+
+
+        &copy; 2024
+
+    </div>
+    <h1>Grupo 67 @ IIC2143 2024-1</h1>
+    </div>
+  </footer>
+</body>
+ <script>
+    var currentUserIdElement = document.getElementById('currentUserId');
+    var currentUserId = currentUserIdElement.getAttribute('data-user-id');
+    // Get the element
+    if (message.user.id === current_user.id) {
+    // If they are equal, add the Bulma classes dynamically
+    const chatElement = document.getElementById('chat');
+    chatElement.classList.add('is-warning'); // Add any additional Bulma classes as needed
+  }
+  </script>
+
 </html>

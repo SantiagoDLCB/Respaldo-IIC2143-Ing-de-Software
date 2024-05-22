@@ -1,56 +1,56 @@
-
-<div align="right" style="margin: 10px;">
-  <button onclick="openModal('new_event_popup');" class="button is-primary">
-   Crear Evento
-</button>
-</div>
-
+<% if current_user.has_role?(:admin_initiative, @initiative) %>
+  
+  <button onclick="openModal('new_event_popup');" class="button is-light is-primary">
+    Crear Evento
+  </button>
 
 
-<div class="modal" id="new_event_popup">
-	<div class="modal-background"></div>
-	<div class="modal-card">
-		<header class="modal-card-head">
-			<p class="modal-card-title">
-				Nuevo Evento
-			</p>
-      <button onclick="closeModal('new_event_popup');" class="delete" aria-label="close"></button>
 
-		</header>
-    <%= form_with(model: @event, url: events_path(@initiative), method: "post") do |form| %>
-		<section class="modal-card-body" style="text-align: center;">
-        
-        <div class="field">
-            <%= form.label 'Nombre', class: "label is-medium" %>
+  <div class="modal" id="new_event_popup">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">
+          Nuevo Evento
+        </p>
+        <button onclick="closeModal('new_event_popup');" class="delete" aria-label="close"></button>
+
+      </header>
+      <%= form_with(model: @event, url: events_path(@initiative), method: "post") do |form| %>
+      <section class="modal-card-body" style="text-align: center;">
+          
+          <div class="field">
+              <%= form.label 'Nombre', class: "label is-medium" %>
+              <div class="control">
+                <%= form.text_field :name, class: "input is-medium", placeholder: "Nombre", required: true %>
+              </div>
+            </div>
+
+          <div class="field">
+              <%= form.label 'Descripción', class: "label" %>
+              <div class="control">
+                <%= form.text_area :description, class: "textarea", placeholder: "Descripción", required: true %>
+              </div>
+          </div>
+
+          <div class="field">
+            <%= form.label "Capacidad", class: "label" %>
             <div class="control">
-              <%= form.text_field :name, class: "input is-medium", placeholder: "Nombre", required: true %>
+              <%= form.number_field :capacity, class: "input", required: true, placeholder: "100", min: 1 %>
             </div>
           </div>
 
-        <div class="field">
-            <%= form.label 'Descripción', class: "label" %>
-            <div class="control">
-              <%= form.text_area :description, class: "textarea", placeholder: "Descripción", required: true %>
-            </div>
-        </div>
+          <%= form.hidden_field :initiative, value: @initiative.id %>
 
-        <div class="field">
-          <%= form.label "Capacidad", class: "label" %>
-          <div class="control">
-            <%= form.number_field :capacity, class: "input", required: true, placeholder: "100", min: 1 %>
-          </div>
-        </div>
-
-        <%= form.hidden_field :initiative, value: @initiative.id %>
-
-		</section>
-		<footer class="modal-card-foot">
-      <%= form.submit "Crear Evento", class: "button is-primary"%>
-      <% end %>
-		
-			<button class="button is-danger" onclick="closeModal('new_event_popup');">
-				Cancelar
-			</button>
-    </footer>
-	</div>
-</div>
+      </section>
+      <footer class="modal-card-foot">
+        <%= form.submit "Crear Evento", class: "button is-primary"%>
+        <% end %>
+      
+        <button class="button is-danger" onclick="closeModal('new_event_popup');">
+          Cancelar
+        </button>
+      </footer>
+    </div>
+  </div>
+<%end%>

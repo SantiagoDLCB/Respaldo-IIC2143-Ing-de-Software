@@ -1,8 +1,7 @@
-<button onclick="openModal('edit_event_popup');" class="button is-primary">
-   Editar
-</button>
-  
   <% if current_user.has_role?(:admin_initiative, @initiative) %>
+  <button onclick="openModal('edit_event_popup');" class="button is-primary">
+    Editar
+  </button>
     <div class="modal" id="edit_event_popup">
       <div class="modal-background"></div>
       <div class="modal-card">

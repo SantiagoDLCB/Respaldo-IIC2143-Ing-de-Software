@@ -97,3 +97,43 @@ body {
     opacity: 0.5;
     z-index: 0;
 }
+
+.button {
+    &:hover {
+        background-color: rgb(66, 88, 255, 0.5);
+    }
+}
+
+.button.is-danger1 {
+    background-color: rgb(255, 102, 133, 0.5);
+
+    &:hover {
+        background-color: rgb(255, 102, 133, 1);
+    }
+}
+
+.card {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.card-content {
+    max-height: 600px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#chat-body {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.custom-card {
+    padding: 0; // Remove default padding
+    margin: 0; // Remove default margin
+}
+
+.custom-card .card-content {
+    padding: 10px;
+}

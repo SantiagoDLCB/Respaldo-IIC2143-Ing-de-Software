@@ -40,6 +40,7 @@ strong {
     align-items: center;
     /* Vertically center items */
     margin: 0;
+    margin-top: 100px;
 }
 
 .main-content {

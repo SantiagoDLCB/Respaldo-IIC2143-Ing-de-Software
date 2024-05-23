@@ -1,90 +1,139 @@
 body {
     text-align: left;
-    font-family: Arial, sans-serif;
 }
 
-/* Hide the checkbox */
-.popup-toggle {
+
+/* app/assets/stylesheets/custom.css */
+/* app/assets/stylesheets/custom.css */
+/* app/assets/stylesheets/custom.css */
+/* app/assets/stylesheets/custom.css */
+/* app/assets/stylesheets/custom.css */
+/* app/assets/stylesheets/custom.css */
+/* chat_banner.scss */
+/* Consider using a more descriptive class name instead of `#chat-banner` */
+/* Oculta el input tipo checkbox */
+/* Oculta el input tipo checkbox */
+.toggle-checkbox {
     display: none;
 }
 
-/* Style for the button to open the popup */
-.open-popup-button {
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
+/* Estilo del botón de alternar */
+.toggle-label {
     display: inline-block;
-}
-
-/* Style for the popup form */
-.popup-form {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    z-index: 1000;
-}
-
-/* Show the popup form when the checkbox is checked */
-.popup-toggle:checked~.popup-overlay~.popup-form {
-    display: block;
-}
-
-/* Style for the form fields */
-.popup-form input[type="text"],
-.popup-form input[type="email"],
-.popup-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.popup-form input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
     padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
     cursor: pointer;
     border-radius: 5px;
 }
 
-.close-popup {
-    display: block;
-    text-align: right;
-    font-size: 16px;
-    margin: -10px -10px 10px 0;
+/* Cambia el color del botón cuando está seleccionado */
+.toggle-checkbox:checked+.toggle-label {
+    background-color: #dc3545;
 }
 
-.close-popup a {
-    text-decoration: none;
-    color: #007BFF;
-    cursor: pointer;
-}
-
-/* Add overlay */
-.popup-overlay {
-    display: none;
+/* Estilo del contenedor del banner del chat */
+#chat-banner {
+    left: 50%;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    bottom: 2;
+    transform: translateX(-50%);
+    max-width: 600px;
+    width: calc(100% - 40px);
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: height 0.3s ease;
+    z-index: 1;
 }
 
-/* Show the overlay when the checkbox is checked */
-.popup-toggle:checked~.popup-overlay {
-    display: block;
+/* Oculta el banner del chat por defecto */
+#chat-banner.closed {
+    height: 50px;
+}
+
+/* Muestra el banner del chat cuando el checkbox está seleccionado */
+.toggle-checkbox:checked~#chat-banner {
+    height: auto;
+}
+
+/* Estilo del encabezado del chat */
+#chat-header {
+    padding: 10px;
+}
+
+/* Estilo del contenido del chat */
+#chat-content {
+    padding: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Estilo del área de entrada de mensajes */
+#chat-input {
+    padding: 10px;
+}
+
+/* Estilo de los mensajes */
+.message {
+    margin-bottom: 10px;
+}
+
+.background-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.background-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.button {
+    &:hover {
+        background-color: rgba(66, 88, 255, 0.5);
+    }
+}
+
+.button.is-danger1 {
+    background-color: rgba(255, 102, 133, 0.5);
+
+    &:hover {
+        background-color: rgba(255, 102, 133, 1);
+    }
+}
+
+.card {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.card-content {
+    max-height: 600px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#chat-body {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.custom-card {
+    padding: 0; // Remove default padding
+    margin: 0; // Remove default margin
+}
+
+.custom-card .card-content {
+    padding: 10px;
 }

@@ -21,8 +21,8 @@ class EventsController < ApplicationController
     @review = Review.new
     @initiative = @event.initiative
     @attendants = @event.get_attendants
-    @reviews = @event.reviews
-    @notices = @event.notices
+    @reviews = @event.reviews.order(created_at: :desc)
+    @notices = @event.notices.order(created_at: :desc)
   end
 
   def destroy

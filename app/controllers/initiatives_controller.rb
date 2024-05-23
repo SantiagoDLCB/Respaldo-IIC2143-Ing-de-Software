@@ -38,6 +38,7 @@ class InitiativesController < ApplicationController
     @all_requests = @initiative.requests
     @active_requests = @initiative.requests.where(status: :pending)
     @old_requests = @initiative.requests.where(status: [:accepted, :denied])
+    @old_events = Event.where(capacity: false).where(initiative: @initiative)
   end
 
   def destroy

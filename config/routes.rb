@@ -66,8 +66,13 @@ end
 #crear review
 resources :events do
   resources :reviews, only: [:create]
+  resources :notices, only: [:create]
 end
 
 
 get 'initiatives/:id/chat_reload', to: 'initiatives#chat_reload', as: :chat_reload
+
+resources :initiatives do
+  resources :messages
+end
 end

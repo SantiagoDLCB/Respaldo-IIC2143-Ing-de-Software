@@ -10,7 +10,20 @@
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'popup_modal.js' %>
+    <%= javascript_include_tag 'upload_file.js' %>
+    <%= javascript_include_tag 'dropdown.js' %>
     <link rel="icon" type="image/png" href="<%= asset_path 'jorge-munoz.jpg' %>">
+    <style>
+  <%= ".msg-#{current_user&.id}" %> {
+  background-color: #48c78e!important;
+  padding: 10px;
+  }
+  <%= ".cont-#{current_user&.id}" %> {
+  display: flex;
+  justify-content: flex-end !important;
+  }
+</style>
+
   </head>
 
 </html>
@@ -37,12 +50,14 @@
           </ul>
       </div>
 
-      <% flash.each do |name, msg| %>
-        <div class="notification is-success" id="flash_<%= name %>">
-          <%= msg %>
-        </div>  
-      <% end %>
-      <%= yield %>
+     <% flash.each do |name, msg| %>
+      <% flash_class = name == 'alert' ? 'is-danger' : 'is-success' %>
+      <div class="notification <%= flash_class %>" id="flash_<%= name %>" data-timeout="10000">
+        <%= msg %>
+      </div>
+    <% end %>
+    <%= yield %>
+
 
     </div>
 
@@ -57,8 +72,8 @@
 
         &copy; 2024
 
-    </div>
-    <h1>Grupo 67 @ IIC2143 2024-1</h1>
+      </div>
+      <h5><strong>Grupo 67 @ IIC2143 2024-1</strong></h5>
     </div>
   </footer>
 </body>

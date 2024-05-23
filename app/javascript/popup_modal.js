@@ -3,6 +3,7 @@ function openModal(id) {
   // Add is-active class on the modal
   // Clear form inputs
   // Add is-active class on the modal
+  closeModal(id);
   document.getElementById(id)
     .classList.add("is-active");
 
@@ -13,6 +14,7 @@ function closeModal(id) {
 
   document.getElementById(id)
     .classList.remove("is-active");
+  history.pushState("", document.title, window.location.pathname);
 }
 
 // Add event listeners to close the modal

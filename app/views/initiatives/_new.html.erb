@@ -38,7 +38,24 @@
           <div class="field">
             <%= form.label 'Descripción', class: "label" %>
             <div class="control">
-              <%= form.text_area :description, class: "textarea", placeholder: "Descripción", required: true %>
+              <%= form.text_area :description, class: "textarea", placeholder: "Descripción", required: true, rows: 2 %>
+            </div>
+          </div>
+          <div class="field">
+            <%= form.label 'Imagen', class: "label" %>
+            <div class="control">
+              <div class="file is-link is-light has-name is-centered is-small">
+                <label class="file-label">
+                  <%= form.file_field :image, class: "file-input", accept: "image/*", onchange: "updateFileName(this)" %>
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">Elige un archivo…</span>
+                  </span>
+                  <span class="file-name" id="file-name">No has ingresado un archivo</span>
+                </label>
+              </div>
             </div>
           </div>
           

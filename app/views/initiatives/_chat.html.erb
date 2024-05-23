@@ -1,11 +1,39 @@
-<% if chat.empty? %>
-  <strong>Esta iniciativa no tiene conversaciones. ¡Sé el primero en hablar!</strong>
-<% else %>
-  <!-- Muestra mensajes anteriores -->
-  <% chat.each do |message| %>
-    <div class="message">
-      <strong><%= message.user.username %>:</strong>
-      <%= message.content %>
-    </div>
-  <% end %>
-<% end %>
+<% if user_signed_in? && (current_user.has_role?(:member, @initiative) or current_user.has_role?(:admin_initiative, @initiative)) %>
+
+<div class="card">
+    <header class="card-header">
+            <p class="card-header-title " style ="justify-content: center;">
+            Chat
+            </p>
+
+        </header>
+  <div class="card-content">
+         
+        <section class="card-body" style="text-align: center; flex: 1; overflow-y: auto;" id="chat-body">
+            <%= turbo_stream_from @initiative %>
+            <div id="messages">
+            <%= render @messages %>
+            </div>
+        </section>
+        <br>
+        <%= form_with(model: @message, url: initiative_messages_path(@initiative), method: :post) do |form| %>
+            <section class="card-body" style="text-align: center;">
+                <div class="field" style="width: 100%;">
+                    <div class="control">
+                    <%= form.text_area :content, class: "textarea is-fullwidth is-small", placeholder: "Escribe tu mensaje aquí", required: true, rows: 1 %>
+                    </div>
+                </div>
+                <%= form.hidden_field :user_id, value: current_user.id %>
+            </section>
+            <footer class="card-foot">
+                <div class="field is-grouped-right">
+                    <div class="control">
+                    <%= form.submit "Enviar Mensaje", class: "button is-success" %>
+                    </div>
+                </div>
+            </footer>
+        <% end %>
+
+</div>
+</div>
+<%end%>

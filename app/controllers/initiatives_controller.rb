@@ -18,7 +18,7 @@ class InitiativesController < ApplicationController
       if @initiative.errors[:name].include?("has already been taken")
         error1 = "El nombre de la iniciativa ya existe. Por favor, elige un nombre diferente."
         end
-        redirect_to root_path, notice: error1
+        redirect_to root_path, alert: error1
     end
   end
 
@@ -30,13 +30,16 @@ class InitiativesController < ApplicationController
     @initiative = Initiative.find(params[:id])
     @message = Message.new
     @report = Report.new
+    @current_user = current_user
     @events = @initiative.get_events
     @chat = @initiative.messages
+    @messages = @initiative.messages
     @admins = @initiative.get_all_admins
     @members = @initiative.get_members
     @all_requests = @initiative.requests
     @active_requests = @initiative.requests.where(status: :pending)
     @old_requests = @initiative.requests.where(status: [:accepted, :denied])
+    @old_events = Event.where(capacity: false).where(initiative: @initiative)
   end
 
   def destroy
@@ -122,10 +125,10 @@ class InitiativesController < ApplicationController
   end
 
   def initiative_params
-    params.require(:initiative).permit(:name, :topic, :description)
+    params.require(:initiative).permit(:name, :topic, :description, :image)
   end
 
   def new_initiative_params
-    params.permit(:name, :topic, :description)
+    params.permit(:name, :topic, :description, :image)
   end
 end

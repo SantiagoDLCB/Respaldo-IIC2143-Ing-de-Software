@@ -1,8 +1,7 @@
-<button onclick="openModal('edit_initiative_popup');" class="button is-primary">
-   Editar
-</button>
-  
-  <% if current_user.has_role?(:admin_initiative, @initiative) %>
+<% if current_user.has_role?(:admin_initiative, @initiative) %>
+    <button onclick="openModal('edit_initiative_popup');" class="button is-primary">
+     Editar Inicitiva
+    </button>
     <div class="modal" id="edit_initiative_popup">
       <div class="modal-background"></div>
       <div class="modal-card">
@@ -13,7 +12,7 @@
           <button onclick="closeModal('edit_initiative_popup');" class="delete" aria-label="close"></button>
 
         </header>
-        <%= form_with(model: @initiative, local: true) do |form| %>
+        <%= form_with(model: @initiative,  url: initiative_path(@initiative), method: :patch, local: true) do |form| %>
         <section class="modal-card-body" style="text-align: center;">
           
             <% if @initiative.errors.any? %>
@@ -45,12 +44,32 @@
           <div class="field">
             <%= form.label 'Descripción', class: "label" %>
             <div class="control">
-              <%= form.text_area :description, class: "textarea", placeholder: "Descripción", required: true %>
+              <%= form.text_area :description, class: "textarea", placeholder: "Descripción", required: true, rows: 2 %>
             </div>
           </div>
+
+          <div class="field">
+            <%= form.label 'Imagen', class: "label" %>
+            <div class="control">
+              <div class="file is-link is-light has-name is-centered is-small">
+                <label class="file-label">
+                  <%= form.file_field :image, class: "file-input", accept: "image/*", onchange: "updateFileName(this)" %>
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">Elige un archivo…</span>
+                  </span>
+                  <span class="file-name" id="file-name">No has ingresado un archivo</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
            
         </section>
         <footer class="modal-card-foot">
+          <%= form.hidden_field :update_type, value: "data" %>
           <%= form.submit "Guardar cambios", class: "button is-primary", onclick: "closeModal('edit_initiative_popup')"  %>
           <button class="button is-danger" onclick="closeModal('edit_initiative_popup');" data: { turbo: false }>
             Cancelar
@@ -61,7 +80,7 @@
       </div>
     </div>
 
-  <% end %>
+<% end %>
 
  
 

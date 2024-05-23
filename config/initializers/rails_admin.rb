@@ -68,6 +68,13 @@ RailsAdmin.config do |config|
     exclude_fields :messages
     exclude_fields :events
   end
+  config.model 'Notice' do
+    exclude_fields :roles
+    exclude_fields :requests
+    exclude_fields :reports
+    exclude_fields :messages
+    exclude_fields :events
+  end
 
 
   config.model 'ActiveStorage::Blob' do

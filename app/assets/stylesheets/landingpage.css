@@ -16,28 +16,6 @@
 }
 
 
-.first {
-    position: relative;
-    width: 100%;
-    height: 600px;
-    /* especifica una altura */
-    overflow: hidden;
-}
-
-.first::after {
-    content: "";
-    background: url('campus_sj.jpg') !important;
-    opacity: 0.2;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    /* higher value */
-}
 
 .titulo {
     color: #ffffff;
@@ -57,7 +35,7 @@
 }
 
 .titulo p {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: normal;
     width: 60%;
 }
@@ -93,4 +71,27 @@
     padding: 10px;
     text-align: center;
     color: #e4e4e4;
+}
+.background-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.background-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('campus_sj.jpg');
+    /* Replace 'campus_sj.jpg' with the URL of your background image */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+}
+
+.hero-body {
+    position: relative;
+    z-index: 1;
 }

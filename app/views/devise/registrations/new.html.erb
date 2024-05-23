@@ -4,48 +4,74 @@
 <body style="text-align: center;">
 <h2>Registro</h2>
 
-<div class="column is-half is-offset-one-quarter">
+<div class="column is-half is-offset-one-quarter" data-theme="light">
 <div class="box" style="background-color: rgba(255, 255, 255, 0.5);">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-   <div class="field">
-    <%= f.label :username, "Username" %><br />
-    <%= f.text_field :username %>
+  <div class="field">
+    <%= f.label 'Username', class: "label is-medium" %>
+    <div class="control">
+      <%= f.text_field :username, class: "input", placeholder: "Username", required: true %>
+    </div>
   </div>
 
   <div class="field">
-    <%= f.label :name, "Nombre" %><br />
-    <%= f.text_field :name %>
+  <%= f.label 'Nombre', class: "label is-medium" %>
+  <div class="control">
+    <%= f.text_field :name, class: "input", placeholder: "Nombre", required: true %>
+  </div>
   </div>
 
   <div class="field">
-    <%= f.label :last_name, "Apellido" %><br />
-    <%= f.text_field :last_name %>
+  <%= f.label 'Apellido', class: "label is-medium" %>
+  <div class="control">
+    <%= f.text_field :last_name, class: "input", placeholder: "Apellido", required: true %>
+  </div>
   </div>
 
   <div class="field">
-    <%= f.label :email, "Correo" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%= f.label 'Correo', class: "label is-medium" %>
+  <div class="control">
+    <%= f.email_field :email, class: "input", placeholder: "Correo", required: true, autofocus: true, autocomplete: "email" %>
+  </div>
   </div>
 
   <div class="field">
-    <%= f.label :password, "Contraseña" %>
+    <%= f.label 'Contraseña', class: "label is-medium" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> caracteres mínimo)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <div class="control">
+    <%= f.password_field :password, class: "input", placeholder: "Contraseña", required: true, autocomplete: "new-passwords" %>
+    </div>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation, "Confirmación de contraseña" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label 'Confirmación de contraseña', class: "label is-medium" %>
+    <div class="control">
+    <%= f.password_field :password_confirmation, class: "input", placeholder: "Contraseña", required: true, autocomplete: "new-passwords" %>
+    </div>
   </div>
 
   <div class="field">
-  <%= f.label :avatar %>
-  <%= f.file_field :avatar %>
-</div>
+    <%= f.label 'Avatar', class: "label is-medium" %>
+    <div class="control">
+      <div class="file is-link is-light has-name is-centered is-small">
+        <label class="file-label">
+          <%= f.file_field :avatar, class: "file-input", accept: "image/*", onchange: "updateFileName(this)" %>
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">Elige un archivo…</span>
+          </span>
+          <span class="file-name" id="file-name">No has ingresado un archivo</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
 
   <br>
   <div class="field">

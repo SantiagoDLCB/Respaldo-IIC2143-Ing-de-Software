@@ -6,48 +6,70 @@
 </head>
 <body>
 <main class="container">
-  <div class="first">
-      <div class="titulo">
-      <!-- Encabezado de la página -->
-        <br><br><br>
-        <h1>Central de Iniciativas Estudiantiles</h1>
-        <p>Explora una variedad de iniciativas estudiantiles que enriquecerán tu experiencia universitaria</p>
-      </div>
-      
-      <br><br>
+  <section class="hero is-medium background-image">
+    <div class="hero-body">
+      <main class="container">
 
-      <div class="is-flex is-justify-content-center is-align-items-center">
-        <div class="box" style="width: 35%;">
-          <!-- Botones de inicio de sesión y unirse -->
-          <h2 style="font-size:16px; color: black;"> ¡Regístrate o inicia sesión para explorar las iniciativas y unirte a ellas! </h2>
-          <div class="main-button button-container">
-            <% if user_signed_in? %>
-              <%= button_to "Inicio", initiatives_path, method: :get, class: "button is-link" %>
-              <%= button_to "Crear Iniciativa", new_initiative_path, method: :get, class: "button is-link" %>
-              <%= button_to "Ver Perfil", edit_user_registration_path, method: :get, class: "button is-link" %>
-              <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "button is-link" %>
-            <% else %>
-              <%= button_to "Registrarse", new_user_registration_path, method: :get, class: "button is-link" %>
-              <%= button_to "Iniciar sesión", new_user_session_path, method: :get, class: "button is-link" %>
-            <% end %>
-          </div>
+        <div class="titulo">
+        <!-- Encabezado de la página -->
+          <h1>Central de Iniciativas Estudiantiles</h1>
+          <p>Explora una variedad de iniciativas estudiantiles que enriquecerán tu experiencia universitaria</p>
         </div>
-      </div>
-  </div>
+
+        <br><br>
+
+        <div class="is-flex is-justify-content-center is-align-items-center" data-theme="light">
+          <div class="box" style="width: 35%;">
+            <!-- Botones de inicio de sesión y unirse -->
+            <h2 style="font-size:16px; color: black;"> ¡Regístrate o inicia sesión para explorar las iniciativas y unirte a ellas! </h2>
+            <div class="main-button button-container">
+              <% if not user_signed_in? %>
+                <%= button_to "Registrarse", new_user_registration_path, method: :get, class: "button is-link" %>
+                <%= button_to "Iniciar sesión", new_user_session_path, method: :get, class: "button is-link" %>
+              <% end %>
+            </div>
+          </div>
+
+    </div>
+  </section>
 
   <br><hr><br>
 
-  <h2>Iniciativas recientes</h2>
+  <h2>Iniciativas recientes</h2><br/>
   <ul style="list-style-type: none; padding: 0;">
     <% @recent_initiatives.each do |initiative| %>
-      <li>
-        <h3><%= initiative.name %></h3>
-        <h5>Temática: <%= initiative.topic %><br></h5>
-        <h5>Descripción: <%= initiative.description %></h5>
-      </li>
+      <div class="block" data-theme="light">
+
+      <div class="card">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+              <figure class="image">
+                <% if initiative.persisted? && initiative.image.attached? %>
+                  <%= image_tag url_for(initiative.image), style: "height: 56px; width: auto;" %>
+                <% else %>
+                  <%= image_tag asset_path('campus_sj.jpg'), style: "height: 56px; width: auto;" %>
+                <% end %>
+              </figure>
+            </div>
+            <div class="media-content">
+              <h3 class="title is-4"><%= initiative.name %></h3>
+              <h5 class="subtitle is-6"><%= initiative.topic %></h5>
+            </div>
+          </div>
+
+          <div class="content">
+            <%= initiative.description %>
+            <br />
+          </div>
+        </div>
+      </div>
+
+      </div>
+
     <% end %>
   </ul>
-    
+
   <br><hr><br>
 
   <h2> Galería de fotos </h2>
@@ -67,6 +89,7 @@
         <div class="desc">Jorge Muñoz</div>
       </div>
     </div>
+    
   </div>
 </main>
 <br>

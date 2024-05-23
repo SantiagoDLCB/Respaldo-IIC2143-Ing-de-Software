@@ -12,13 +12,21 @@
       </header>
       <section class="modal-card-body" style="text-align: center;" id="attendants_remove">
         <div class="box">
-            <% Event.where(capacity: false).where(initiative: @initiative).each do |event| %>
-            <div class="old_event-item" style="display: flex; align-items: center;">
-              <%= button_to "Ir a #{event.name}", event_path(event), method: :get, class: "button is-small" %>
-            </div>
+            <% if @old_events.empty? %>
+              <p>No hay eventos finalizados</p>
+            <% else %>
+
+              <% @old_events.each do |event| %>
+                <div class="old_event-item" style="display: flex; align-items: center;">
+                  <%= button_to "Ir a #{event.name}", event_path(event), method: :get, class: "button is-small" %>
+                </div>
+              <% end %>
             <% end %>
         </div>
         </section>
+
+      <footer class="modal-card-foot">
+      </footer>
 
     </div>
   </div>

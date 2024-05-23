@@ -1,6 +1,6 @@
 
 <% if user_signed_in? && (current_user.has_role?(:attendant, @event)|current_user.has_role?(:admin_initiative, @event.initiative)) %>
-    <div class="block has-text-centered">
+    <div class="block has-text-centered" data-theme="light">
         <h3> Anuncios </h3>
             <% if @notices.empty? %>
                 <h5><em>Este evento no tiene anuncios.</em></h5>

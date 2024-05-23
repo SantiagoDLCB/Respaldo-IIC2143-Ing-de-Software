@@ -11,7 +11,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to event_path(@event.id), notice: 'Evento creado exitosamente.'
     else
-      redirect_to event_path(@event.id), notice: 'Evento no ha podido ser creado.'
+      redirect_to root_path, notice: 'Evento no ha podido ser creado.'
     end
   end
 
@@ -95,6 +95,7 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:initiative, :name, :description, :capacity)
   end
+
   def new_event_params
     parametros = params.permit(:initiative, :name, :description, :capacity)
     parametros[:initiative] = Initiative.find(parametros[:initiative])

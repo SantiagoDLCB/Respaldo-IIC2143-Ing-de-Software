@@ -80,3 +80,4 @@ gem 'paper_trail'
 gem 'activestorage'
 gem 'kaminari'
 gem 'simplecov', require: false, group: :test
+gem 'rails-controller-testing'

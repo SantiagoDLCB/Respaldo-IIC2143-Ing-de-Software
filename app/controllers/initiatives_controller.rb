@@ -13,6 +13,7 @@ class InitiativesController < ApplicationController
       current_user.add_role :admin_initiative, @initiative
       redirect_to initiative_path(@initiative.id) , notice: 'La iniciativa fue creada de manera exitosa.'
     else
+
       error1 = "No se ha podido crear la iniciativa, por favor revise que los datos esten bien ingresados."
       if @initiative.errors[:name].include?("has already been taken")
         error1 = "El nombre de la iniciativa ya existe. Por favor, elige un nombre diferente."
@@ -89,12 +90,12 @@ class InitiativesController < ApplicationController
   def search_users
     @users = User.where("email LIKE ?", "%#{params[:query]}%")
   end
+
   def chat_reload
     @initiative = Initiative.find(params[:id])
     @chat = @initiative.messages
     render partial: 'chat', locals: { initiative: @initiative, chat: @chat }
   end
-
 
     private
 

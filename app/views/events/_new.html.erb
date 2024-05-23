@@ -1,5 +1,5 @@
 <% if current_user.has_role?(:admin_initiative, @initiative) %>
-  
+
   <button onclick="openModal('new_event_popup');" class="button is-light is-primary">
     Crear Evento
   </button>
@@ -18,7 +18,7 @@
       </header>
       <%= form_with(model: @event, url: events_path(@initiative), method: "post") do |form| %>
       <section class="modal-card-body" style="text-align: center;">
-          
+
           <div class="field">
               <%= form.label 'Nombre', class: "label is-medium" %>
               <div class="control">
@@ -29,7 +29,7 @@
           <div class="field">
               <%= form.label 'Descripción', class: "label" %>
               <div class="control">
-                <%= form.text_area :description, class: "textarea", placeholder: "Descripción", required: true %>
+                <%= form.text_area :description, class: "textarea", placeholder: "Descripción", required: true, rows: 2 %>
               </div>
           </div>
 
@@ -46,7 +46,7 @@
       <footer class="modal-card-foot">
         <%= form.submit "Crear Evento", class: "button is-primary"%>
         <% end %>
-      
+
         <button class="button is-danger" onclick="closeModal('new_event_popup');">
           Cancelar
         </button>

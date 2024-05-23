@@ -1,8 +1,9 @@
+
+
   <% if current_user.has_role?(:admin_initiative, @initiative) %>
     <button onclick="openModal('edit_event_popup');" class="button is-primary">
-      Editar Evento
-
-    </button>
+    Editar
+  </button>
     <div class="modal" id="edit_event_popup">
       <div class="modal-background"></div>
       <div class="modal-card">
@@ -35,13 +36,16 @@
           <div class="control">
             <%= form.number_field :capacity, class: "input", required: true, placeholder: "100", min: 1 %>
           </div>
+          <%= form.hidden_field :initiative, value: @initiative.id %>
+          <%= form.hidden_field :update_type, value: 'data' %>
         </div>
 
         </section>
         <footer class="modal-card-foot">
-            <%= form.hidden_field :update_type, value: 'data' %>
+
             <%= form.submit "Guardar cambios", class: "button is-primary"%>
             <% end %>
+
 
           <button class="button is-danger" onclick="closeModal('edit_event_popup');">
             Cancelar

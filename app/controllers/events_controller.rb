@@ -35,10 +35,11 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-
     @type = params[:event][:update_type]
+
+
     if @type == 'data'
-      puts params[:event][:capacity]
+
       if @event.modify_capacity(params[:event][:capacity].to_i)
         if @event.update(event_params)
           redirect_to event_path(@event), notice: 'El evento fue actualizado exitosamente.'
@@ -93,12 +94,14 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:initiative, :name, :description, :capacity)
-  end
-
-  def new_event_params
-    parametros = params.permit(:initiative, :name, :description, :capacity)
+    parametros= params.require(:event).permit(:initiative, :name, :description, :capacity)
     parametros[:initiative] = Initiative.find(parametros[:initiative])
     parametros
   end
+  def new_event_params
+    parametros= params.permit(:initiative, :name, :description, :capacity)
+    parametros[:initiative] = Initiative.find(parametros[:initiative])
+    parametros
+  end
+
 end

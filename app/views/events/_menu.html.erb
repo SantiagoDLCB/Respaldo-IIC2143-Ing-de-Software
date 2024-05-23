@@ -5,7 +5,7 @@
           <p class="menu-label">Administrador</p>
           <ul class="menu-list">
           <% if @event.is_active? %>
-            
+
               <div data-theme="light"><button onclick="window.location.href = '<%= initiative_path(@initiative) %>';" class="button is-primary">Volver a la iniciativa</button></div>
               <div data-theme="light"> <%= render 'notice_popup' %></div>
               <div data-theme="light"> <%= render 'attendants_popup' %></div>
@@ -13,10 +13,11 @@
               <%= form_with(model: @event, url: event_path(@event), method: :patch) do |form| %>
                 <%= form.hidden_field :capacity, value: 0  %>
                 <%= form.hidden_field :update_type, value: 'data' %>
+                <%= form.hidden_field :initiative, value: @event.initiative.id %>
               <div data-theme="light"><button type="submit" class="button is-danger1">Finalizar evento</button></div>
             <% end %>
           <% end %>
-            <div data-theme="light"><%= button_to "Eliminar Evento", event_path(@event), method: :delete, class: "button is-danger1", data: { turbo_confirm: "¿Estás seguro de que deseas eliminar este evento?" } %></div> 
+            <div data-theme="light"><%= button_to "Eliminar Evento", event_path(@event), method: :delete, class: "button is-danger1", data: { turbo_confirm: "¿Estás seguro de que deseas eliminar este evento?" } %></div>
           </ul>
 
         <% elsif current_user.has_role?(:attendant, @event) %>
@@ -31,7 +32,7 @@
             <div data-theme="light"><button onclick="window.location.href = '<%= initiative_path(@initiative) %>';" class="button is-primary">Volver a la iniciativa</button></div>
             <%= form_with(model: @event, url: add_user_role_event_path(@event), method: :post) do |form| %>
               <%= form.hidden_field :update_type, value: 'join' %>
-               <div data-theme="light"><button type="submit" class="button is-primary">Unirse al evento</button></div>    
+               <div data-theme="light"><button type="submit" class="button is-primary">Unirse al evento</button></div>
             <% end %>
           </ul>
         <% end %>

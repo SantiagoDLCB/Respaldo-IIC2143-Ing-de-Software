@@ -1,7 +1,7 @@
 require "test_helper"
 
 class RequestTest < ActiveSupport::TestCase
-  
+
   setup do
     @request = requests(:two)
     @user = users(:third_user)
@@ -30,6 +30,7 @@ class RequestTest < ActiveSupport::TestCase
   end
 
   test "should add member role to user when status changes to accepted" do
+    @request = Request.new(user: @user, initiative: @initiative, status: 'pending')
     @request.status = 'accepted'
     assert_difference '@user.roles.count', 1 do
       @request.save
@@ -53,5 +54,5 @@ class RequestTest < ActiveSupport::TestCase
     assert_not @user.has_role?(:member, @initiative)
   end
 
-  
+
 end

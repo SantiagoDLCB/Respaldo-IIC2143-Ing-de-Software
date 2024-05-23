@@ -229,6 +229,91 @@
           null
         ]
       },
+      "/home/vicente/grupo67/2024-1-grupo-67/app/helpers/application_helper.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          9,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          5,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/vicente/grupo67/2024-1-grupo-67/app/helpers/render_helper.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null
+        ]
+      },
+      "/home/vicente/grupo67/2024-1-grupo-67/app/models/message.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/vicente/grupo67/2024-1-grupo-67/app/models/report.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/vicente/grupo67/2024-1-grupo-67/app/models/request.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/vicente/grupo67/2024-1-grupo-67/app/models/review.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
       "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/application_controller.rb": {
         "lines": [
           null,
@@ -289,32 +374,12 @@
           null,
           0,
           0,
+          0,
           null,
-          0,
-          0,
-          0,
-          0,
-          0,
+          null,
           0,
           null,
           0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
           0,
           0,
           null,
@@ -328,6 +393,27 @@
           0,
           0,
           0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
           null,
           0,
           0,
@@ -349,12 +435,14 @@
           0,
           0,
           0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
           null,
-          0,
-          0,
-          0,
-          0,
-          0,
           0
         ],
         "branches": {
@@ -963,106 +1051,9 @@
         ],
         "branches": {
         }
-      },
-      "/home/vicente/grupo67/2024-1-grupo-67/app/helpers/application_helper.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/vicente/grupo67/2024-1-grupo-67/app/helpers/render_helper.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/vicente/grupo67/2024-1-grupo-67/app/models/message.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          null,
-          null,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/vicente/grupo67/2024-1-grupo-67/app/models/report.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/vicente/grupo67/2024-1-grupo-67/app/models/request.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/vicente/grupo67/2024-1-grupo-67/app/models/review.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
       }
     },
-    "timestamp": 1716431363
+    "timestamp": 1716436606
   },
   "Minitest": {
     "coverage": {
@@ -1294,6 +1285,36 @@
           null
         ]
       },
+      "/home/vicente/grupo67/2024-1-grupo-67/app/helpers/application_helper.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          0,
+          null,
+          0,
+          null,
+          0,
+          null,
+          0,
+          null,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/vicente/grupo67/2024-1-grupo-67/app/helpers/render_helper.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null
+        ]
+      },
       "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/application_controller.rb": {
         "lines": [
           null,
@@ -1354,32 +1375,12 @@
           null,
           0,
           0,
+          0,
           null,
-          0,
-          0,
-          0,
-          0,
-          0,
+          null,
           0,
           null,
           0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          null,
           0,
           0,
           null,
@@ -1393,6 +1394,27 @@
           0,
           0,
           0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
           null,
           0,
           0,
@@ -1414,12 +1436,14 @@
           0,
           0,
           0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
           null,
-          0,
-          0,
-          0,
-          0,
-          0,
           0
         ],
         "branches": {
@@ -1529,7 +1553,7 @@
           0,
           null,
           0,
-          0,
+          null,
           0,
           0,
           0,
@@ -1574,8 +1598,15 @@
           0,
           0,
           0,
+          null,
           0,
           0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
           null,
           0,
           null,
@@ -2029,40 +2060,6 @@
         "branches": {
         }
       },
-      "/home/vicente/grupo67/2024-1-grupo-67/app/helpers/application_helper.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/vicente/grupo67/2024-1-grupo-67/app/helpers/render_helper.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
       "/home/vicente/grupo67/2024-1-grupo-67/app/models/message.rb": {
         "lines": [
           0,
@@ -2127,6 +2124,6 @@
         }
       }
     },
-    "timestamp": 1716431842
+    "timestamp": 1716437319
   }
 }

@@ -100,7 +100,7 @@ class InitiativesController < ApplicationController
     private
 
   def add_admin(user, initiative)
-    user = User.find(params[:initiative][:user_id])
+    # user = User.find(params[:initiative][:user_id])
     user.remove_role :member, initiative
     events = @initiative.events
     events.each do |event|

@@ -1,16 +1,23 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
   def create
-    @current_user = current_user
-    @message = @current_user.messages.create(content: msg_params[:content], initiative_id: params[:initiative_id])
+    @message = Message.new(message_params)
+    @message.user = current_user
+    @message.initiative = Initiative.find(params[:initiative_id])
+    if @message.save
+      # Create a new turbo_stream for the updated chat messages
+      render turbo_stream: turbo_stream.replace(@message.initiative, partial: 'initiatives/chat',
+locals: { initiative: @message.initiative, chat: @message.initiative.messages.order(created_at: :asc) })
+    else
+      # Render the errors if the message is not saved successfully
+      render turbo_stream: turbo_stream.update('chat-body', partial: 'initiatives/chat', locals: { initiative: @message.initiative, chat: @message.initiative.messages.order(created_at: :asc) })
+    end
   end
-  def index
-    @current_user = current_user
-  end
+
 
   private
 
-  def msg_params
-    params.require(:message).permit(:content)
+  def message_params
+    params.require(:message).permit(:content, :user_id, :initiative_id)
   end
 end

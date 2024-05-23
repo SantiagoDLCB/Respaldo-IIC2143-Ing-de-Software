@@ -6,6 +6,6 @@ one:
   status: accepted
 
 two:
-  user: third_user
+  user: fourth_user
   initiative: one
   status: pending

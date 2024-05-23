@@ -98,7 +98,7 @@ body {
     z-index: 0;
 }
 
-.button {
+.button.is-primary {
     &:hover {
         background-color: rgba(66, 88, 255, 0.5);
     }

@@ -18,15 +18,16 @@
                 <%= form_with(model: @event, url: event_path(@event), method: :patch) do |form| %>
                 <%= form.hidden_field :user_id, value: attendant.id %>
                 <%= form.hidden_field :update_type, value: 'remove_attendant' %>
-                <button type="submit" class="button is-danger is-small">
-                    Quitar participante
+                <button type="submit" class="button is-danger is-small" style="background-color: #f44336; color: white;">
+                  Quitar participante
+                </button>
                 </button>
                 <% end %>
             </div>
             <% end %>
         </div>
         </section>
-        <footer></footer>
+        <footer class="modal-card-foot"></footer>
 
     </div>
   </div>

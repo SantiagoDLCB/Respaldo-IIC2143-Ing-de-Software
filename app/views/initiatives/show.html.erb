@@ -6,10 +6,10 @@
 
 <body>
   <main class="container">
-    <section class="hero is-small background-image" style="<% if @initiative.persisted? && @initiative.image.attached? %>background-image: url('<%= url_for(@initiative.image) %>');<% end %>">
+    <section class="hero is-small background-image" style="background-image: url('<% if @initiative.persisted? && @initiative.image.attached? %><%= url_for(@initiative.image) %><% else %><%= asset_path('cielo.jpg') %><% end %>');">
       <div class="hero-body">
           <br><br>
-          <h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;"><%=@initiative.name%></h1>
+          <h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;"><%= @initiative.name %></h1>
           <br><br>
       </div>
     </section>
@@ -48,7 +48,9 @@
         <% end %>
         <ul>
         <% Event.where.not(capacity: false).where(initiative: @initiative).each do |event| %>
-          <li><%=button_to event.name, event_path(event), method: :get, class: "button is-info is-light is-small" %>
+          <div class="block">
+          <li><%=button_to event.name, event_path(event), method: :get, class: "button is-info is-light is-small" %></li>
+          </div>
         <% end %>
         </ul>
 

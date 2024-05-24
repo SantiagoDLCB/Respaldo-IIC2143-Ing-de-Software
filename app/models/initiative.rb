@@ -13,8 +13,8 @@ class Initiative < ApplicationRecord
     Role.where(resource_type: 'Initiative')
   end
 
-  validates :name, uniqueness: true,  presence: true, maxlength: 20
-  validates :topic, presence: true, maxlength: 30
+  validates :name, uniqueness: true,  presence: true, length: { maximum: 20 }
+  validates :topic, presence: true, length: { maximum: 30 }
   validates :description, presence: true
 
 

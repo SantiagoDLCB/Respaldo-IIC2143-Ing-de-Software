@@ -30,11 +30,18 @@ La página de desarrollo se encuentra en el siguiente enlace:
 
 [Dev Iniciativas Estudiantiles](https://dev67.onrender.com/)
 
-## Supuestos utilizados
+## Supuestos y consideraciones
 
 - En la capacidad de los eventos no se toman en cuenta los administradores, ya que, como ellos lo organizan, saben cuántos son y lo tendrán en cuenta para cualquier cálculo.
 - Si el Administrador de la página quiere cerrar un evento, basta con ponerle capacidad 0.
 - Al iniciar sesión se redirije directamente a la Página de Iniciativas, ya que, es la base de toda la página y por donde todos empiezan a  navegar.
+- Si se intenta utilizar el chat de una iniciativa de manera local (ejecutando `rails server` o `rails s` en consola), es posible obtener un error. Esto se debe a que es necesario instalar el servidor de redis de manera local. Para esto, se debe ejecutar en consola:
+
+  - `sudo apt install redis-server`
+  - `redis-server`
+  - `rails server` o `rails s`
+
+Para evitar lo anterior, recomendamos fuertemente probar el chat en [Iniciativas Estudiantiles](https://iiee.onrender.com/).
 
 ## Credenciales para la corrección
 

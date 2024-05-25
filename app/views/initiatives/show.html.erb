@@ -6,7 +6,7 @@
 
 <body>
   <main class="container">
-    <section class="hero is-small background-image" style="background-image: url('<% if @initiative.persisted? && @initiative.image.attached? %><%= url_for(@initiative.image) %><% else %><%= asset_path('cielo.jpg') %><% end %>');">
+    <section class="hero is-small background-image" style="background-image: url('<% if @initiative.persisted? && @initiative.image.attached? %><%= url_for(@initiative.image) %><% else %><%= asset_path('initiative_blank.jpg') %><% end %>');">
       <div class="hero-body">
           <br><br>
           <h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;"><%= @initiative.name %></h1>

@@ -7,7 +7,7 @@
 
 <body>
   <main class="container">
-    <section class="hero is-small background-image" style="<% if @event.initiative.persisted? && @event.initiative.image.attached? %>background-image: url('<%= url_for(@initiative.image) %>');<% end %>">
+    <section class="hero is-small background-image" style="background-image: url('<% if @initiative.persisted? && @initiative.image.attached? %><%= url_for(@initiative.image) %><% else %><%= asset_path('initiative_blank.jpg') %><% end %>');">
       <div class="hero-body">
           <br><br>
           <h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;">Evento: <%=@event.name%></h1>

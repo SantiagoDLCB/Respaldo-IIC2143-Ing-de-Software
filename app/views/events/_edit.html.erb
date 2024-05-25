@@ -39,14 +39,18 @@
 
         </section>
         <footer class="modal-card-foot">
+          <div class="field is-grouped">
+            <div class="control">
+              <%= form.submit "Guardar cambios", class: "button is-primary"%>
+              <% end %>
+            </div>
 
-            <%= form.submit "Guardar cambios", class: "button is-primary"%>
-            <% end %>
-
-
-          <button class="button is-danger" onclick="closeModal('edit_event_popup');">
-            Cancelar
-          </button>
+            <div class="control">
+              <button class="button is-danger" onclick="closeModal('edit_event_popup');">
+                Cancelar
+              </button>
+            </div>
+          </div>
         </footer>
       </div>
     </div>

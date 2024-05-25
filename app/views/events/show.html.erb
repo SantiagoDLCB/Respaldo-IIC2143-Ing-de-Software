@@ -57,10 +57,12 @@
         <% end %>
 
       </div>
-
-      <div class="column is-3 is-offset-4">
-        <div data-theme="light"><%= render 'menu'%></div>
-      </div>
+      
+      <% if @event.is_active? %>
+        <div class="column is-3 is-offset-4">
+          <div data-theme="light"><%= render 'menu'%></div>
+        </div>
+      <% end %>
 
   </div>
 

@@ -5,7 +5,7 @@ class UserRolesController < ApplicationController
 
   def destroy
     @user.remove_role params[:role], @initiative
-    redirect_to @initiative, notice: "Role removed successfully"
+    redirect_to @initiative, notice: "El rol se ha eliminado correctamente."
   end
 
 

@@ -25,7 +25,7 @@
           
 
         <% elsif current_user.has_role?(:attendant, @event) %>
-          <%= render 'review_popup' %>
+          <div data-theme="light"><%= render 'review_popup' %></div>
             <p class="menu-label">Participante</p>
             <ul class="menu-list">
               <li><div data-theme="light"><button onclick="window.location.href = '<%= initiative_path(@initiative) %>';" class="button is-primary1">Volver a la iniciativa</button></div></li>

@@ -12,10 +12,10 @@ class RequestsController < ApplicationController
     @request.status = params[:request][:status]
     @request.initiative = Initiative.find(params[:request][:initiative])
     if @request.save
-      flash[:notice] = "Solicitud enviada correctamente"
+      flash[:notice] = "Solicitud enviada correctamente."
       redirect_to initiative_path(params[:request][:initiative])
     else
-      flash[:alert] = "Error al crear la solicitud"
+      flash[:alert] = "Error al crear la solicitud."
       redirect_to initiative_path(params[:request][:initiative])
     end
   end
@@ -31,7 +31,7 @@ class RequestsController < ApplicationController
         redirect_to initiative_path(@request.initiative)
       end
     else
-      flash[:alert] = "Error al actualizar la solicitud"
+      flash[:alert] = "Error al actualizar la solicitud."
       redirect_to initiative_path(@request.initiative)
     end
   end

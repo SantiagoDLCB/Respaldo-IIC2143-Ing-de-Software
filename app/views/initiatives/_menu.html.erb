@@ -11,6 +11,10 @@
             <div data-theme="light"> <%= render 'edit' %></div>
           
             <%= button_to "Eliminar iniciativa", initiative_path(@initiative), method: :delete, class: "button is-danger1", data: { turbo_confirm: "¿Estás seguro de que deseas eliminar esta iniciativa?" } %>
+            <!-- Mostrar el botón para salir de iniciativa si hay más de un admin -->
+            <% if @initiative.get_all_admins.count > 1 %>
+              <%= button_to "Salir de iniciativa", remove_initiative_user_role_path(@initiative, current_user, role: :admin_initiative), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas dejar de ser administrador de esta iniciativa?" }, class: "button is-danger1" %>
+            <% end %>
           </ul>
         <% elsif current_user.has_role?(:member, @initiative) %>
             <p class="menu-label">Miembro</p>

@@ -55,7 +55,7 @@ class InitiativesController < ApplicationController
 
     if @type == 'data'
       if @initiative.update(initiative_params)
-        redirect_to initiative_path(@initiative) , notice: "La iniciativa fue actualizada exitosamente"
+        redirect_to initiative_path(@initiative) , notice: "La iniciativa fue actualizada exitosamente."
       else
         render :edit
       end
@@ -67,7 +67,7 @@ class InitiativesController < ApplicationController
         @user.add_role :member, @initiative
         @user.remove_role :admin_initiative, @initiative
         if @user.has_role? :member, @initiative
-          redirect_to initiative_path(@initiative), notice: 'El usuario ya no es administrador'
+          redirect_to initiative_path(@initiative), notice: 'El usuario ya no es administrador.'
         else
           render :edit
         end
@@ -76,7 +76,7 @@ class InitiativesController < ApplicationController
         @user.remove_role :admin_initiative, @initiative
 
         if !@user.has_role?(:member, @initiative) && !@user.has_role?(:admin_initiative, @initiative)
-          redirect_to initiative_path(@initiative), notice: 'El usuario fue expulsado de la iniciativa'
+          redirect_to initiative_path(@initiative), notice: 'El usuario fue expulsado de la iniciativa.'
         else
           render :edit
         end
@@ -110,7 +110,7 @@ class InitiativesController < ApplicationController
 
 
     if @user.has_role? :admin_initiative, @initiative
-      redirect_to initiative_path(@initiative), notice: 'El usuario ahora es administrador'
+      redirect_to initiative_path(@initiative), notice: 'El usuario ahora es administrador.'
     else
       render :edit
     end

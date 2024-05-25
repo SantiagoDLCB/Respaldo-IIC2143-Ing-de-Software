@@ -45,7 +45,7 @@ class EventsController < ApplicationController
           redirect_to event_path(@event), notice: 'El evento fue actualizado exitosamente.'
 
         else
-          redirect_to event_path(@event), alert: 'Error: Intente nuevamente'
+          redirect_to event_path(@event), alert: 'Error: Intente nuevamente.'
         end
       else
         redirect_to event_path(@event), alert: 'No se pudo realizar la acción solicitada.'

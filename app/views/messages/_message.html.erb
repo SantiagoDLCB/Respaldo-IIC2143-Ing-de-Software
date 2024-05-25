@@ -1,10 +1,25 @@
 
-
 <div>
   <div class="is-flex is-justify-content-flex-begin cont-<%= message.user.id %> ">
     <div class="message is-info is-small">
       <div class="message-header msg-<%= message.user.id %> ">
+      <div class="media ">
+      <div class="media-left">
+          <figure class="image ">
+            <% if message.user.persisted? && message.user.avatar.attached? %>
+              <%= image_tag url_for(message.user.avatar), class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
+            <% else %>
+              <%= image_tag asset_path('user_blank.jpg'), class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
+            <% end %>
+          </figure>
+        </div>
+        <div class="media-content" style="display: flex; flex-direction: column; align-items: center;">
         <p><%= message.user.username %></p>
+        <p><%= message.created_at.in_time_zone("Santiago").strftime("%d/%m/%Y | %H:%M:%S") %></p>
+
+        </div>
+      </div>
+
       </div>
       <div class="message-body">
         <%= message.content %>

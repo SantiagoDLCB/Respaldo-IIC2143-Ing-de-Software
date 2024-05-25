@@ -9,7 +9,7 @@ class ReportsController < ApplicationController
     @report.user = current_user
     @report.initiative = Initiative.find(params[:initiative_id])
 
-    if @report.save!
+    if @report.save
       redirect_to initiative_path(@report.initiative), notice: 'Reporte creado exitosamente.'
     else
       redirect_to initiative_path(@report.initiative), alert: 'Error al crear reporte.'

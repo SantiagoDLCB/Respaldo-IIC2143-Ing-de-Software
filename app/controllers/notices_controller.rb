@@ -8,7 +8,7 @@ class NoticesController < ApplicationController
     @notice = Notice.new(notice_params)
     @notice.event = Event.find(params[:event_id])
 
-    if @notice.save!
+    if @notice.save
       redirect_to event_path(@notice.event), notice: 'Anuncio creado exitosamente.'
     else
       redirect_to event_path(@notice.event), alert: 'No se ha podido crear el anuncio. Intente nuevamente.'

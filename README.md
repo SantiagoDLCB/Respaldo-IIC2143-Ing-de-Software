@@ -57,10 +57,6 @@ Para realizar el testing general de la aplicación, se debe ejecutar en consola 
 
 - `rails test`
 
-Sin embargo, debido a algunos errores que puede presentar la gema SimpleCov al momento de mostrar la cobertura de los test para modelos, controladores y helpers, recomendamos ejecutar los tests por separado. Es decir:
+Luego se podrá revisar el coverage entregado por SimpleCov abriendo el archivo *coverage/index.html* en el browser, siempre y cuando la línea 23 de `test/test_helper.rb` esté comentada, es decir, solamente se habilite un procesador como worker.
 
-- `rails test test/models/`
-- `rails test test/controllers/`
-- `rails test test/helpers/`
-
-Luego, revisar el coverage abriendo el archivo *coverage/index.html* en el browser.
+De lo contrario, al activar la opción de *parallelize* para ver la cobertura de los test para modelos, controladores y helpers, es posible obtener inconsistencia en la cobertura por la ejecución paralela de tests.

@@ -15,7 +15,12 @@ class EventsController < ApplicationController
     end
   end
 
-
+  def index
+    @admin_events = Event.joins(:initiative).where(initiatives: { id: current_user.roles.where(name: :admin_initiative).pluck(:resource_id) })
+    @attendant_events = current_user.events.joins(:roles).where(roles: { name: :attendant }).distinct
+    @other_events = Event.where.not(id: @admin_events.pluck(:id) + @attendant_events.pluck(:id))
+  end
+  
   def show
     @event = Event.find(params[:id])
     @review = Review.new

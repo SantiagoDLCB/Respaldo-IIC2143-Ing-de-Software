@@ -54,23 +54,55 @@
       </div>
 
       <div class="block">
-        <h3>Administradores de la Iniciativa</h3>
+        <h3>Administradores de la Iniciativa</h3><br>
         <% @initiative.get_all_admins.each do |admin| %>
-          <h5><%= admin.name %> <%= admin.last_name %></h5>
+          <div class="block" data-theme="light">
+        
+            <div class="media ">
+            <div class="media-left">
+                <figure class="image ">
+                  <% if admin.persisted? && admin.avatar.attached? %>
+                    <%= image_tag url_for(admin.avatar), class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
+                  <% else %>
+                    <%= image_tag asset_path('user_blank.jpg'), class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
+                  <% end %>
+                </figure>
+              </div>
+              <div class="media-content"> 
+              <h5 style= "align-items: center; display: flex;"> <%= admin.name %> <%= admin.last_name %></h5>
+                </div>
+            </div>
+            </div>
+        
         <% end %>
           </div>
 
       <div class="block">
-        <h3>Miembros de la Iniciativa</h3>
+        <h3>Miembros de la Iniciativa</h3><br>
         <% if @members.empty? %>
           <h5><em>Esta iniciativa no tiene miembros.</em></h5>
         <% end %>
-        <ul>
-          <% @members.each do |member| %>
-            <li><h5> <%= member.name %> <%= member.last_name %></h5></li>
+        <% @members.each do |member| %>
+        <div class="block" data-theme="light">
+
+        
+            <div class="media ">
+            <div class="media-left">
+                <figure class="image ">
+                  <% if member.persisted? && member.avatar.attached? %>
+                    <%= image_tag url_for(member.avatar), class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
+                  <% else %>
+                    <%= image_tag asset_path('user_blank.jpg'), class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
+                  <% end %>
+                </figure>
+              </div>
+              <div class="media-content"> 
+              <h5 style= "align-items: center; display: flex;"> <%= member.name %> <%= member.last_name %></h5>
+                </div>
+            </div>
+            </div>
+        
           <% end %>
-          <!-- Add more members here -->
-        </ul>
       </div>
 
     </div>

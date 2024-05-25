@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.user = current_user
     @message.initiative = Initiative.find(params[:initiative_id])
+    @initiative = @message.initiative
     if @message.save
       # Create a new turbo_stream for the updated chat messages
       render turbo_stream: turbo_stream.replace(@message.initiative, partial: 'initiatives/chat',

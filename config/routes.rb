@@ -76,4 +76,6 @@ resources :initiatives do
   resources :messages
 end
 
+get '/after_sign_out', to: 'application#after_sign_out', as: :after_sign_out
+
 end

@@ -15,7 +15,7 @@
 </figure>
 </div>
 <br>
-<div style="text-align: center;">
+<div style="text-align: center; ">
   <span class="tag">@<%= current_user.username %></span>
 </div>
 <% end %>
@@ -123,23 +123,17 @@
   <br><hr><br>
 
 
+<!-- Sección de edición de perfil -->
 
-<h2>Modificar Perfil</h2>
-<h3>Editar Información</h3>
+<h2 style="text-align: center">Modificar Perfil</h2>
+
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <h4><%= render "devise/shared/error_messages", resource: resource %></h4>
 <div class="columns is-centered">
 <div class="column ">
-<div class="card is-small", style= "height: 250px" data-theme="light">
-  <header class="card-header">
-    <h5 class=" card-header-title"></h5>
-    <button class="card-header-icon" aria-label="more options">
-      <span class="icon">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
-    </button>
-  </header>
+<div class="card is-small", style= "height: 215px" data-theme="light">
+  
   <div class="card-content ">
     <div class="content">
     
@@ -156,10 +150,10 @@
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-  <div class="field">
+  <div class="field ">
   <%= f.label 'Foto de Perfil' %>
   <div class="control">
-    <div class="file is-link is-light has-name is-centered is-small">
+    <div class="file is-link is-light has-name is-small">
       <label class="file-label">
         <%= f.file_field :avatar, class: "file-input", accept: "image/*", onchange: "updateFileName(this)" %>
         <span class="file-cta">
@@ -181,15 +175,7 @@
 </div>
 <div class="column">
 
-<div class="card is-small" , style= "height: 250px" data-theme="light">
-<header class="card-header">
-<h5 class=" card-header-title"></h5>
-<button class="card-header-icon" aria-label="more options">
-<span class="icon">
-<i class="fas fa-angle-down" aria-hidden="true"></i>
-</span>
-</button>
-</header>
+<div class="card is-small" , style= "height: 215px" data-theme="light">
 <div class="card-content ">
 <div class="content">
 
@@ -213,37 +199,57 @@
 
 </div>
 
-</div> <!-- Cierre Columns -->
-<div class="field">
-<%= f.label :current_password, "Contraseña actual" %> <i>(para confirmar los cambios)</i><br />
+<div class="column is-one-quarter">
+<div class="card is-small" , style= "height: 215px" data-theme="light">
+
+<div class="card-content ">
+<div class="content">
+
+<div class="field " style="text-align: center">
+<%= f.label :current_password, "Contraseña actual" %> <br><i>(para confirmar los cambios)</i><br />
 <%= f.password_field :current_password, autocomplete: "current-password" %>
 </div>
+<br>
 <div style="display: flex; justify-content: center; align-items: center;">
-  <%= f.submit "Actualizar", class: "button is-primary", data: { turbo_confirm: "¿Estás seguro de actualizar tu información?" } %>
+<%= f.submit "Actualizar", class: "button is-primary", data: { turbo_confirm: "¿Estás seguro de actualizar tu información?" } %>
+</div>
+</div>
+</div>
 </div>
 
 
+</div>
+</div> <!-- Cierre Columns -->
+<% end %>
 
+<br><hr><br>
 
-<!-- Sección de edición de perfil -->
+<h2 style="text-align: center">Mi  Cuenta</h2>
 
-
-
-
-
-<% end %><br>
-
-<h3>Mi Cuenta</h3>
-
-<p>Creación de la cuenta: <%= current_user.created_at %></p>
-<p>Última modificación: <%= current_user.updated_at %></p>
-
-<p>Opción de eliminar cuenta</p>
-
-<%= button_to "Eliminar", registration_path(resource_name),class: "button is-danger is-primary", data: { turbo_confirm: "Si estás seguro de eliminar tu cuenta,\
-haz click en 'Aceptar'" }, method: :delete %>
+<div class="columns  is-centered">
+<div class="card" , style= "height: 170px; width: 400px" data-theme="light">
+<br>
+<p style="text-align: center">Creación de la cuenta: <%= current_user.created_at %></p>
+<p style="text-align: center">Última modificación: <%= current_user.updated_at %></p>
 <br>
 
-<%= link_to "Volver", :back %><br><br><br><br>
+<div style="display: flex; justify-content: center; align-items: center;">
+<%= button_to "Eliminar Cuenta", registration_path(resource_name),class: "button is-danger is-primary", data: { turbo_confirm: "Si estás seguro de eliminar tu cuenta,\
+haz click en 'Aceptar'" }, method: :delete %>
+</div>
+<div style="text-align: center">
+  <%= link_to "Volver", :back %>
+</div><br><br><br><br>
+
+<div class="card-content ">
+<div class="content">
+
+
+
+</div>
+</div>
+</div>
+
+
 </body>
 </html>

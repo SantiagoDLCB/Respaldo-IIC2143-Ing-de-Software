@@ -1,13 +1,13 @@
 <br>
 
-<h2 style="text-align: center;">Página de Inicio</h2>
+<h2 style="text-align: center;">Página de Iniciativas</h2>
 
-<div data-theme="light">
+<div style="margin-right: 100px" data-theme="light">
     <%= render 'new' %>
 </div>
 
 <h3 style="text-align: center;">Mis Iniciativas</h3>
-
+<% if @all_initiatives.where(id: current_user.roles.where(name: ['admin_initiative']).pluck(:resource_id)).any? %>
 <ul style="list-style-type: none; padding: 0; text-align: center;">
     <% @all_initiatives.where(id: current_user.roles.where(name: ['admin_initiative']).pluck(:resource_id)).each do |initiative| %>
         <li style="margin-bottom: 10px;">
@@ -18,7 +18,9 @@
         </li>
     <% end %>
 </ul>
-
+<% else %>
+<h5 style="text-align: center;">No administras ni participas en ninguna iniciativa.</h5>
+<% end %>
 
 <ul style="list-style-type: none; padding: 0; text-align: center;">
     <% @all_initiatives.where(id: current_user.roles.where(name: ['member']).pluck(:resource_id)).each do |initiative| %>
@@ -27,8 +29,9 @@
         </li>
     <% end %>
 </ul>
+<br>
 <h3 style="text-align: center;">Otras Iniciativas</h3>
-
+<% if @all_initiatives.where.not(id: current_user.roles.where(name: ['admin_initiative', 'member']).pluck(:resource_id)).any? %>
 <ul style="list-style-type: none; padding: 0; text-align: center;">
     <% @all_initiatives.where.not(id: current_user.roles.where(name: ['admin_initiative', 'member']).pluck(:resource_id)).each do |initiative| %>
         <li style="margin-bottom: 10px;">
@@ -36,3 +39,6 @@
         </li>
     <% end %>
 </ul>
+<% else %>
+<h5 style="text-align: center;">No hay otras iniciativas disponibles.</h5>
+<% end %>

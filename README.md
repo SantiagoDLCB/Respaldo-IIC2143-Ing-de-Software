@@ -34,6 +34,7 @@ La página de desarrollo se encuentra en el siguiente enlace:
 
 - En la capacidad de los eventos no se toman en cuenta los administradores, ya que, como ellos lo organizan, saben cuántos son y lo tendrán en cuenta para cualquier cálculo.
 - Si el Administrador de la página quiere cerrar un evento, basta con ponerle capacidad 0.
+- Al iniciar sesión se redirije directamente a la Página de Iniciativas, ya que, es la base de toda la página y por donde todos empiezan a  navegar.
 
 ## Credenciales para la corrección
 

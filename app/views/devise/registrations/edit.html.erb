@@ -3,27 +3,32 @@
 <head>
   <link rel="stylesheet" href="<%= asset_path 'profile.css' %>">
 </head>
-
 <body>
 <div class="columns is-centered">
 <div class="column is-one-third is-offset-1">
 <div class="container">
 <% if current_user.persisted? && current_user.avatar.attached? %>
 <div style="display: flex;justify-content: center;">
-<figure class="image">
+<figure class="image" >
 <%= image_tag url_for(current_user.avatar), class: "is-rounded", style: "border-radius: 50%; width: 256px; height: 256px; object-fit: cover" %>
 </figure>
 </div>
+<% else %>
+<div style="display: flex;justify-content: center;">
+<figure class="image" >
+<%= image_tag asset_path('user_blank.jpg'), class: "is-rounded", style: "border-radius: 50%; width: 256px; height: 256px; object-fit: cover" %>
+</figure>
+</div>
+<% end %>
 <br>
 <div style="text-align: center; ">
   <span class="tag">@<%= current_user.username %></span>
 </div>
-<% end %>
 </div>
 </div>
 
 <div class="column">
-<h2 class="has-text-centered">Mi Perfil</h2>
+<h2 class="has-text-centered">Mi Perfil</h2><br>
 <div class="card is-small card-custom" data-theme="light">
   <header class="card-header">
     <h5 class=" has-text-centered card-header-title">Información Personal</h5>

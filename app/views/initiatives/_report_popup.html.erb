@@ -28,12 +28,19 @@
 				<%= form.hidden_field :user_id, value: current_user.id %>   
 			</section>
 			<footer class="modal-card-foot">
-				<%= form.submit "Enviar Reporte", class: "button is-primary" %>
-					<% end %>
-				<button class="button is-danger" onclick="closeModal('report_popup');">
-						Cancelar
-				</button>
-		</footer>
+				<div class="field is-grouped">
+            		<div class="control">
+						<%= form.submit "Enviar Reporte", class: "button is-primary" %>
+						<% end %>
+					</div>
+
+					<div class="control">
+						<button class="button is-danger" onclick="closeModal('report_popup');">
+								Cancelar
+						</button>
+					</div>
+				</div>
+			</footer>
 		</div>
 	</div>
 

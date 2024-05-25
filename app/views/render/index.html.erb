@@ -74,23 +74,15 @@
 
   <h2> Galería de fotos </h2>
     <div class="second">
-      <div class="gallery">
-        <img src="<%= asset_path 'jorge-munoz.jpg' %>" alt="Foto 1">
-        <div class="desc">Jorge Muñoz</div>
-      </div>
-
-      <div class="gallery">
-        <img src="<%= asset_path 'jorge-munoz2.jpg' %>" alt="Foto 2">
-        <div class="desc">Jorge Muñoz</div>
-      </div>
-
-      <div class="gallery">
-        <img src="<%= asset_path 'jorge-munoz3.jpeg' %>" alt="Foto 3">
-        <div class="desc">Jorge Muñoz</div>
+      <div class="columns">
+        <% ['i1.png', 'i2.png', 'i3.png', 'i4.png', 'i5.png', 'i6.png','i7.jpg'].each do |foto| %>
+          <div class="column is-1 image-column">
+            <figure class="image is-128x128">
+              <img src="<%= asset_path foto %>" />
+            </figure>
+          </div>
+        <% end %>
       </div>
     </div>
-    
-  </div>
 </main>
-<br>
 </body>

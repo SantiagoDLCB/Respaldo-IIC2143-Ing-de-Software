@@ -33,6 +33,7 @@ La página de desarrollo se encuentra en el siguiente enlace:
 ## Supuestos utilizados
 
 - En la capacidad de los eventos no se toman en cuenta los administradores, ya que, como ellos lo organizan, saben cuántos son y lo tendrán en cuenta para cualquier cálculo.
+- Si el Administrador de la página quiere cerrar un evento, basta con ponerle capacidad 0.
 
 ## Credenciales para la corrección
 

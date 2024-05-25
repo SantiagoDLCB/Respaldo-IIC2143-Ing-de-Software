@@ -1,0 +1,4 @@
+one:
+  event: one
+  title: "This is the title of the notice."
+  content: "This is the content of the notice."

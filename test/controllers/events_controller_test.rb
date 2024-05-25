@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class EventsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
@@ -30,7 +30,6 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
-  ### Falla ###
   test "should update event" do
     patch event_path(@event), params: { event: { initiative: @event.initiative.id, name: @event.name, description: @event.description, capacity: 100, update_type: 'data' } }, xhr: true
     assert_redirected_to event_path(@event)
@@ -38,7 +37,6 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
     @event.reload
     assert_equal 100, @event.capacity
   end
-  ###
 
   test "should destroy event" do
     assert_difference('Event.count', -1) do

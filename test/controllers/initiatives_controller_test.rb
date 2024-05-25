@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class InitiativesControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers

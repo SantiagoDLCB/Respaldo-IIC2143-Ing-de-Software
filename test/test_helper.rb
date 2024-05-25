@@ -1,4 +1,5 @@
-require 'simplecov'
+require "simplecov"
+
 SimpleCov.start 'rails' do
   add_filter '/test/'
   add_filter '/app/channels/'
@@ -8,7 +9,6 @@ SimpleCov.start 'rails' do
   add_group 'Models', 'app/models'
   add_group 'Controllers', 'app/controllers'
   add_group 'Helpers', 'app/helpers'
-  puts "required simplecov"
 end
 
 # frozen_string_literal: true
@@ -20,7 +20,7 @@ require 'rails/test_help'
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers
-    parallelize(workers: :number_of_processors)
+    # parallelize(workers: :number_of_processors)
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all

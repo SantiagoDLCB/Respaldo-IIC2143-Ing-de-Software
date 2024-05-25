@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class RequestsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
@@ -33,9 +33,7 @@ class RequestsControllerTest < ActionDispatch::IntegrationTest
     patch request_path(@request), params: { request: { status: "accepted" } }
     assert_redirected_to initiative_path(@initiative)
 
-    #assert_equal "accepted", @request.reload.status
-    #assert_equal "accepted", flash[:notice]
+    assert_equal "accepted", flash[:notice]
   end
-
 
 end

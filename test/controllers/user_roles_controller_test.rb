@@ -1,16 +1,17 @@
-require 'test_helper'
+
+require "test_helper"
 
 class UserRolesControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   setup do
     @initiative = initiatives(:one)
-    @user_role = user_roles(:one)
     @admin = users(:default_user)
-    sign_in @admin
     @user = users(:another_user)
+    @role_to_remove = roles(:three)
+    sign_in @admin
   end
 
-  ### Seguir ###
+  # Tests
 
 end

@@ -13,16 +13,16 @@
                 <li><button onclick="openModal('notice_popup');" class="button is-primary1"> Crear Anuncio</button></li>
                 <li><button onclick="openModal('attendants_popup');" class="button is-primary1">Administrar Participantes</button></li>
                 <li><button onclick="openModal('edit_event_popup');" class="button is-primary1">Editar Evento</button></li>
+                <li><div data-theme="light"><%= button_to "Eliminar Evento", event_path(@event), method: :delete, class: "button is-danger1", data: { turbo_confirm: "¿Estás seguro de que deseas eliminar este evento?" } %></div></li>
               <%= form_with(model: @event, url: event_path(@event), method: :patch) do |form| %>
                 <%= form.hidden_field :capacity, value: 0  %>
                 <%= form.hidden_field :update_type, value: 'data' %>
                 <%= form.hidden_field :initiative, value: @event.initiative.id %>
-              <li></li><div data-theme="light"><button type="submit" class="button is-danger1">Finalizar evento</button></div></li>
+                <li><div data-theme="light"><button type="submit" class="button is-danger1">Finalizar evento</button></div></li>
               </ul>
             <% end %>
           <% end %>
-            <div data-theme="light"><%= button_to "Eliminar Evento", event_path(@event), method: :delete, class: "button is-danger1", data: { turbo_confirm: "¿Estás seguro de que deseas eliminar este evento?" } %></div>
-          
+            
 
         <% elsif current_user.has_role?(:attendant, @event) %>
           <div data-theme="light"><%= render 'review_popup' %></div>

@@ -37,12 +37,18 @@
 
       </section>
       <footer class="modal-card-foot">
-        <%= form.submit "Crear Evento", class: "button is-primary"%>
-        <% end %>
+        <div class="field is-grouped">
+          <div class="control">
+            <%= form.submit "Crear Evento", class: "button is-primary"%>
+            <% end %>
+          </div>
 
-        <button class="button is-danger" onclick="closeModal('new_event_popup');">
-          Cancelar
-        </button>
+          <div class="control">
+            <button class="button is-danger" onclick="closeModal('new_event_popup');">
+              Cancelar
+            </button>
+          </div>
+        </div>
       </footer>
     </div>
   </div>

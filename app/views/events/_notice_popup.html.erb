@@ -36,11 +36,18 @@
 
     </section>
     <footer class="modal-card-foot">
-      <%= form.submit "Enviar Anuncio", class: "button is-primary" %>
-      <% end %>
-      <button class="button is-danger" onclick="closeModal('notice_popup');">
-					Cancelar
-			</button>
+      <div class="field is-grouped">
+        <div class="control">
+          <%= form.submit "Enviar Anuncio", class: "button is-primary" %>
+          <% end %>
+        </div>
+
+        <div class="control">
+          <button class="button is-danger" onclick="closeModal('notice_popup');">
+					  Cancelar
+			    </button>
+        </div>
+      </div>
     </footer>
 	</div>
 </div>

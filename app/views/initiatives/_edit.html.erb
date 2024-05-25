@@ -66,11 +66,18 @@
            
         </section>
         <footer class="modal-card-foot">
-          <%= form.hidden_field :update_type, value: "data" %>
-          <%= form.submit "Guardar cambios", class: "button is-primary", onclick: "closeModal('edit_initiative_popup')"  %>
-          <button class="button is-danger" onclick="closeModal('edit_initiative_popup');" data: { turbo: false }>
-            Cancelar
-          </button>
+          <div class="field is-grouped">
+            <div class="control">
+              <%= form.hidden_field :update_type, value: "data" %>
+              <%= form.submit "Guardar cambios", class: "button is-primary", onclick: "closeModal('edit_initiative_popup')"  %>
+            </div>
+            
+            <div class="control">
+              <button class="button is-danger" onclick="closeModal('edit_initiative_popup');" data: { turbo: false }>
+                Cancelar
+              </button>
+            </div>
+          </div>
           <% end %>
         </footer>
         

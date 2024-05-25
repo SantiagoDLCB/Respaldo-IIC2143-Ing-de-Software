@@ -57,21 +57,14 @@
     margin-bottom: 40px;
 }
 
-.gallery:hover {
-    border: 2px solid white;
+.image-column {
+    margin-right: 50px; /* Ajusta el valor según sea necesario */
 }
 
-.gallery img {
-    margin: 50px;
-    height: 300px;
-    width: auto;
+.image-column:last-child {
+    margin-right: 0; /* Elimina el margen derecho del último elemento */
 }
 
-.desc {
-    padding: 10px;
-    text-align: center;
-    color: #e4e4e4;
-}
 .background-image {
     position: relative;
     overflow: hidden;

@@ -24,14 +24,14 @@
           <div class="field">
             <%= form.label 'Nombre', class: "label is-medium" %>
             <div class="control">
-              <%= form.text_field :name, class: "input is-medium", placeholder: "Nombre", required: true %>
+              <%= form.text_field :name, class: "input is-medium", placeholder: "Nombre", required: true, maxlength: 20 %>
             </div>
           </div>
 
           <div class="field">
             <%= form.label 'Tema', class: "label" %>
             <div class="control">
-              <%= form.text_field :topic, class: "input", placeholder: "Tema", required: true %>
+              <%= form.text_field :topic, class: "input", placeholder: "Tema", required: true, maxlength: 30 %>
             </div>
           </div>
 

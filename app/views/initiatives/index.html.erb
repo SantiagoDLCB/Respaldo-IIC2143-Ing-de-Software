@@ -7,36 +7,93 @@
 </div>
 
 <h3 style="text-align: center;">Mis Iniciativas</h3>
-<% if @all_initiatives.where(id: current_user.roles.where(name: ['admin_initiative']).pluck(:resource_id)).any? %>
+<% if @all_initiatives.where(id: current_user.roles.where(name: ['admin_initiative','member']).pluck(:resource_id)).any? %>
 <ul style="list-style-type: none; padding: 0; text-align: center;">
     <% @all_initiatives.where(id: current_user.roles.where(name: ['admin_initiative']).pluck(:resource_id)).each do |initiative| %>
+        
+        <div class="block" data-theme="light">
+        
         <li style="margin-bottom: 10px;">
-            <%= link_to initiative_path(initiative), style: "text-decoration: none; color: #333; background-color: #f5f5f5; padding: 10px; border-radius: 5px; display: flex; align-items: center; justify-content: center; width: 300px; margin: 0 auto;" do %>
-                <span style="margin-right: 5px; text-align: center;"><%= initiative.name %></span>
-                <span style="font-size: 14px; text-align: center;">(Administrador)</span>
+            <%= link_to initiative_path(initiative), style: "text-decoration: none;width: 400px; color: #333; background-color: #f5f5f5; border-radius: 5px; display: flex; align-items: center; justify-content: center; margin: 0 auto;" do %>
+            <div class="media">
+            <div class="media-left">
+                <figure class="image ">
+                  <% if initiative.persisted? && initiative.image.attached? %>
+                    <%= image_tag url_for(initiative.image), style: "border-radius: 4px;height: 56px; width: 100px;" %>
+                  <% else %>
+                    <%= image_tag asset_path('campus_sj.jpg'), style: "border-radius: 4px;height: 56px; width: 100px;" %>
+                  <% end %>
+                </figure>
+              </div>
+              <div class="media-content"> 
+            <span style="margin-right: 5px;"><%= initiative.name %></span>
+                <span style="margin-right: 5px;font-size: 14px; text-align: center;">(Administrador)</span>
+                </div>
             <% end %>
-        </li>
+            </div>
+            </li>
+            </div>
+            <% end %>
+</ul>
+
+<ul style="list-style-type: none; padding: 0; text-align: center;">
+<% @all_initiatives.where(id: current_user.roles.where(name: ['member']).pluck(:resource_id)).each do |initiative| %>
+<div class="block" data-theme="light">
+        
+<li style="margin-bottom: 10px;">
+    <%= link_to initiative_path(initiative), style: "text-decoration: none;width: 400px; color: #333; background-color: #f5f5f5; border-radius: 5px; display: flex; align-items: center; justify-content: center; margin: 0 auto;" do %>
+    <div class="media">
+    <div class="media-left">
+        <figure class="image ">
+          <% if initiative.persisted? && initiative.image.attached? %>
+            <%= image_tag url_for(initiative.image), style: "border-radius: 4px;height: 56px; width: 100px;" %>
+          <% else %>
+            <%= image_tag asset_path('campus_sj.jpg'), style: "border-radius: 4px;height: 56px; width: 100px;" %>
+          <% end %>
+        </figure>
+      </div>
+      <div class="media-content"> 
+        <span style="margin-right: 5px;"><%= initiative.name %></span>
+        </div>
+    <% end %>
+    </div>
+    </li>
+    </div>    
+
     <% end %>
 </ul>
+
 <% else %>
 <h5 style="text-align: center;">No administras ni participas en ninguna iniciativa.</h5>
 <% end %>
 
-<ul style="list-style-type: none; padding: 0; text-align: center;">
-    <% @all_initiatives.where(id: current_user.roles.where(name: ['member']).pluck(:resource_id)).each do |initiative| %>
-        <li style="margin-bottom: 10px;">
-            <%= link_to initiative.name, initiative_path(initiative), style: "text-decoration: none; color: #333; background-color: #f5f5f5; padding: 10px; border-radius: 5px; display: block;  width: 300px; margin: 0 auto;" %>
-        </li>
-    <% end %>
-</ul>
 <br>
 <h3 style="text-align: center;">Otras Iniciativas</h3>
 <% if @all_initiatives.where.not(id: current_user.roles.where(name: ['admin_initiative', 'member']).pluck(:resource_id)).any? %>
 <ul style="list-style-type: none; padding: 0; text-align: center;">
     <% @all_initiatives.where.not(id: current_user.roles.where(name: ['admin_initiative', 'member']).pluck(:resource_id)).each do |initiative| %>
-        <li style="margin-bottom: 10px;">
-            <%= link_to initiative.name, initiative_path(initiative), style: "text-decoration: none; color: #333; background-color: #f5f5f5; padding: 10px; border-radius: 5px; display: block;  width: 300px; margin: 0 auto;" %>
-        </li>
+
+<div class="block" data-theme="light">
+        
+<li style="margin-bottom: 10px;">
+    <%= link_to initiative_path(initiative), style: "text-decoration: none;width: 400px; color: #333; background-color: #f5f5f5; border-radius: 5px; display: flex; align-items: center; justify-content: center; margin: 0 auto;" do %>
+    <div class="media is-centered">
+    <div class="media-left">
+        <figure class="image ">
+          <% if initiative.persisted? && initiative.image.attached? %>
+            <%= image_tag url_for(initiative.image), style: "border-radius: 4px;height: 56px; width: 100px;" %>
+          <% else %>
+            <%= image_tag asset_path('campus_sj.jpg'), style: "border-radius: 4px;height: 56px; width: 100px;" %>
+          <% end %>
+        </figure>
+      </div>
+      <div class="media-content"> 
+    <span style="margin-right: 5px;"><%= initiative.name %></span>
+        </div>
+    <% end %>
+    </div>
+    </li>
+    </div>
     <% end %>
 </ul>
 <% else %>

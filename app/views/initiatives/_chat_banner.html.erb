@@ -1,11 +1,4 @@
 <% if user_signed_in? && (current_user.has_role?(:member, @initiative) or current_user.has_role?(:admin_initiative, @initiative)) %>
-
-
-    <button onclick="openModal('chat_popup');" class="button is-link">
-      Chat
-    </button>
-
-
   <div class="modal" id="chat_popup">
     <div class="modal-background"></div>
     <div class="modal-card">
@@ -36,7 +29,7 @@
               <%= form.submit "Enviar Mensaje", class: "button is-primary" %>
             </div>
             <div class="control">
-              <button type="button" class="button is-danger" onclick="closeModal('chat_popup');">
+              <button class="button is-danger" onclick="closeModal('chat_popup');">
                 Cancelar
               </button>
             </div>

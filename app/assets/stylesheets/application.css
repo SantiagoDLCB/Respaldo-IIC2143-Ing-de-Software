@@ -87,39 +87,7 @@ h5 {
 
 
 /* Cambia el color del botón cuando está seleccionado */
-.button:hover {
-    background-color: #a1e0d7;
-}
 
-.button2 {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.button2:hover {
-    background-color: #4B91F7;
-    color: #ffffff;
-}
-
-.button3 {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.button3:hover {
-    background-color: #4B91F7;
-    color: #ffffff;
-}
 
 html,
 body {

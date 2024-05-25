@@ -1,5 +1,4 @@
 <% if user_signed_in? && current_user.has_role?(:admin_initiative, @initiative) %>
-  <button onclick="openModal('attendants_popup');" class="button is-primary">Administrar Participantes</button>
   <!-- Toggle button -->
   <div class="modal" id="attendants_popup">
     <div class="modal-background"></div>

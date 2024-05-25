@@ -1,9 +1,5 @@
 
 <% if current_user.has_role?(:admin_initiative, @initiative) %>
-    <button onclick="openModal('request_popup');" class="button is-primary">
-        Solicitudes
-    </button>
-
     <div class="modal" id="request_popup">
         <div class="modal-background"></div>
         <div class="modal-card">

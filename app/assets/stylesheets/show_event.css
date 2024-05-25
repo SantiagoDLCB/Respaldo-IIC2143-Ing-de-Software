@@ -2,17 +2,6 @@ body {
     text-align: left;
 }
 
-
-/* app/assets/stylesheets/custom.css */
-/* app/assets/stylesheets/custom.css */
-/* app/assets/stylesheets/custom.css */
-/* app/assets/stylesheets/custom.css */
-/* app/assets/stylesheets/custom.css */
-/* app/assets/stylesheets/custom.css */
-/* chat_banner.scss */
-/* Consider using a more descriptive class name instead of `#chat-banner` */
-/* Oculta el input tipo checkbox */
-/* Oculta el input tipo checkbox */
 .toggle-checkbox {
     display: none;
 }
@@ -98,11 +87,12 @@ body {
     z-index: 0;
 }
 
-.button.is-primary {
+.button.is-primary1 {
     &:hover {
-        background-color: rgba(66, 88, 255, 0.5);
+        background-color: #a1e0d7;
     }
 }
+
 
 .button.is-danger1 {
     background-color: rgba(255, 102, 133, 0.5);
@@ -130,8 +120,8 @@ body {
 }
 
 .custom-card {
-    padding: 0; // Remove default padding
-    margin: 0; // Remove default margin
+    padding: 0;
+    margin: 0;
 }
 
 .custom-card .card-content {

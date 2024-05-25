@@ -1,7 +1,4 @@
 <% if current_user.has_role?(:admin_initiative, @initiative) %>
-  <button onclick="openModal('roles_popup');" class="button is-primary">
-    Administrar Roles
-  </button>
   <div class="modal" id="roles_popup">
     <div class="modal-background"></div>
     <div class="modal-card">

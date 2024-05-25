@@ -1,7 +1,4 @@
 <% if current_user.has_role?(:admin_initiative, @initiative) %>
-    <button onclick="openModal('edit_initiative_popup');" class="button is-primary">
-     Editar Inicitiva
-    </button>
     <div class="modal" id="edit_initiative_popup">
       <div class="modal-background"></div>
       <div class="modal-card">

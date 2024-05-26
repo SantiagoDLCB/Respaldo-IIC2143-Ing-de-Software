@@ -15,19 +15,19 @@ class MessageTest < ActiveSupport::TestCase
   test "should be invalid without a user" do
     @message.user = nil
     assert_not @message.valid?
-    assert_includes @message.errors[:user], "can't be blank"
+    assert_includes @message.errors[:user], "no puede estar en blanco"
   end
 
   test "should be invalid without an initiative" do
     @message.initiative = nil
     assert_not @message.valid?
-    assert_includes @message.errors[:initiative], "can't be blank"
+    assert_includes @message.errors[:initiative], "no puede estar en blanco"
   end
 
   test "should be invalid without content" do
     @message.content = nil
     assert_not @message.valid?
-    assert_includes @message.errors[:content], "can't be blank"
+    assert_includes @message.errors[:content], "no puede estar en blanco"
   end
 
   test "should be invalid with content too short" do

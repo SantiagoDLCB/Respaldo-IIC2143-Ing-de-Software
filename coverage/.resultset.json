@@ -1,7 +1,7 @@
 {
   "Minitest": {
     "coverage": {
-      "/home/santiago/grupo67/app/models/user.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/models/user.rb": {
         "lines": [
           1,
           1,
@@ -70,7 +70,7 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/models/application_record.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/models/application_record.rb": {
         "lines": [
           null,
           null,
@@ -79,7 +79,7 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/models/role.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/models/role.rb": {
         "lines": [
           1,
           1,
@@ -97,7 +97,7 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/models/event.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/models/event.rb": {
         "lines": [
           1,
           1,
@@ -159,7 +159,7 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/models/initiative.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/models/initiative.rb": {
         "lines": [
           1,
           1,
@@ -219,7 +219,7 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/models/notice.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/models/notice.rb": {
         "lines": [
           null,
           1,
@@ -230,7 +230,7 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/helpers/application_helper.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/helpers/application_helper.rb": {
         "lines": [
           null,
           null,
@@ -252,7 +252,7 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/helpers/render_helper.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/helpers/render_helper.rb": {
         "lines": [
           null,
           null,
@@ -260,7 +260,7 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/models/message.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/models/message.rb": {
         "lines": [
           1,
           1,
@@ -275,7 +275,7 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/models/report.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/models/report.rb": {
         "lines": [
           1,
           1,
@@ -287,7 +287,7 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/models/request.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/models/request.rb": {
         "lines": [
           1,
           1,
@@ -306,7 +306,7 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/models/review.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/models/review.rb": {
         "lines": [
           1,
           1,
@@ -316,7 +316,60 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/controllers/initiatives_controller.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/users/sessions_controller.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/application_controller.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          2,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          2,
+          2,
+          2,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/initiatives_controller.rb": {
         "lines": [
           1,
           1,
@@ -336,7 +389,7 @@
           null,
           2,
           2,
-          1,
+          0,
           null,
           2,
           null,
@@ -454,77 +507,25 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/controllers/application_controller.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/render_controller.rb": {
         "lines": [
           null,
           null,
           1,
           1,
-          2,
-          null,
-          1,
-          null,
-          1,
           null,
           1,
           2,
-          2,
-          2,
-          0,
           null,
+          null,
+          1,
+          1,
+          2,
           null,
           null
         ]
       },
-      "/home/santiago/grupo67/app/controllers/requests_controller.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          0,
-          0,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          0,
-          null,
-          null,
-          0,
-          0,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null
-        ]
-      },
-      "/home/santiago/grupo67/app/controllers/notices_controller.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/notices_controller.rb": {
         "lines": [
           1,
           1,
@@ -551,7 +552,7 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/controllers/events_controller.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/events_controller.rb": {
         "lines": [
           1,
           1,
@@ -667,56 +668,7 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/controllers/render_controller.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          2,
-          null,
-          null,
-          1,
-          1,
-          2,
-          null,
-          null
-        ]
-      },
-      "/home/santiago/grupo67/app/controllers/users/sessions_controller.rb": {
-        "lines": [
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/home/santiago/grupo67/app/controllers/reviews_controller.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/reviews_controller.rb": {
         "lines": [
           1,
           1,
@@ -751,35 +703,7 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/controllers/reports_controller.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          0,
-          0,
-          null,
-          1,
-          2,
-          2,
-          2,
-          null,
-          2,
-          1,
-          null,
-          1,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          2,
-          null,
-          null
-        ]
-      },
-      "/home/santiago/grupo67/app/controllers/messages_controller.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/messages_controller.rb": {
         "lines": [
           1,
           1,
@@ -799,7 +723,83 @@
           null
         ]
       },
-      "/home/santiago/grupo67/app/controllers/user_roles_controller.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/reports_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          0,
+          0,
+          null,
+          1,
+          2,
+          2,
+          2,
+          null,
+          2,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          2,
+          null,
+          null
+        ]
+      },
+      "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/requests_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/user_roles_controller.rb": {
         "lines": [
           0,
           0,
@@ -826,7 +826,7 @@
         "branches": {
         }
       },
-      "/home/santiago/grupo67/app/controllers/users/confirmations_controller.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/users/confirmations_controller.rb": {
         "lines": [
           null,
           null,
@@ -862,7 +862,7 @@
         "branches": {
         }
       },
-      "/home/santiago/grupo67/app/controllers/users/omniauth_callbacks_controller.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/users/omniauth_callbacks_controller.rb": {
         "lines": [
           null,
           null,
@@ -898,7 +898,7 @@
         "branches": {
         }
       },
-      "/home/santiago/grupo67/app/controllers/users/passwords_controller.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/users/passwords_controller.rb": {
         "lines": [
           null,
           null,
@@ -938,7 +938,7 @@
         "branches": {
         }
       },
-      "/home/santiago/grupo67/app/controllers/users/registrations_controller.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/users/registrations_controller.rb": {
         "lines": [
           null,
           null,
@@ -1006,7 +1006,7 @@
         "branches": {
         }
       },
-      "/home/santiago/grupo67/app/controllers/users/unlocks_controller.rb": {
+      "/home/vicente/grupo67/2024-1-grupo-67/app/controllers/users/unlocks_controller.rb": {
         "lines": [
           null,
           null,
@@ -1043,7 +1043,7 @@
         }
       }
     },
-    "timestamp": 1716699797
+    "timestamp": 1716704320
   },
   "Unit Tests": {
     "coverage": {

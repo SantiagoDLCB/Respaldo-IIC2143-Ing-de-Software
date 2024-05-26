@@ -3,112 +3,258 @@
 <head>
   <link rel="stylesheet" href="<%= asset_path 'profile.css' %>">
 </head>
-
 <body>
+<div class="columns is-centered">
+<div class="column is-one-third is-offset-1">
+<div class="container">
 <% if current_user.persisted? && current_user.avatar.attached? %>
-  <%= image_tag url_for(current_user.avatar) %>
+<div style="display: flex;justify-content: center;">
+<figure class="image" >
+<%= image_tag url_for(current_user.avatar), class: "is-rounded", style: "border-radius: 50%; width: 256px; height: 256px; object-fit: cover" %>
+</figure>
+</div>
+<% else %>
+<div style="display: flex;justify-content: center;">
+<figure class="image" >
+<%= image_tag asset_path('user_blank.jpg'), class: "is-rounded", style: "border-radius: 50%; width: 256px; height: 256px; object-fit: cover" %>
+</figure>
+</div>
 <% end %>
-<h2>Mi Perfil</h2>
-<h3>Información Personal</h3>
-<p>Username: <%= current_user.username %></p>
-<p>Correo: <%= current_user.email %></p>
-<p>Nombre: <%= current_user.name %></p>
-<p>Apellido: <%= current_user.last_name %></p>
-<!-- <p>Contraseña: <%= current_user.encrypted_password %></p> -->
-
 <br>
+<div style="text-align: center; ">
+  <span class="tag">@<%= current_user.username %></span>
+</div>
+</div>
+</div>
 
-<h3>Mis Iniciativas</h3>
-<ul style="padding: 0;">
-  <% current_user.initiatives.each do |initiative| %>
-    <p><%= "#{initiative.name} - #{initiative.topic} (#{traducir_rol(current_user.roles.find_by(resource: initiative)&.name)})" %></p>
+<div class="column">
+<h2 class="has-text-centered">Mi Perfil</h2><br>
+<div class="card is-small card-custom" data-theme="light">
+  <header class="card-header">
+    <h5 class=" has-text-centered card-header-title">Información Personal</h5>
+    <button class="card-header-icon" aria-label="more options">
+      <span class="icon">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </header>
+  <div class="card-content ">
+    <div class="content">
+      <p>Correo: <%= current_user.email %></p>
+      <p>Nombre: <%= current_user.name %></p>
+      <p>Apellido: <%= current_user.last_name %></p>
+      <!-- <p>Contraseña: <%= current_user.encrypted_password %></p> -->
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+<div class="columns is-centered">
+<div class="column ">
+<div class="card is-small" data-theme="light">
+  <header class="card-header">
+    <h5 class=" card-header-title">Mis Iniciativas</h5>
+    <button class="card-header-icon" aria-label="more options">
+      <span class="icon">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </header>
+  <div class="card-content ">
+    <div class="content">
+    
+    <% current_user.initiatives.each do |initiative| %>
+      
+      <p style="display: inline-block;"><%= "#{initiative.name} (#{initiative.topic}) " %></p>
+      <span class="tag"><%= traducir_rol(current_user.roles.find_by(resource: initiative)&.name) %></span><br>
+      <% end %>
+    
+    </div>
+  </div>
+</div>
+
+</div>
+<div class="column">
+
+<div class="card is-small" data-theme="light">
+<header class="card-header" data-theme="light">
+<h5 class=" card-header-title">Mis Eventos</h5>
+<button class="card-header-icon" aria-label="more options">
+<span class="icon">
+<i class="fas fa-angle-down" aria-hidden="true"></i>
+</span>
+</button>
+</header>
+<div class="card-content ">
+<div class="content">
+
+<% current_user.events.each do |event| %>
+  <p><%= "#{event.name} (#{event.get_iniative.get_name})" %></p>
   <% end %>
-</ul>
+  
+  </div>
+  </div>
+  </div>
+  
+  </div>
+  <div class="column is-one-quarter">
+  <div class="card is-small" data-theme="light">
+    <header class="card-header">
+      <h5 class=" card-header-title">Mis Solicitudes</h5>
+      <button class="card-header-icon" aria-label="more options">
+        <span class="icon">
+          <i class="fas fa-angle-down" aria-hidden="true"></i>
+        </span>
+      </button>
+    </header>
+    <div class="card-content ">
+      <div class="content">
+      
+      <!-- Se muestra solo la ultima solicitud de cada iniciativa -->
+      <% current_user.requests.group_by(&:initiative_id).each do |initiative_id, requests| %>
+        <% last_request = requests.last %>
+        <p><%= "Iniciativa: #{last_request.initiative.name}, Estado: #{last_request.status_before_type_cast}" if last_request %></p>
+      <% end %>
+      
+      </div>
+    </div>
+  </div>
+  
+  </div>
+  
+  </div>
+  <br><hr><br>
 
-<br>
 
-<h3>Mis Solicitudes</h3>
-<!-- Se muestra solo la ultima solicitud de cada iniciativa -->
-<ul style="padding: 0;">
-  <% current_user.requests.group_by(&:initiative_id).each do |initiative_id, requests| %>
-    <% last_request = requests.last %>
-    <p><%= "Iniciativa: #{last_request.initiative.name}, Estado: #{last_request.status}" if last_request %></p>
-  <% end %>
-</ul>
+<!-- Sección de edición de perfil -->
 
-<br>
+<h2 style="text-align: center">Modificar Perfil</h2>
 
-<h3>Mis Eventos</h3>
-<ul style="padding: 0;">
-  <% current_user.events.each do |event| %>
-    <p><%= "#{event.name} - #{event.description} (#{traducir_rol(current_user.roles.find_by(resource: event)&.name)})" %></p>
-  <% end %>
-</ul>
-
-<br><hr><br>
-<h2>Modificar Perfil</h2>
-<h3>Editar Información</h3>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <h4><%= render "devise/shared/error_messages", resource: resource %></h4>
-
-  <div class="field">
+<div class="columns is-centered">
+<div class="column ">
+<div class="card is-small", style= "height: 215px" data-theme="light">
+  
+  <div class="card-content ">
+    <div class="content">
+    
+    <div class="field">
     <%= f.label :username, "Nuevo username" %><br />
     <%= f.text_field :username, autofocus: true, placeholder: "usuario" %>
-  </div><br>
+  </div>
 
   <div class="field">
     <%= f.label :email, "Nuevo correo" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div><br>
+  </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :password, "Nueva contraseña" %> <i><br>Dejar en blanco si no desea cambiarla</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> caracteres mínimo</em>
-    <% end %>
+  <div class="field ">
+  <%= f.label 'Foto de Perfil' %>
+  <div class="control">
+    <div class="file is-link is-light has-name is-small">
+      <label class="file-label">
+        <%= f.file_field :avatar, class: "file-input", accept: "image/*", onchange: "updateFileName(this)" %>
+        <span class="file-cta">
+          <span class="file-icon">
+            <i class="fas fa-upload"></i>
+          </span>
+          <span class="file-label">Elige un archivo…</span>
+        </span>
+        <span class="file-name" id="file-name">No has ingresado un archivo</span>
+      </label>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirmar contraseña" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div><br>
-
-  <div class="field">
-    <%= f.label :current_password, "Contraseña actual" %> <i>(para confirmar los cambios)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div><br>
-  <div class="field">
-  <%= f.label :avatar %>
-  <%= f.file_field :avatar %>
-  </div><br>
-
-  <div class="button">
-    <%= f.submit "Actualizar", data: { turbo_confirm: "¿Estás seguro de actualizar tu información?" } %>
+</div>
+    
+    </div>
   </div>
+</div>
 
-  
+</div>
+<div class="column">
+
+<div class="card is-small" , style= "height: 215px" data-theme="light">
+<div class="card-content ">
+<div class="content">
+
+<div class="field">
+<%= f.label :password, "Nueva contraseña" %> <i><br>Dejar en blanco si no desea cambiarla</i><br />
+<%= f.password_field :password, autocomplete: "new-password" %>
+<% if @minimum_password_length %>
+  <br />
+  <em><%= @minimum_password_length %> caracteres mínimo</em>
+<% end %>
+</div>
+
+<div class="field">
+<%= f.label :password_confirmation, "Confirmar contraseña" %><br />
+<%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="column is-one-quarter">
+<div class="card is-small" , style= "height: 215px" data-theme="light">
+
+<div class="card-content ">
+<div class="content">
+
+<div class="field " style="text-align: center">
+<%= f.label :current_password, "Contraseña actual" %> <br><i>(para confirmar los cambios)</i><br />
+<%= f.password_field :current_password, autocomplete: "current-password" %>
+</div>
+<br>
+<div style="display: flex; justify-content: center; align-items: center;">
+<%= f.submit "Actualizar", class: "button is-primary", data: { turbo_confirm: "¿Estás seguro de actualizar tu información?" } %>
+</div>
+</div>
+</div>
+</div>
 
 
-<% end %><br>
+</div>
+</div> <!-- Cierre Columns -->
+<% end %>
 
-<h3>Mi Cuenta</h3>
+<br><hr><br>
 
-<p>Creación de la cuenta: <%= current_user.created_at %></p>
-<p>Última modificación: <%= current_user.updated_at %></p>
+<h2 style="text-align: center">Mi  Cuenta</h2>
 
-<p>Opción de eliminar cuenta</p>
-<div class="button2">
-  <%= button_to "Eliminar", registration_path(resource_name), data: { turbo_confirm: "Si estás seguro de eliminar tu cuenta,\
- haz click en 'Aceptar'" }, method: :delete %>
-</div><br>
+<div class="columns  is-centered">
+<div class="card" , style= "height: 170px; width: 400px" data-theme="light">
+<br>
+<p style="text-align: center">Creación de la cuenta: <%= current_user.created_at %></p>
+<p style="text-align: center">Última modificación: <%= current_user.updated_at %></p>
+<br>
 
-<%= link_to "Volver", :back %><br><br><br><br>
+<div style="display: flex; justify-content: center; align-items: center;">
+<%= button_to "Eliminar Cuenta", registration_path(resource_name),class: "button is-danger is-primary", data: { turbo_confirm: "Si estás seguro de eliminar tu cuenta,\
+haz click en 'Aceptar'" }, method: :delete %>
+</div>
+<div style="text-align: center">
+  <%= link_to "Volver", :back %>
+</div><br><br><br><br>
+
+<div class="card-content ">
+<div class="content">
+
+
+
+</div>
+</div>
+</div>
+
+
 </body>
 </html>

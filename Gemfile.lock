@@ -111,6 +111,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.12.0)
+      devise (>= 4.9.0)
     docile (1.4.0)
     drb (2.2.1)
     error_highlight (0.6.0)
@@ -212,6 +214,10 @@ GEM
       activesupport (= 7.1.3.2)
       bundler (>= 1.15.0)
       railties (= 7.1.3.2)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.2.0)
       activesupport (>= 5.0.0)
       minitest
@@ -219,12 +225,16 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails-i18n (7.0.9)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 8)
     rails_admin (3.0.0.beta2)
       activemodel-serializers-xml (>= 1.0)
       kaminari (>= 0.14, < 2.0)
       nested_form (~> 0.3)
       rack-pjax (>= 0.7)
       rails (>= 6.0, < 8)
+    rails_admin-i18n (1.20.0)
     railties (7.1.3.2)
       actionpack (= 7.1.3.2)
       activesupport (= 7.1.3.2)
@@ -330,6 +340,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  devise-i18n
   error_highlight (>= 0.4.0)
   importmap-rails
   jbuilder
@@ -338,7 +349,10 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.2)
+  rails-controller-testing
+  rails-i18n
   rails_admin
+  rails_admin-i18n
   redis
   rolify
   rubocop

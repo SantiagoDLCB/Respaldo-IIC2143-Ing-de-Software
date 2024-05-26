@@ -1,9 +1,5 @@
 
 <% if current_user.has_role?(:admin_initiative, @initiative) %>
-    <button onclick="openModal('request_popup');" class="button is-primary">
-        Solicitudes
-    </button>
-
     <div class="modal" id="request_popup">
         <div class="modal-background"></div>
         <div class="modal-card">
@@ -22,7 +18,7 @@
                                 <div style="display: flex; align-items: center;">
                                     <span style="margin-right: 10px;"><h5 style = "color: black"><%= request.user.name %>  <%=request.user.last_name %></h5></span>     
                                     <%= button_to "Aceptar",  request_path(request), method: :patch, params: { request: {status: :accepted} },style: "padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px;", remote: true %>
-                                    <%= button_to "Rechazar", request_path(request), method: :patch, params: { request: {status: :denied} }, method: :patch, style: "padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %> 
+                                    <%= button_to "Rechazar", request_path(request), method: :patch, params: { request: {status: :denied} }, style: "padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %> 
                                 </div>
                             </li>
                         <% end %>

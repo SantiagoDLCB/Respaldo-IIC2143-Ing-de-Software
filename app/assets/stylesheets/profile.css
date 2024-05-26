@@ -21,3 +21,38 @@ body {
     border-radius: 4px;
     cursor: pointer;
 }
+.columns {
+  margin: 0;
+  padding: 20px;
+}
+
+.column {
+  padding: 20px;
+}
+
+
+.is-rounded {
+  border-radius: 50%;
+}
+
+.card-custom {
+  margin-right: 80px;
+  margin-left: 80px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+
+.card-header-icon {
+  position: absolute;
+  right: 10px;
+}
+
+.has-text-centered {
+  text-align: center;
+}

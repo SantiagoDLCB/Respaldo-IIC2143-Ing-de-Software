@@ -1,0 +1,51 @@
+<div class="card custom-card">
+  <div class="card-content">
+      <aside class="menu">
+        <% if current_user.has_role?(:admin_initiative, @initiative) %>
+          <div data-theme="light"> <%= render 'chat_banner' %></div>
+          <div data-theme="light"> <%= render 'events/new' %></div>
+          <div data-theme="light"> <%= render 'requests_popup' %></div>
+          <div data-theme="light"> <%= render 'roles_popup' %></div>
+          <div data-theme="light"> <%= render 'edit' %></div>
+
+          <p class="menu-label">Administrador</p>
+          <ul class="menu-list">
+            <li><button onclick="openModal('chat_popup');" class="button is-primary1">Chat</button></li>
+            <li><button onclick="openModal('new_event_popup');" class="button is-light is-primary1">Crear Evento</button></li>
+            <li><button onclick="openModal('request_popup');" class="button is-primary1">Solicitudes</button><li>
+            <li><button onclick="openModal('roles_popup');" class="button is-primary1">Administrar Roles</button></li>
+            <li><button onclick="openModal('edit_initiative_popup');" class="button is-primary1">Editar Iniciativa</button></li>
+            <%= button_to "Eliminar iniciativa", initiative_path(@initiative), method: :delete, class: "button is-danger1", data: { turbo_confirm: "¿Estás seguro de que deseas eliminar esta iniciativa?" } %>
+            <!-- Mostrar el botón para salir de iniciativa si hay más de un admin -->
+
+            <% if @initiative.get_all_admins.count > 1 %>
+              <%= button_to "Salir de iniciativa", remove_initiative_user_role_path(@initiative, current_user, role: :admin_initiative), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas dejar de ser administrador de esta iniciativa?" }, class: "button is-danger1" %>
+            <% end %>
+
+          </ul>
+        <% elsif current_user.has_role?(:member, @initiative) %>
+            <div data-theme="light"> <%= render 'chat_banner' %></div>
+            <div data-theme="light"><%= render 'report_popup' %></div>
+            <p class="menu-label">Miembro</p>
+            <ul class="menu-list">
+              <li><button onclick="openModal('chat_popup');" class="button is-primary1">Chat</button></li>
+              <li><button onclick="openModal('report_popup');" class="button is-primary1">Reportar</button></li>
+              
+              <%= button_to "Salir de iniciativa", remove_initiative_user_role_path(@initiative, current_user, role: :member), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas dejar de ser miembro de esta iniciativa?" }, class: "button is-danger1" %>
+            </ul>
+        <% elsif @initiative.get_request(current_user).nil? or not @initiative.get_request(current_user).pending? %>
+          <p class="menu-label">Visitante</p>
+          <ul class="menu-list">
+            <%= button_to "Enviar solicitud", requests_path, method: :post, params: { request: { initiative: @initiative.id, status: :pending } }, class: "button is-primary" %>
+          </ul>
+
+        <% elsif @initiative.get_request(current_user).pending? %>
+          <p class="menu-label">Visitante</p>
+          <ul class="menu-list">
+            <%= button_to "Cancelar solicitud", request_path(@initiative.get_request(current_user)), method: :patch, params: { request: {status: :cancelled} }, class: "button is-danger1" %>
+          </ul>
+        <%end%>
+
+      </aside>
+  </div>
+</div>

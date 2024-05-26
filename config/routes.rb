@@ -66,6 +66,7 @@ end
 #crear review
 resources :events do
   resources :reviews, only: [:create]
+  resources :notices, only: [:create]
 end
 
 
@@ -74,4 +75,7 @@ get 'initiatives/:id/chat_reload', to: 'initiatives#chat_reload', as: :chat_relo
 resources :initiatives do
   resources :messages
 end
+
+get '/after_sign_out', to: 'application#after_sign_out', as: :after_sign_out
+
 end

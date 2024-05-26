@@ -1,0 +1,54 @@
+
+<% if user_signed_in? && current_user.has_role?(:admin_initiative, @event.initiative) %>
+  <!-- Toggle button -->
+  
+
+
+
+
+<div class="modal" id="notice_popup">
+	<div class="modal-background"></div>
+	<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title">
+				Anuncio
+			</p>
+			<button onclick="closeModal('notice_popup');" class="delete" aria-label="close"></button>
+		</header>
+    <%= form_with(model: @notice, url: event_notices_path(@event), method: :post) do |form| %>
+		<section class="modal-card-body" style="text-align: center;" id = "chat-body">
+        <div class="field">
+            <%= form.label 'Titulo', class: "label is-medium" %>
+            <div class="control">
+              <%= form.text_field :title, class: "input is-medium", placeholder: "Titulo", required: true %>
+            </div>
+          </div>
+        
+
+        <div class="field">
+          <%= form.label :content, "Mensaje", class: "label" %>
+          <div class="control">
+            <%= form.text_area :content, class: "textarea", placeholder: "Escribe tu mensaje aquí" %>
+          </div>
+        </div>
+        <%= form.hidden_field :event_id, value: @event.id %>
+
+
+    </section>
+    <footer class="modal-card-foot">
+      <div class="field is-grouped">
+        <div class="control">
+          <%= form.submit "Enviar Anuncio", class: "button is-primary" %>
+          <% end %>
+        </div>
+
+        <div class="control">
+          <button class="button is-danger" onclick="closeModal('notice_popup');">
+					  Cancelar
+			    </button>
+        </div>
+      </div>
+    </footer>
+	</div>
+</div>
+<% end %>

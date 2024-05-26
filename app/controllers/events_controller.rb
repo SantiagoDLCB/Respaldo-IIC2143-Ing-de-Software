@@ -11,17 +11,23 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to event_path(@event.id), notice: 'Evento creado exitosamente.'
     else
-      redirect_to event_path(@event.id), notice: 'Evento no ha podido ser creado.'
+      redirect_to root_path, notice: 'Evento no ha podido ser creado.'
     end
   end
 
-
+  def index
+    @admin_events = Event.joins(:initiative).where(initiatives: { id: current_user.roles.where(name: :admin_initiative).pluck(:resource_id) })
+    @attendant_events = current_user.events.joins(:roles).where(roles: { name: :attendant }).distinct
+    @other_events = Event.where.not(id: @admin_events.pluck(:id) + @attendant_events.pluck(:id))
+  end
+  
   def show
     @event = Event.find(params[:id])
     @review = Review.new
     @initiative = @event.initiative
     @attendants = @event.get_attendants
-    @reviews = @event.reviews
+    @reviews = @event.reviews.order(created_at: :desc)
+    @notices = @event.notices.order(created_at: :desc)
   end
 
   def destroy
@@ -34,19 +40,17 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-
     @type = params[:event][:update_type]
+
+
     if @type == 'data'
-      puts params[:event][:capacity]
+
       if @event.modify_capacity(params[:event][:capacity].to_i)
         if @event.update(event_params)
-          flash[:notice] = 'El evento fue actualizado exitosamente.'
-          respond_to do |format|
-            format.js { render js: "window.location.href = '#{event_path(@event)}';" }
-          end
+          redirect_to event_path(@event), notice: 'El evento fue actualizado exitosamente.'
 
         else
-          redirect_to event_path(@event), notice: 'Error:: Intente nuevamente'
+          redirect_to event_path(@event), alert: 'Error: Intente nuevamente.'
         end
       else
         redirect_to event_path(@event), alert: 'No se pudo realizar la acción solicitada.'
@@ -57,7 +61,7 @@ class EventsController < ApplicationController
       if not user.has_role?(:attendant, @event)
         redirect_to event_path(@event), notice: 'Se ha quitado al usuario del evento.'
       else
-        redirect_to event_path(@event), notice: 'No se ha podido quitar al usuario del evento.'
+        redirect_to event_path(@event), alert: 'No se ha podido quitar al usuario del evento.'
       end
 
     else
@@ -73,7 +77,7 @@ class EventsController < ApplicationController
       @user.add_role(:attendant, @event)
       redirect_to event_path(@event), notice: 'Te has inscrito al evento.'
     else
-      redirect_to event_path(@event), notice: 'No hay capacidad disponible para unirse a este evento.'
+      redirect_to event_path(@event), alert: 'No hay capacidad disponible para unirse a este evento.'
     end
   end
 
@@ -95,11 +99,14 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:initiative, :name, :description, :capacity)
-  end
-  def new_event_params
-    parametros = params.permit(:initiative, :name, :description, :capacity)
+    parametros= params.require(:event).permit(:initiative, :name, :description, :capacity)
     parametros[:initiative] = Initiative.find(parametros[:initiative])
     parametros
   end
+  def new_event_params
+    parametros= params.permit(:initiative, :name, :description, :capacity)
+    parametros[:initiative] = Initiative.find(parametros[:initiative])
+    parametros
+  end
+
 end

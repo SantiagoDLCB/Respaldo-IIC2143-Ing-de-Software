@@ -6,7 +6,7 @@
     left: 50%;
     transform: translateX(-50%);
     padding: 10px 20px;
-    animation: fadeOut 4s forwards;
+    animation: fadeOut 10s forwards;
 }
 
 @keyframes fadeOut {
@@ -19,6 +19,15 @@
     }
 }
 
+.permanent-notification {
+    position: fixed !important;
+    top: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    padding: 10px 20px !important;
+    animation: none !important;
+}
+
 strong {
     color: black;
 }
@@ -29,7 +38,6 @@ strong {
     color: #000000;
     bottom: 0;
     font-size: 20px;
-    font-family: 'Courier', monospace;
     width: 100%;
     box-sizing: border-box;
     /* Include padding and border in the width */
@@ -40,16 +48,21 @@ strong {
     align-items: center;
     /* Vertically center items */
     margin: 0;
+    margin-top: 100px;
 }
 
 .main-content {
     flex: 1;
 }
 
+h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
 h2 {
     font-size: 30px;
     /* Tamaño del texto */
-    font-family: 'Courier', monospace;
     font-weight: bold;
     color: white;
 }
@@ -57,7 +70,6 @@ h2 {
 h3 {
     font-size: 20px;
     /* Tamaño del texto */
-    font-family: 'Courier', monospace;
     font-weight: bold;
     color: rgb(177, 177, 177);
 }
@@ -65,7 +77,6 @@ h3 {
 h4 {
     font-size: 15px;
     /* Tamaño del texto */
-    font-family: 'Courier', monospace;
     font-weight: bold;
     color: rgb(180, 0, 0);
     text-shadow: 1px 1px 1px black;
@@ -74,45 +85,15 @@ h4 {
 h5 {
     font-size: 18px;
     /* Tamaño del texto */
-    font-family: 'Courier', monospace;
     color: rgb(255, 255, 255);
 }
 
 
 /* Cambia el color del botón cuando está seleccionado */
 .button:hover {
-    background-color: #a1e0d7;
+    background-color: #7a9cc3;
 }
 
-.button2 {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.button2:hover {
-    background-color: #4B91F7;
-    color: #ffffff;
-}
-
-.button3 {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.button3:hover {
-    background-color: #4B91F7;
-    color: #ffffff;
-}
 
 html,
 body {
@@ -122,7 +103,7 @@ body {
     overflow-x: hidden;
     /* Evitar el desbordamiento horizontal */
     box-sizing: border-box;
-    background-color: rgb(49, 78, 104);
+    background-color: rgb(38, 38, 38);
     display: flex;
     flex-direction: column;
 }

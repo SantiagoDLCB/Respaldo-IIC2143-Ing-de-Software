@@ -5,7 +5,7 @@
     <div class="modal-card">
       <header class="modal-card-head">
         <p class="modal-card-title">
-          Quitar
+          Editar participantes
         </p>
         <button onclick="closeModal('attendants_popup');" class="delete" aria-label="close"></button>
       </header>
@@ -13,19 +13,37 @@
         <div class="box">
             <% @attendants.each do |attendant| %>
             <div class="attendant-item" style="display: flex; align-items: center;">
-                <p style="color: black; margin-right: 10px;"><%= attendant.username %></p>
-                <%= form_with(model: @event, url: event_path(@event), method: :patch) do |form| %>
-                <%= form.hidden_field :user_id, value: attendant.id %>
-                <%= form.hidden_field :update_type, value: 'remove_attendant' %>
-                <button type="submit" class="button is-danger is-small">
-                    Quitar participante
-                </button>
-                <% end %>
+            <div class="block" data-theme="light">
+
+        
+            <div class="media ">
+            <div class="media-left">
+                <figure class="image ">
+                  <% if attendant.persisted? && attendant.avatar.attached? %>
+                    <%= image_tag url_for(attendant.avatar), class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
+                  <% else %>
+                    <%= image_tag asset_path('user_blank.jpg'), class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
+                  <% end %>
+                </figure>
+              </div>
+              <div class="media-content" style="display: flex; align-items: center;"> 
+              <p style="color: black; margin-right: 10px;"><%= attendant.username %></p>
+              <%= form_with(model: @event, url: event_path(@event), method: :patch) do |form| %>
+              <%= form.hidden_field :user_id, value: attendant.id %>
+              <%= form.hidden_field :update_type, value: 'remove_attendant' %>
+              <button type="submit" class="button is-danger is-small" style="background-color: #f44336; color: white;">
+                Quitar participante
+              </button>
+              </button>
+              <% end %>
+              </div>
+            </div>
+            </div>    
             </div>
             <% end %>
         </div>
         </section>
-        <footer></footer>
+        <footer class="modal-card-foot"></footer>
 
     </div>
   </div>

@@ -10,7 +10,19 @@
     <%= javascript_importmap_tags %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'popup_modal.js' %>
+    <%= javascript_include_tag 'upload_file.js' %>
+    <%= javascript_include_tag 'dropdown.js' %>
     <link rel="icon" type="image/png" href="<%= asset_path 'jorge-munoz.jpg' %>">
+    <style>
+  <%= ".msg-#{current_user&.id}" %> {
+  background-color: #48c78e!important;
+  padding: 10px;
+  }
+  <%= ".cont-#{current_user&.id}" %> {
+  display: flex;
+  justify-content: flex-end !important;
+  }
+</style>
 
   </head>
 
@@ -23,11 +35,12 @@
             <ul>
               <img src="<%= asset_path 'jorge-munoz.jpg' %>" alt="Logo" class="tab-icon">
               <% if user_signed_in? %>
-                <li><a style="color: white;" href="<%= initiatives_path %>">Inicio</a></li>
+                <li><a style="color: white;" href="<%= initiatives_path %>">Iniciativas</a></li>
+                <li><a style="color: white;" href="<%= events_path %>">Eventos</a></li>
                 <li><a style="color: white;" href="<%= edit_user_registration_path %>">Ver Perfil</a></li>
                 <li> <%= link_to "Cerrar sesión", destroy_user_session_path, data: { turbo_method: :delete }, style: "color: white;" %></li>
                 <% if current_user.has_role?(:admin) %>
-                  <li><a style="color: white;" href="<%= rails_admin_path %>">Administrar Pagina Web</a></li>
+                  <li><a style="color: white;" href="<%= rails_admin_path %>">Administrar</a></li>
                 <% end %> 
               <% else %>
                 <li><a style="color: white;" href="<%= root_path %>">Inicio</a>
@@ -38,12 +51,14 @@
           </ul>
       </div>
 
-      <% flash.each do |name, msg| %>
-        <div class="notification is-success" id="flash_<%= name %>">
-          <%= msg %>
-        </div>  
-      <% end %>
-      <%= yield %>
+     <% flash.each do |name, msg| %>
+      <% flash_class = name == 'alert' ? 'is-danger' : 'is-success' %>
+      <div class="notification <%= flash_class %>" id="flash_<%= name %>" data-timeout="10000">
+        <%= msg %>
+      </div>
+    <% end %>
+    <%= yield %>
+
 
     </div>
 
@@ -58,20 +73,10 @@
 
         &copy; 2024
 
-    </div>
-    <h1>Grupo 67 @ IIC2143 2024-1</h1>
+      </div>
+      <h5><strong>Grupo 67 @ IIC2143 2024-1</strong></h5>
     </div>
   </footer>
 </body>
- <script>
-    var currentUserIdElement = document.getElementById('currentUserId');
-    var currentUserId = currentUserIdElement.getAttribute('data-user-id');
-    // Get the element
-    if (message.user.id === current_user.id) {
-    // If they are equal, add the Bulma classes dynamically
-    const chatElement = document.getElementById('chat');
-    chatElement.classList.add('is-warning'); // Add any additional Bulma classes as needed
-  }
-  </script>
 
 </html>

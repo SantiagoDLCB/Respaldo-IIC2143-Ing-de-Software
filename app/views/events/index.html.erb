@@ -1,0 +1,48 @@
+
+<br>
+<h2 style="text-align: center;">Página de Eventos</h2><br><br>
+
+<div class="block">
+  <h3 style="text-align: center; font-size: 24px;">Mis Eventos</h3>
+</div>
+
+<% if @admin_events.any? | @attendant_events.any? %>
+    <ul style="list-style-type: none; padding: 0; text-align: center;">
+    <% @admin_events.each do |event| %>
+        <li style="margin-bottom: 10px;">
+            <%= link_to event_path(event), style: "text-decoration: none; color: #333; background-color: #f5f5f5; padding: 10px; border-radius: 5px; display: flex; align-items: center; justify-content: center; width: 300px; margin: 0 auto;" do %>
+                <span style="margin-right: 5px; text-align: center;"><%= event.name %></span>
+                <span style="font-size: 14px; text-align: center;">(Administrador)</span>
+            <% end %>
+        </li>
+    <% end %>
+    <% @attendant_events.each do |event| %>
+        <li style="margin-bottom: 10px;">
+            <%= link_to event_path(event), style: "text-decoration: none; color: #333; background-color: #f5f5f5; padding: 10px; border-radius: 5px; display: flex; align-items: center; justify-content: center; width: 300px; margin: 0 auto;" do %>
+                <span style="margin-right: 5px; text-align: center;"><%= event.name %></span>
+            <% end %>
+        </li>
+    <% end %>
+    </ul>
+<% else %>
+    <h5 style="text-align: center;">No administras ni participas de ningún evento.</h5>
+<% end %>
+<br>
+<div class="block">
+  <h3 style="text-align: center; font-size: 24px;">Otros Eventos</h3>
+</div>
+
+    <% if @other_events.any? %>
+    <ul style="list-style-type: none; padding: 0; text-align: center;">
+    <% @other_events.each do |event| %>
+        <li style="margin-bottom: 10px;">
+            <%= link_to event_path(event), style: "text-decoration: none; color: #333; background-color: #f5f5f5; padding: 10px; border-radius: 5px; display: flex; align-items: center; justify-content: center; width: 300px; margin: 0 auto;" do %>
+                <span style="margin-right: 5px; text-align: center;"><%= event.name %></span>
+            <% end %>
+        </li>
+    <% end %>
+    </ul>
+    <% else %>
+        <h5 style="text-align: center;">No hay otros eventos disponibles.</h5>
+    <% end %>
+

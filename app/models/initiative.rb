@@ -7,13 +7,14 @@ class Initiative < ApplicationRecord
   has_many :events , dependent: :delete_all
   has_many :messages, dependent: :delete_all
   has_many :reports, dependent: :delete_all
+  has_one_attached :image
 
   def self.all_roles
     Role.where(resource_type: 'Initiative')
   end
 
-  validates :name, uniqueness: true,  presence: true
-  validates :topic, presence: true
+  validates :name, uniqueness: true,  presence: true, length: { maximum: 20 }
+  validates :topic, presence: true, length: { maximum: 30 }
   validates :description, presence: true
 
 
@@ -34,6 +35,9 @@ class Initiative < ApplicationRecord
   end
   def get_events
     self.events
+  end
+  def get_name
+    self.name
   end
 
 

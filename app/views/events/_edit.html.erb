@@ -1,7 +1,5 @@
-<button onclick="openModal('edit_event_popup');" class="button is-primary">
-   Editar
-</button>
-  
+
+
   <% if current_user.has_role?(:admin_initiative, @initiative) %>
     <div class="modal" id="edit_event_popup">
       <div class="modal-background"></div>
@@ -15,7 +13,7 @@
         </header>
         <%= form_with(model: @event,  method: :patch, remote: true) do |form| %>
         <section class="modal-card-body" style="text-align: center;">
-          
+
             <div class="field">
             <%= form.label 'Nombre', class: "label is-medium" %>
             <div class="control">
@@ -35,27 +33,28 @@
           <div class="control">
             <%= form.number_field :capacity, class: "input", required: true, placeholder: "100", min: 1 %>
           </div>
+          <%= form.hidden_field :initiative, value: @initiative.id %>
+          <%= form.hidden_field :update_type, value: 'data' %>
         </div>
-            
+
         </section>
         <footer class="modal-card-foot">
-            <%= form.hidden_field :update_type, value: 'data' %>
-            <%= form.submit "Guardar cambios", class: "button is-primary"%>
-            <% end %>
+          <div class="field is-grouped">
+            <div class="control">
+              <%= form.submit "Guardar cambios", class: "button is-primary"%>
+              <% end %>
+            </div>
 
-          <button class="button is-danger" onclick="closeModal('edit_event_popup');">
-            Cancelar
-          </button>
+            <div class="control">
+              <button class="button is-danger" onclick="closeModal('edit_event_popup');">
+                Cancelar
+              </button>
+            </div>
+          </div>
         </footer>
       </div>
     </div>
-  
-  
+
+
 
   <% end %>
-
- 
-
-	
-
-

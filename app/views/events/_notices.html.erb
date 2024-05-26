@@ -1,0 +1,33 @@
+
+<% if user_signed_in? && (current_user.has_role?(:attendant, @event)|current_user.has_role?(:admin_initiative, @event.initiative)) %>
+    <div class="block has-text-centered" data-theme="light">
+        <h3> Anuncios </h3>
+            <% if @notices.empty? %>
+                <h5><em>Este evento no tiene anuncios.</em></h5>
+            <% end %>
+            <% @notices.each do |notice| %>
+            <div class="card is-small">
+              <header class="card-header">
+              <div class="level is-mobile" style="width: 100%;">
+                <div class="level-left">
+                  <h5 class="card-header-title" style="padding: 0.5rem;"><%= notice.title %></h5>
+                </div>
+                <div class="level-right">
+                  <span class="tag" style="padding: 0.5rem;"><%= notice.created_at.strftime("%d/%m/%Y") %></span>
+                  <button class="card-header-icon" aria-label="more options" style="padding: 0.5rem;">
+                    <span class="icon">
+                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              </header>
+              <div class="card-content" style="padding: 0.5rem;">
+                <div class="content" style="margin: 0;">
+                  <p><%= notice.content %></p>
+                </div>
+              </div>
+            </div>
+            <% end %> 
+    </div>
+<% end %> 

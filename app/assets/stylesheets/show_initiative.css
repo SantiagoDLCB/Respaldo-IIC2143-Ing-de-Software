@@ -2,17 +2,6 @@ body {
     text-align: left;
 }
 
-
-/* app/assets/stylesheets/custom.css */
-/* app/assets/stylesheets/custom.css */
-/* app/assets/stylesheets/custom.css */
-/* app/assets/stylesheets/custom.css */
-/* app/assets/stylesheets/custom.css */
-/* app/assets/stylesheets/custom.css */
-/* chat_banner.scss */
-/* Consider using a more descriptive class name instead of `#chat-banner` */
-/* Oculta el input tipo checkbox */
-/* Oculta el input tipo checkbox */
 .toggle-checkbox {
     display: none;
 }
@@ -78,4 +67,62 @@ body {
 /* Estilo de los mensajes */
 .message {
     margin-bottom: 10px;
+}
+
+.background-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.background-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.button.is-primary1 {
+    &:hover {
+        background-color: #a1e0d7;
+    }
+}
+
+.button.is-danger1 {
+    background-color: rgba(255, 102, 133, 0.5);
+
+    &:hover {
+        background-color: rgba(255, 102, 133, 1);
+    }
+}
+
+.card {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.card-content {
+    max-height: 600px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#chat-body {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.custom-card {
+    padding: 0;
+    margin: 0;
+}
+
+.custom-card .card-content {
+    padding: 10px;
 }

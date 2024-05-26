@@ -13,11 +13,12 @@ class InitiativesController < ApplicationController
       current_user.add_role :admin_initiative, @initiative
       redirect_to initiative_path(@initiative.id) , notice: 'La iniciativa fue creada de manera exitosa.'
     else
+
       error1 = "No se ha podido crear la iniciativa, por favor revise que los datos esten bien ingresados."
       if @initiative.errors[:name].include?("has already been taken")
         error1 = "El nombre de la iniciativa ya existe. Por favor, elige un nombre diferente."
         end
-        redirect_to root_path, notice: error1
+        redirect_to root_path, alert: error1
     end
   end
 
@@ -38,6 +39,7 @@ class InitiativesController < ApplicationController
     @all_requests = @initiative.requests
     @active_requests = @initiative.requests.where(status: :pending)
     @old_requests = @initiative.requests.where(status: [:accepted, :denied])
+    @old_events = Event.where(capacity: false).where(initiative: @initiative)
   end
 
   def destroy
@@ -53,7 +55,7 @@ class InitiativesController < ApplicationController
 
     if @type == 'data'
       if @initiative.update(initiative_params)
-        redirect_to initiative_path(@initiative) , notice: "La iniciativa fue actualizada exitosamente"
+        redirect_to initiative_path(@initiative) , notice: "La iniciativa fue actualizada exitosamente."
       else
         render :edit
       end
@@ -65,7 +67,7 @@ class InitiativesController < ApplicationController
         @user.add_role :member, @initiative
         @user.remove_role :admin_initiative, @initiative
         if @user.has_role? :member, @initiative
-          redirect_to initiative_path(@initiative), notice: 'El usuario ya no es administrador'
+          redirect_to initiative_path(@initiative), notice: 'El usuario ya no es administrador.'
         else
           render :edit
         end
@@ -74,7 +76,7 @@ class InitiativesController < ApplicationController
         @user.remove_role :admin_initiative, @initiative
 
         if !@user.has_role?(:member, @initiative) && !@user.has_role?(:admin_initiative, @initiative)
-          redirect_to initiative_path(@initiative), notice: 'El usuario fue expulsado de la iniciativa'
+          redirect_to initiative_path(@initiative), notice: 'El usuario fue expulsado de la iniciativa.'
         else
           render :edit
         end
@@ -88,17 +90,17 @@ class InitiativesController < ApplicationController
   def search_users
     @users = User.where("email LIKE ?", "%#{params[:query]}%")
   end
+
   def chat_reload
     @initiative = Initiative.find(params[:id])
     @chat = @initiative.messages
     render partial: 'chat', locals: { initiative: @initiative, chat: @chat }
   end
 
-
     private
 
   def add_admin(user, initiative)
-    user = User.find(params[:initiative][:user_id])
+    # user = User.find(params[:initiative][:user_id])
     user.remove_role :member, initiative
     events = @initiative.events
     events.each do |event|
@@ -108,7 +110,7 @@ class InitiativesController < ApplicationController
 
 
     if @user.has_role? :admin_initiative, @initiative
-      redirect_to initiative_path(@initiative), notice: 'El usuario ahora es administrador'
+      redirect_to initiative_path(@initiative), notice: 'El usuario ahora es administrador.'
     else
       render :edit
     end
@@ -123,10 +125,10 @@ class InitiativesController < ApplicationController
   end
 
   def initiative_params
-    params.require(:initiative).permit(:name, :topic, :description)
+    params.require(:initiative).permit(:name, :topic, :description, :image)
   end
 
   def new_initiative_params
-    params.permit(:name, :topic, :description)
+    params.permit(:name, :topic, :description, :image)
   end
 end

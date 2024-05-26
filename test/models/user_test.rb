@@ -45,15 +45,15 @@ class UserTest < ActiveSupport::TestCase
     # Crear un nuevo usuario sin roles asignados
     new_user = User.new(
       email: "thirduser@uc.cl",
-      username: "fourthuser",
+      username: "otheruser",
       name: "New",
       last_name: "User",
       password: "password123"
     )
-  
+
     # Intentar guardar el nuevo usuario
     assert new_user.save, "Failed to save new user: #{new_user.errors.full_messages.join(", ")}"
-  
+
     # Verificar que el rol predeterminado se asigna correctamente
     assert new_user.has_role?(:normal_user), "Expected user to have the :normal_user role after creation"
   end
@@ -75,7 +75,7 @@ class UserTest < ActiveSupport::TestCase
       @user.destroy
     end
   end
-  
+
   test "should delete associated requests before destroy" do
     assert_difference 'Request.count', -@user.requests.count do
       @user.destroy

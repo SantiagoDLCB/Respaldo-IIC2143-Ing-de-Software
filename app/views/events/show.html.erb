@@ -6,121 +6,123 @@
 </head>
 
 <body>
-    <h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;">Evento <%=@event.name%></h1>
-    
-    <div class="columns">
-    <div class="column is-half is-offset-1">
-      <div class="buttons">
-        <button onclick="window.location.href = '<%= initiative_path(@initiative) %>';" class="button is-primary">Volver a la iniciativa</button>
+  <main class="container">
+    <section class="hero is-small background-image" style="background-image: url('<% if @initiative.persisted? && @initiative.image.attached? %><%= url_for(@initiative.image) %><% else %><%= asset_path('initiative_blank.jpg') %><% end %>');">
+      <div class="hero-body">
+          <br><br>
+          <h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;">Evento: <%=@event.name%></h1>
+          <br><br>
+      </div>
+    </section>
 
-        <!-- Si es admin del evento -->
-        <% if current_user.has_role?(:admin_initiative, @initiative) %>
-          <% if @event.is_active? %>
-            <button onclick="openModal('attendants_popup');" class="button is-primary">Administrar Participantes</button>
-            <div data-theme="light">
-              <%= render 'attendants_popup' %>
-            </div>
-            <div data-theme="light">
-              <%= render 'edit' %>
-            </div>
-            <%= form_with(model: @event, url: event_path(@event), method: :patch) do |form| %>
-              <%= form.hidden_field :capacity, value: 0  %>
-              <%= form.hidden_field :update_type, value: 'data' %>
-              <button type="submit" class="button is-danger is-primary">
-                Finalizar evento
-              </button>
+<br><br>
+
+  <div class = "columns">
+      <div class="column is-4 is-offset-1">
+        <% if not @event.is_active? %>
+          <div class="block">
+            <h2>Evento finalizado</h2>
+          </div>
+        <% end %>
+        <div class="block">
+          <br><h3>Iniciativa que organiza</h3>
+          <h5><%= @initiative.name %></h5>
+        </div>
+        
+        <div class="block">
+          <h3>Descripción</h3>
+          <h5><%=@event.description%></h5>
+        </div>
+
+
+        <% if @event.is_active? %>
+          <div class="block">
+            <h3>Miembros actuales</h3><br>
+            <% if @event.get_attendants.empty? %>
+              <h5><em>Este evento no tiene miembros.</em></h5>
             <% end %>
-          <% end %>          
-          <%= button_to "Eliminar evento", event_path(@event), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas eliminar este evento?" }, class: "button is-danger" %>
+            <ul>
+              <% @event.get_attendants.each do |member| %>
+                <div class="block" data-theme="light">
 
-        <!-- Si es miembro del evento -->
-        <% elsif current_user.has_role?(:attendant, @event) %>
-          <%= button_to "Salir del evento", remove_user_role_event_path(@event), method: :delete, data: { turbo_confirm: "¿Estás seguro de que deseas salirte de este evento?" }, class: "button is-danger" %>
-
-        <!-- Si no es miembro del evento (los eventos no tienen necesitan solicitudes, todos se unen automaticamente) -->
-        <% elsif not current_user.has_role?(:attendant, @event) && @event.is_active?%>
-          <%= form_with(model: @event, url: add_user_role_event_path(@event), method: :post) do |form| %>
-            <%= form.hidden_field :update_type, value: 'join' %>
-            <button type="submit" class="button is-primary">Unirse al evento</button>     
-          <% end %>
+        
+            <div class="media ">
+            <div class="media-left">
+                <figure class="image ">
+                  <% if member.persisted? && member.avatar.attached? %>
+                    <%= image_tag url_for(member.avatar), class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
+                  <% else %>
+                    <%= image_tag asset_path('user_blank.jpg'), class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
+                  <% end %>
+                </figure>
+              </div>
+              <div class="media-content"> 
+              <h5 style= "align-items: center; display: flex;"> <%= member.name %> <%= member.last_name %></h5>
+                </div>
+            </div>
+            </div>
+              <% end %>
+            </ul>
+          </div>
+        
+          <div class="block">
+            <!-- Mostrar la cantidad de miembros actuales / capacidad total -->
+            <h3>Capacidad</h3>
+            <h5><%= @event.get_attendants.count %>/<%= @event.capacity %></h5>
+          </div>
 
         <% end %>
-      </div>
-    </div>
-    </div>
 
-
-  <div class="columns">
-    <div class="column is-four-fifths is-offset-1">
-    <% if not @event.is_active? %>
-      <div class="block">
-      <h2>Evento finalizado</h2>
-      </div>
-    <% end %>
-    <div class="block">
-      <br><h3>Iniciativa que organiza</h3>
-      <h5><%= @initiative.name %></h5>
-    </div>
-    
-    <div class="block">
-      <h3>Descripción</h3>
-      <h5><%=@event.description%></h5>
-    </div>
-
-
-    <% if @event.is_active? %>
-      <div class="block">
-        <h3>Miembros actuales</h3>
-        <% if @event.get_attendants.empty? %>
-          <h5><em>Este evento no tiene miembros.</em></h5>
-        <% end %>
-        <ul>
-          <% @event.get_attendants.each do |user| %>
-            <li><h5><%= user.name %> <%= user.last_name %></h5></li>
-          <% end %>
-        </ul>
       </div>
       
-      <div class="block">
-      <!-- Mostrar la cantidad de miembros actuales / capacidad total -->
-      <h3>Capacidad</h3>
-      <h5><%= @event.get_attendants.count %>/<%= @event.capacity %></h5>
-      </div>
-
-    <% end %>
-    
-
-
-    <div class="block">
-      <div data-theme="light">
-        <h3>Reseñas<aside></aside></h3>
-        <%= render 'review_popup' %>
-      </div>
-      <% if @reviews.empty? %>
-        <h5><em>Este evento no tiene reviews.</em></h5>
+      <% if @event.is_active? %>
+        <div class="column is-3 is-offset-4">
+          <div data-theme="light"><%= render 'menu'%></div>
+        </div>
       <% end %>
 
-        <% @reviews.each do |review| %>
-        <ul>
-          <h5><strong><%= review.user.username %>:</strong>
-          <%= review.calification %> -->
-          <%= review.content %></h5>
-        </ul>
+  </div>
 
+  <br><hr>
+  <div class = "columns">
+    <div class="column is-8 is-offset-2">
+      <div class="block has-text-centered" data-theme="light">
+        <h3>Reseñas</h3>
+
+        <% if @reviews.empty? %>
+          <h5><em>Este evento no tiene reviews.</em></h5>
+        <% else %>
+          <% @reviews.each do |review| %>
+            <div class="box">
+              <div class="level mb-1">
+                <div class="level-left">
+                  <span class="tag is-dark">@<%= review.user.username %></span>
+                </div>
+                <div class="level-right">
+                  <span class="tag is-warning">
+                    <%= review.calification %>/5
+                  </span>
+                </div>
+              </div>
+              <div class="content" style="text-align: left;">
+                <%= review.content %>
+              </div>
+            </div>
+          <% end %>
         <% end %>
-    </div>
-
-
-    <!-- Por implementar -->
-    <div class="block">
-      <h3> Anuncios </h3>
-      <h5> Por implementar </h5>
-    </div>
-
+      </div>
     </div>
   </div>
 
-  <br>
-  <br>
+
+  <div class="columns">
+    <!-- Anuncios -->
+    <div class="column is-8 is-offset-2">
+      <%= render 'notices'%>
+    </div>
+  </div>
+
+  </main>
+  <br><br><br>
 </body>
 </html>

@@ -35,7 +35,7 @@
 
   <br><hr><br>
 
-  <h2>Iniciativas recientes</h2>
+  <h2>Iniciativas recientes</h2><br/>
   <ul style="list-style-type: none; padding: 0;">
     <% @recent_initiatives.each do |initiative| %>
       <div class="block" data-theme="light">
@@ -44,8 +44,12 @@
         <div class="card-content">
           <div class="media">
             <div class="media-left">
-              <figure class="image is-48x48">
-                <img src="<%= asset_path 'jorge-munoz.jpg' %>" alt="Placeholder image"/>
+              <figure class="image">
+                <% if initiative.persisted? && initiative.image.attached? %>
+                  <%= image_tag url_for(initiative.image), style: "height: 56px; width: auto;" %>
+                <% else %>
+                  <%= image_tag asset_path('campus_sj.jpg'), style: "height: 56px; width: auto;" %>
+                <% end %>
               </figure>
             </div>
             <div class="media-content">
@@ -70,22 +74,15 @@
 
   <h2> Galería de fotos </h2>
     <div class="second">
-      <div class="gallery">
-        <img src="<%= asset_path 'jorge-munoz.jpg' %>" alt="Foto 1">
-        <div class="desc">Jorge Muñoz</div>
-      </div>
-
-      <div class="gallery">
-        <img src="<%= asset_path 'jorge-munoz2.jpg' %>" alt="Foto 2">
-        <div class="desc">Jorge Muñoz</div>
-      </div>
-
-      <div class="gallery">
-        <img src="<%= asset_path 'jorge-munoz3.jpeg' %>" alt="Foto 3">
-        <div class="desc">Jorge Muñoz</div>
+      <div class="columns">
+        <% ['i1.png', 'i2.png', 'i3.png', 'i4.png', 'i5.png', 'i6.png','i7.jpg'].each do |foto| %>
+          <div class="column is-1 image-column">
+            <figure class="image is-128x128">
+              <img src="<%= asset_path foto %>" />
+            </figure>
+          </div>
+        <% end %>
       </div>
     </div>
-  </div>
 </main>
-<br>
 </body>

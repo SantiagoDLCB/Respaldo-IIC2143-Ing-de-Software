@@ -25,3 +25,10 @@ third_user:
   name: Third
   last_name: User
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>
+
+fourth_user:
+  email: fourth@uc.cl
+  username: fourthuser
+  name: Fourth
+  last_name: User
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password123') %>

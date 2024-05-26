@@ -1,11 +1,4 @@
 <% if user_signed_in? && (current_user.has_role?(:member, @initiative) or current_user.has_role?(:admin_initiative, @initiative)) %>
-
-  <div align="right" style="margin: 10px;">
-    <button onclick="openModal('chat_popup');" class="button is-primary">
-      Chat
-    </button>
-  </div>
-
   <div class="modal" id="chat_popup">
     <div class="modal-background"></div>
     <div class="modal-card">
@@ -18,7 +11,7 @@
       <section class="modal-card-body" style="text-align: center;" id="chat-body">
         <%= turbo_stream_from @initiative %>
         <div id="messages">
-          <%= render @messages %>
+          <%= render @messages, user: current_user %>
         </div>
       </section>
       <%= form_with(model: @message, url: initiative_messages_path(@initiative), method: :post) do |form| %>
@@ -36,7 +29,7 @@
               <%= form.submit "Enviar Mensaje", class: "button is-primary" %>
             </div>
             <div class="control">
-              <button type="button" class="button is-danger" onclick="closeModal('chat_popup');">
+              <button class="button is-danger" onclick="closeModal('chat_popup');">
                 Cancelar
               </button>
             </div>

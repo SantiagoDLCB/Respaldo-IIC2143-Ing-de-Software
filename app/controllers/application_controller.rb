@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:avatar])
     devise_parameter_sanitizer.permit(:account_update, keys: [:avatar])
-    def after_sign_out_path_for(resource_or_scope)
+    def after_sign_out_path_for(_resource_or_scope)
       after_sign_out_path
     end
   end

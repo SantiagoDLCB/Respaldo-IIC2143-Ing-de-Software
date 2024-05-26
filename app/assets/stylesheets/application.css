@@ -19,6 +19,15 @@
     }
 }
 
+.permanent-notification {
+    position: fixed !important;
+    top: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    padding: 10px 20px !important;
+    animation: none !important;
+}
+
 strong {
     color: black;
 }

@@ -24,7 +24,7 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
     @request.status = request_params[:status]
     if @request.save
-      flash[:notice] =  @request.status.status_before_type_cast
+      flash[:notice] =  @request.status_before_type_cast
       if @request.status == "accepted" or @request.status == "denied"
         redirect_to initiative_path(@request.initiative)
       else

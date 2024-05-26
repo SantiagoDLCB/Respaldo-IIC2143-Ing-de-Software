@@ -6,12 +6,14 @@
     <%= render 'new' %>
 </div>
 
-<h3 style="text-align: center;">Mis Iniciativas</h3>
+<div class="block">
+  <h3 style="text-align: center; font-size: 24px;">Mis Iniciativas</h3>
+</div>
 <% if @all_initiatives.where(id: current_user.roles.where(name: ['admin_initiative','member']).pluck(:resource_id)).any? %>
 <ul style="list-style-type: none; padding: 0; text-align: center;">
     <% @all_initiatives.where(id: current_user.roles.where(name: ['admin_initiative']).pluck(:resource_id)).each do |initiative| %>
         
-        <div class="block" data-theme="light">
+      <div class="block" data-theme="light">
         
         <li style="margin-bottom: 10px;">
             <%= link_to initiative_path(initiative), style: "text-decoration: none;width: 400px; color: #333; background-color: #f5f5f5; border-radius: 5px; display: flex; align-items: center; justify-content: center; margin: 0 auto;" do %>
@@ -31,14 +33,14 @@
                 </div>
             <% end %>
             </div>
-            </li>
-            </div>
-            <% end %>
+        </li>
+      </div>
+<% end %>
 </ul>
 
 <ul style="list-style-type: none; padding: 0; text-align: center;">
 <% @all_initiatives.where(id: current_user.roles.where(name: ['member']).pluck(:resource_id)).each do |initiative| %>
-<div class="block" data-theme="light">
+<div class="block mt-5" data-theme="light">
         
 <li style="margin-bottom: 10px;">
     <%= link_to initiative_path(initiative), style: "text-decoration: none;width: 400px; color: #333; background-color: #f5f5f5; border-radius: 5px; display: flex; align-items: center; justify-content: center; margin: 0 auto;" do %>
@@ -58,9 +60,9 @@
     <% end %>
     </div>
     </li>
-    </div>    
+</div>    
 
-    <% end %>
+<% end %>
 </ul>
 
 <% else %>
@@ -68,7 +70,9 @@
 <% end %>
 
 <br>
-<h3 style="text-align: center;">Otras Iniciativas</h3>
+<div class="block">
+  <h3 style="text-align: center; font-size: 24px;">Otras Iniciativas</h3>
+</div>
 <% if @all_initiatives.where.not(id: current_user.roles.where(name: ['admin_initiative', 'member']).pluck(:resource_id)).any? %>
 <ul style="list-style-type: none; padding: 0; text-align: center;">
     <% @all_initiatives.where.not(id: current_user.roles.where(name: ['admin_initiative', 'member']).pluck(:resource_id)).each do |initiative| %>

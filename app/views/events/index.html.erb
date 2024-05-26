@@ -1,8 +1,10 @@
 
 <br>
 <h2 style="text-align: center;">Página de Eventos</h2><br><br>
-<h3 style="text-align: center;">Mis Eventos</h3>
 
+<div class="block">
+  <h3 style="text-align: center; font-size: 24px;">Mis Eventos</h3>
+</div>
 
 <% if @admin_events.any? | @attendant_events.any? %>
     <ul style="list-style-type: none; padding: 0; text-align: center;">
@@ -26,7 +28,9 @@
     <h5 style="text-align: center;">No administras ni participas de ningún evento.</h5>
 <% end %>
 <br>
-<h3 style="text-align: center;">Otros Eventos</h3>
+<div class="block">
+  <h3 style="text-align: center; font-size: 24px;">Otros Eventos</h3>
+</div>
 
     <% if @other_events.any? %>
     <ul style="list-style-type: none; padding: 0; text-align: center;">

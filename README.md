@@ -47,6 +47,7 @@ Para evitar lo anterior, recomendamos fuertemente probar el chat en [Iniciativas
 
 | Username | Correo | Contraseña |
 |----------|--------|------------|
+| Dios    | <jmun@uc.cl>    | DCChavales    | Administrador de la página
 | vjsm    | <vjsm@uc.cl>    | DCClave    |
 | ainfantep   | <a.infante@uc.cl>    | DCContraseña    |
 | sa.dlcb    | <sa.delacarrera@uc.cl>    | DCCifrado    |

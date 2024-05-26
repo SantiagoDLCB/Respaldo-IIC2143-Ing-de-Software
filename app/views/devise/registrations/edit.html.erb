@@ -22,7 +22,7 @@
 <% end %>
 <br>
 <div style="text-align: center; ">
-  <span class="tag">@<%= current_user.username %></span>
+  <span class="tag is-medium" data-theme="light">@<%= current_user.username %></span>
 </div>
 </div>
 </div>
@@ -137,19 +137,19 @@
   <h4><%= render "devise/shared/error_messages", resource: resource %></h4>
 <div class="columns is-centered">
 <div class="column ">
-<div class="card is-small", style= "height: 215px" data-theme="light">
+<div class="card is-small", style= "height: 230px" data-theme="light">
   
   <div class="card-content ">
     <div class="content">
     
     <div class="field">
     <%= f.label :username, "Nuevo username" %><br />
-    <%= f.text_field :username, autofocus: true, placeholder: "usuario" %>
+    <%= f.text_field :username,class: "input is-small", autofocus: true, placeholder: "usuario" %>
   </div>
 
   <div class="field">
     <%= f.label :email, "Nuevo correo" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, class: "input is-small",autofocus: true, autocomplete: "email" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -180,13 +180,13 @@
 </div>
 <div class="column">
 
-<div class="card is-small" , style= "height: 215px" data-theme="light">
+<div class="card is-small" , style= "height: 230px" data-theme="light">
 <div class="card-content ">
 <div class="content">
 
 <div class="field">
 <%= f.label :password, "Nueva contraseña" %> <i><br>Dejar en blanco si no desea cambiarla</i><br />
-<%= f.password_field :password, autocomplete: "new-password" %>
+<%= f.password_field :password, class: "input is-small", autocomplete: "new-password" %>
 <% if @minimum_password_length %>
   <br />
   <em><%= @minimum_password_length %> caracteres mínimo</em>
@@ -195,7 +195,7 @@
 
 <div class="field">
 <%= f.label :password_confirmation, "Confirmar contraseña" %><br />
-<%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+<%= f.password_field :password_confirmation, class: "input is-small", autocomplete: "new-password" %>
 </div>
 
 </div>
@@ -205,14 +205,14 @@
 </div>
 
 <div class="column is-one-quarter">
-<div class="card is-small" , style= "height: 215px" data-theme="light">
+<div class="card is-small" , style= "height: 230px" data-theme="light">
 
 <div class="card-content ">
 <div class="content">
 
 <div class="field " style="text-align: center">
-<%= f.label :current_password, "Contraseña actual" %> <br><i>(para confirmar los cambios)</i><br />
-<%= f.password_field :current_password, autocomplete: "current-password" %>
+<%= f.label :current_password, "Contraseña actual" %> <br><i>Para confirmar los cambios</i><br />
+<%= f.password_field :current_password, class: "input", autocomplete: "current-password" %>
 </div>
 <br>
 <div style="display: flex; justify-content: center; align-items: center;">

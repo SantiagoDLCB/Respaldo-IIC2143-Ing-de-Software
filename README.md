@@ -32,6 +32,7 @@ La página de desarrollo se encuentra en el siguiente enlace:
 
 ## Supuestos y consideraciones
 
+- El administrador de la página, cuyas credenciales se encuentran en la siguiente sección, tiene todos las cualidades de un usuario normal pero también tiene en la barra superior un botón 'Administrar' que le permite administrar toda la página.
 - En la capacidad de los eventos no se toman en cuenta los administradores, ya que, como ellos lo organizan, saben cuántos son y lo tendrán en cuenta para cualquier cálculo.
 - Si el administrador de la página quiere cerrar un evento, basta con ponerle capacidad 0.
 - Al iniciar sesión se redirije directamente a la página de iniciativas, ya que es la base de toda la página y por donde es recomendable iniciar la  navegación.
@@ -51,7 +52,7 @@ Para evitar lo anterior, recomendamos fuertemente evitar probar el chat localmen
 |----------|--------|------------|
 | Dios    | <jmun@uc.cl>    | DCChavales    | 
 | vjsm    | <vjsm@uc.cl>    | DCClave    |
-| ainfantep   | <a.infante@uc.cl>    | DCContraseña    |
+| ainfantep   | <ainfante@uc.cl>    | DCContraseña    |
 | sa.dlcb    | <sa.delacarrera@uc.cl>    | DCCifrado    |
 
 *El usuario Dios corresponde al administrador general de la página.

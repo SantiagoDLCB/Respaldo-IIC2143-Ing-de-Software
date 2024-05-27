@@ -52,7 +52,7 @@ Para evitar lo anterior, recomendamos fuertemente evitar probar el chat localmen
 |----------|--------|------------|
 | Dios    | <jmun@uc.cl>    | DCChavales    | 
 | vjsm    | <vjsm@uc.cl>    | DCClave    |
-| ainfantep   | <ainfante@uc.cl>    | DCContraseña    |
+| ainfantep   | <a.infante@uc.cl>    | DCContraseña    |
 | sa.dlcb    | <sa.delacarrera@uc.cl>    | DCCifrado    |
 
 *El usuario Dios corresponde al administrador general de la página.

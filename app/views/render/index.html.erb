@@ -21,7 +21,7 @@
         <div class="is-flex is-justify-content-center is-align-items-center" data-theme="light">
           <div class="box" style="width: 35%;">
             <!-- Botones de inicio de sesión y unirse -->
-            <h2 style="font-size:16px; color: black;"> ¡Regístrate o inicia sesión para explorar las iniciativas y unirte a ellas! </h2>
+            <h2 style="text-align:center; font-size:16px; color: black;"> ¡Regístrate o inicia sesión para explorar las iniciativas y unirte a ellas! </h2>
             <div class="main-button button-container">
               <% if not user_signed_in? %>
                 <%= button_to "Registrarse", new_user_registration_path, method: :get, class: "button is-link" %>

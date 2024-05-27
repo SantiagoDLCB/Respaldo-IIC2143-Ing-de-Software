@@ -3,7 +3,7 @@
 <div class="columns is-centered">
 <div class="column is-one-third" data-theme="light">
 <div class="box" style="background-color: rgba(255, 255, 255, 0.5);">
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+<%= form_for(resource, as: resource_name, url: new_password_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field" style= "text-align:center">
@@ -17,6 +17,7 @@
     <%= button_to  "Enviar instrucciones", root_path, class: "button is-link"%>
   </div>
 <% end %><br>
+
 <div class="actions" style="display: flex;justify-content: center; gap: 10px;"">
 <%= button_to "Registrarse", new_user_registration_path, method: :get, class: "button is-link is-light" %>
 <%= button_to "Iniciar sesión", new_user_session_path, method: :get, class: "button is-link is-light" %>

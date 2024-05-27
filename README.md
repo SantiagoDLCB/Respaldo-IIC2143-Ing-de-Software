@@ -32,6 +32,7 @@ La página de desarrollo se encuentra en el siguiente enlace:
 
 ## Supuestos y consideraciones
 
+- El administrador de la pagina tiene todos las cualidades de un usuario normal pero tambien tiene en la barra superior un boton 'Administrar' que le permite administra toda la pagina
 - En la capacidad de los eventos no se toman en cuenta los administradores, ya que, como ellos lo organizan, saben cuántos son y lo tendrán en cuenta para cualquier cálculo.
 - Si el administrador de la página quiere cerrar un evento, basta con ponerle capacidad 0.
 - Al iniciar sesión se redirije directamente a la página de iniciativas, ya que es la base de toda la página y por donde es recomendable iniciar la  navegación.

@@ -1,0 +1,9 @@
+<h1>Upcoming Events</h1>
+
+<ul>
+  <% @events.items.each do |event| %>
+    <li><%= event.summary %> (<%= event.start.date_time || event.start.date %> - <%= event.end.date_time || event.end.date %>)</li>
+  <% end %>
+</ul>
+
+<%= link_to 'New Event', new_calendar_path %>

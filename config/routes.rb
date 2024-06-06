@@ -78,4 +78,7 @@ end
 
 get '/after_sign_out', to: 'application#after_sign_out', as: :after_sign_out
 
+get '/redirect', to: 'calendars#redirect', as: 'redirect'
+get '/callback', to: 'calendars#callback', as: 'callback'
+
 end

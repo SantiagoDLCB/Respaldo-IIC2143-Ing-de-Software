@@ -2,7 +2,7 @@
 
 Repositorio del proyecto semestral de Ingeniería de Software.
 
-Actualmente en: **Sprint 2**.
+Actualmente en: **Sprint 3**.
 
 ## Participantes
 
@@ -16,9 +16,13 @@ Actualmente en: **Sprint 2**.
 
 - Shantal Fabri
 
-## Fecha de entrega S2
+## Fecha de entrega S3
 
-Domingo 26 de mayo, 23:59.
+Viernes 14 de junio, 23:59.
+
+## Fecha de presentación final
+
+Lunes 17 de junio.
 
 ## Ruta de la aplicación
 
@@ -50,7 +54,7 @@ Para evitar lo anterior, recomendamos fuertemente evitar probar el chat localmen
 
 | Username | Correo | Contraseña |
 |----------|--------|------------|
-| Dios    | <jmun@uc.cl>    | DCChavales    | 
+| Dios    | <jmun@uc.cl>    | DCChavales    |
 | vjsm    | <vjsm@uc.cl>    | DCClave    |
 | ainfantep   | <a.infante@uc.cl>    | DCContraseña    |
 | sa.dlcb    | <sa.delacarrera@uc.cl>    | DCCifrado    |

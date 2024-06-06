@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Controlador que maneja las respuestas de OmniAuth, la gema de autenticación de terceros, gestionado por Devise.
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]

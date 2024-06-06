@@ -1,4 +1,4 @@
-# app/models/notice.rb
+# Clase que representa un anuncio, y que pertenece a un evento.
 class Notice < ApplicationRecord
   belongs_to :event
   validates :title,  presence: true

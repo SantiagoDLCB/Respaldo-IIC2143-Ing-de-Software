@@ -1,3 +1,4 @@
+# Clase que representa un rol de usuario.
 class Role < ApplicationRecord
   has_and_belongs_to_many :users, :join_table => :users_roles
   belongs_to :resource,
@@ -8,7 +9,4 @@ class Role < ApplicationRecord
             :inclusion => { :in => Rolify.resource_types },
             :allow_nil => true
   scopify
-
-
-
 end

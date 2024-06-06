@@ -1,3 +1,4 @@
+# Clase que representa un usuario en el sistema.
 class User < ApplicationRecord
   rolify
   after_create :assign_default_role
@@ -11,6 +12,7 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :delete_all
   mount_uploader :avatar, AvatarUploader
 
+  # Elimina los recursos asociados al usuario
   def delete_associated_resources
     self.initiatives.each do |initiative|
       if self.has_role?(:admin_initiative, initiative)
@@ -29,22 +31,27 @@ class User < ApplicationRecord
     end
   end
 
+  # Elimina las solicitudes asociadas al usuario
   def delete_associated_requests
     self.requests.destroy_all
   end
 
+  # Elimina los mensajes asociados al usuario
   def delete_associated_messages
     self.messages.destroy_all
   end
+
+  # Elimina los reportes hechos por el usuario
   def delete_associated_reports
     self.reports.destroy_all
   end
+
+  # Elimina las reseñas hechas por el usuario
   def delete_associated_reviews
     self.reviews.destroy_all
   end
 
-
-
+  # Asigna el rol de normal_user por defecto al usuario
   def assign_default_role
     self.add_role(:normal_user) if self.roles.blank?
   end

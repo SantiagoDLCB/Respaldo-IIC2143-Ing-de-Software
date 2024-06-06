@@ -5,6 +5,10 @@ SimpleCov.start 'rails' do
   add_filter '/app/channels/'
   add_filter '/app/jobs/'
   add_filter '/app/mailers/'
+  add_filter 'app/uploaders/'
+  add_filter 'app/controllers/users/unlocks_controller.rb'
+  add_filter 'app/controllers/users/confirmations_controller.rb'
+  add_filter 'app/controllers/users/omniauth_callbacks_controller.rb'
 
   add_group 'Models', 'app/models'
   add_group 'Controllers', 'app/controllers'

@@ -7,10 +7,10 @@
 <div class="columns is-centered">
 <div class="column is-one-third is-offset-1">
 <div class="container">
-<% if current_user.persisted? && current_user.avatar.attached? %>
+<% if current_user.persisted? && current_user.avatar.present? %>
 <div style="display: flex;justify-content: center;">
 <figure class="image" >
-<%= image_tag url_for(current_user.avatar), class: "is-rounded", style: "border-radius: 50%; width: 256px; height: 256px; object-fit: cover" %>
+<%= image_tag current_user.avatar.url, class: "is-rounded", style: "border-radius: 50%; width: 256px; height: 256px; object-fit: cover" %>
 </figure>
 </div>
 <% else %>
@@ -234,8 +234,8 @@
 <div class="columns  is-centered">
 <div class="card" , style= "height: 170px; width: 400px" data-theme="light">
 <br>
-<p style="text-align: center">Creación de la cuenta: <%= current_user.created_at %></p>
-<p style="text-align: center">Última modificación: <%= current_user.updated_at %></p>
+<p style="text-align: center">Creación de la cuenta: <%= current_user.created_at.to_time.localtime.strftime("%Y-%m-%d %H:%M:%S") %></p>
+<p style="text-align: center">Última modificación: <%= current_user.updated_at.to_time.localtime.strftime("%Y-%m-%d %H:%M:%S") %></p>
 <br>
 
 <div style="display: flex; justify-content: center; align-items: center;">

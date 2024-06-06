@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :messages, dependent: :delete_all
   has_many :reports, dependent: :delete_all
   has_many :reviews, dependent: :delete_all
-  has_one_attached :avatar
+  mount_uploader :avatar, AvatarUploader
 
   def delete_associated_resources
     self.initiatives.each do |initiative|

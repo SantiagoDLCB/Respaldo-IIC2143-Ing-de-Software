@@ -6,7 +6,7 @@
 
 <body>
   <main class="container">
-    <section class="hero is-small background-image" style="background-image: url('<% if @initiative.persisted? && @initiative.image.attached? %><%= url_for(@initiative.image) %><% else %><%= asset_path('initiative_blank.jpg') %><% end %>');">
+    <section class="hero is-small background-image" style="background-image: url('<% if @initiative.persisted? && @initiative.image.present? %><%= @initiative.image.url %><% else %><%= asset_path('initiative_blank.jpg') %><% end %>');">
       <div class="hero-body">
           <br><br>
           <h1 style="font-size: 45px; font-family: 'Courier', monospace; font-weight: bold; color: white; text-align: center;"><%= @initiative.name %></h1>
@@ -61,8 +61,8 @@
             <div class="media ">
             <div class="media-left">
                 <figure class="image ">
-                  <% if admin.persisted? && admin.avatar.attached? %>
-                    <%= image_tag url_for(admin.avatar), class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
+                  <% if admin.persisted? && admin.avatar.present? %>
+                    <%= image_tag admin.avatar.url, class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
                   <% else %>
                     <%= image_tag asset_path('user_blank.jpg'), class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
                   <% end %>
@@ -89,8 +89,8 @@
             <div class="media ">
             <div class="media-left">
                 <figure class="image ">
-                  <% if member.persisted? && member.avatar.attached? %>
-                    <%= image_tag url_for(member.avatar), class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
+                  <% if member.persisted? && member.avatar.present? %>
+                    <%= image_tag member.avatar.url, class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
                   <% else %>
                     <%= image_tag asset_path('user_blank.jpg'), class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
                   <% end %>

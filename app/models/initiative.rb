@@ -7,7 +7,7 @@ class Initiative < ApplicationRecord
   has_many :events , dependent: :delete_all
   has_many :messages, dependent: :delete_all
   has_many :reports, dependent: :delete_all
-  has_one_attached :image
+  mount_uploader :image, ImageUploader
 
   def self.all_roles
     Role.where(resource_type: 'Initiative')

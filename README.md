@@ -73,4 +73,4 @@ De lo contrario, al activar la opción de *parallelize* para ejecutar los tests,
 
 ## Documentación
 
-Se puede encontrar en [Documentación](doc/index.html)
+Para acceder a la documentación oficial de la aplicación, se debe abrir el archivo *doc/index.html* en el browser.

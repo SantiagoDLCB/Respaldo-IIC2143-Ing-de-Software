@@ -16,23 +16,17 @@ Actualmente en: **Sprint 3**.
 
 - Shantal Fabri
 
-## Fecha de entrega S3
+## Fecha de entrega y presentación
 
-Viernes 14 de junio, 23:59.
+Entrega S3: Viernes 14 de junio, 23:59.
 
-## Fecha de presentación final
-
-Lunes 17 de junio.
+Presentación final: Lunes 17 de junio.
 
 ## Ruta de la aplicación
 
-La aplicación puede ser accedida en el siguiente enlace:
+La aplicación puede ser accedida en el siguiente enlace: [Iniciativas Estudiantiles](https://iiee.onrender.com/)
 
-[Iniciativas Estudiantiles](https://iiee.onrender.com/)
-
-La página de desarrollo se encuentra en el siguiente enlace:
-
-[Dev Iniciativas Estudiantiles](https://dev67.onrender.com/)
+La página de desarrollo se encuentra en el siguiente enlace: [Dev Iniciativas Estudiantiles](https://dev67.onrender.com/)
 
 ## Supuestos y consideraciones
 

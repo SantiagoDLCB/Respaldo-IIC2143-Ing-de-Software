@@ -17,7 +17,7 @@ two:
   resource_id: 3
 
 three:
-  name: member_initiative
+  name: member
   resource_type: Initiative
   resource_id: 1
 

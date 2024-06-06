@@ -9,34 +9,45 @@
 
       <section class="modal-card-body">
         <!-- Administradores actuales -->
-        <div style="margin-bottom: 20px;">
-          <h3 class="subtitle">Administradores actuales</h3>
-          <div style="text-align: center;">
-            <h5 style="margin-right: 10px; color: black;"><%= current_user.name %> <%= current_user.last_name %> (Yo)</h5>
+        <h3 class="subtitle">Administradores</h3>
+        <div class="box">
+          <% if @admins.empty? %>
+            <h3>No hay administradores.</h3>
+          <% else %>
+            <ul style="list-style-type: none; padding: 0;">
             <% @admins.each do |admin| %>
               <% unless admin == current_user %>
-                <div style="display: flex; align-items: center; justify-content: center;">
-                  <h5 style="margin-right: 10px; color: black;"><%= admin.name %> <%= admin.last_name %></h5>
+              <li style="margin-bottom: 10px;">
+                <div style="display: flex; align-items: center;">
+                  <span style="margin-right: 10px;"><h5 style="color: black;"><%= admin.name %> <%= admin.last_name %></h5></span>
                   <%= button_to "Volver Miembro", initiative_path(@initiative), method: :patch, params: { initiative: {user_id: admin.id, update_type: 'remove_admin'} }, style: "padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
                   <%= button_to "Expulsar", initiative_path(@initiative), method: :patch, params: { initiative: {user_id: admin.id, update_type: 'remove_member'} }, style: "padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
                 </div>
+              </li>
               <% end %>
             <% end %>
-          </div>
+            </ul>
+          <% end %>
         </div>
 
         <!-- Miembros -->
-        <div>
-          <h3 class="subtitle">Miembros</h3>
-          <div style="text-align: center;">
+        <h3 class="subtitle">Miembros</h3>
+        <div class="box">
+          <% if @members.empty? %>
+            <h3>No hay miembros.</h3>
+          <% else %>
+            <ul style="list-style-type: none; padding: 0;">
             <% @members.each do |member| %>
-              <div style="display: flex; align-items: center; justify-content: center;">
-                <h5 style="margin-right: 10px; color: black;"><%= member.name %> <%= member.last_name %></h5>
-                <%= button_to "Hacer Administrador", initiative_path(@initiative), method: :patch, params: { initiative: {user_id: member.id, update_type: 'add_admin'} }, style: "padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
-                <%= button_to "Expulsar", initiative_path(@initiative), method: :patch, params: { initiative: {user_id: member.id, update_type: 'remove_member'} }, style: "padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
-              </div>
+              <li style="margin-bottom: 10px;">
+                <div style="display: flex; align-items: center;">
+                  <span style="margin-right: 10px;"><h5 style="color: black;"><%= member.name %> <%= member.last_name %></h5></span>
+                  <%= button_to "Hacer Administrador", initiative_path(@initiative), method: :patch, params: { initiative: {user_id: member.id, update_type: 'add_admin'} }, style: "padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
+                  <%= button_to "Expulsar", initiative_path(@initiative), method: :patch, params: { initiative: {user_id: member.id, update_type: 'remove_member'} }, style: "padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px; margin-left: 5px;", remote: true %>
+                </div>
+              </li>
             <% end %>
-          </div>
+            </ul>
+          <% end %>
         </div>
       </section>
 

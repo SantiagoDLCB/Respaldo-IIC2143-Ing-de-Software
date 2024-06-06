@@ -20,8 +20,8 @@
             <div class="media">
             <div class="media-left">
                 <figure class="image ">
-                  <% if initiative.persisted? && initiative.image.attached? %>
-                    <%= image_tag url_for(initiative.image), style: "border-radius: 4px;height: 56px; width: 100px;" %>
+                  <% if initiative.persisted? && initiative.image.present? %>
+                    <%= image_tag initiative.image.url, style: "border-radius: 4px;height: 56px; width: 100px;" %>
                   <% else %>
                     <%= image_tag asset_path('campus_sj.jpg'), style: "border-radius: 4px;height: 56px; width: 100px;" %>
                   <% end %>
@@ -47,8 +47,8 @@
     <div class="media">
     <div class="media-left">
         <figure class="image ">
-          <% if initiative.persisted? && initiative.image.attached? %>
-            <%= image_tag url_for(initiative.image), style: "border-radius: 4px;height: 56px; width: 100px;" %>
+          <% if initiative.persisted? && initiative.image.present? %>
+            <%= image_tag initiative.image.url, style: "border-radius: 4px;height: 56px; width: 100px;" %>
           <% else %>
             <%= image_tag asset_path('campus_sj.jpg'), style: "border-radius: 4px;height: 56px; width: 100px;" %>
           <% end %>
@@ -84,8 +84,8 @@
     <div class="media is-centered">
     <div class="media-left">
         <figure class="image ">
-          <% if initiative.persisted? && initiative.image.attached? %>
-            <%= image_tag url_for(initiative.image), style: "border-radius: 4px;height: 56px; width: 100px;" %>
+          <% if initiative.persisted? && initiative.image.present? %>
+            <%= image_tag initiative.image.url, style: "border-radius: 4px;height: 56px; width: 100px;" %>
           <% else %>
             <%= image_tag asset_path('campus_sj.jpg'), style: "border-radius: 4px;height: 56px; width: 100px;" %>
           <% end %>

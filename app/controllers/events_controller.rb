@@ -1,11 +1,15 @@
+# Clase que maneja la lógica de los eventos.
 class EventsController < ApplicationController
   before_action :authenticate_user!
   before_action :current_user_is_admin?, only: [:destroy, :update]
 
+  # Crea un nuevo evento
+  # @return [Event] el evento creado
   def new
     @event= Event.new
   end
 
+  # Crea un nuevo evento y redirige a la vista de eventos
   def create
     @event= Event.new(new_event_params)
     if @event.save
@@ -15,12 +19,16 @@ class EventsController < ApplicationController
     end
   end
 
+  # Retorna todos los eventos
+  # @return [Event] todos los eventos
   def index
     @admin_events = Event.joins(:initiative).where(initiatives: { id: current_user.roles.where(name: :admin_initiative).pluck(:resource_id) })
     @attendant_events = current_user.events.joins(:roles).where(roles: { name: :attendant }).distinct
     @other_events = Event.where.not(id: @admin_events.pluck(:id) + @attendant_events.pluck(:id))
   end
   
+  # Retorna un evento determinado
+  # @return [Event] el evento
   def show
     @event = Event.find(params[:id])
     @review = Review.new
@@ -30,6 +38,7 @@ class EventsController < ApplicationController
     @notices = @event.notices.order(created_at: :desc)
   end
 
+  # Elimina un evento y redirige a la vista de la iniciativa
   def destroy
     @event = Event.find(params[:id])
     @initiative = @event.initiative
@@ -37,7 +46,7 @@ class EventsController < ApplicationController
     redirect_to initiative_path(@initiative), notice: 'El evento fue eliminado.'
   end
 
-
+  # Actualiza un evento y redirige a la vista del evento
   def update
     @event = Event.find(params[:id])
     @type = params[:event][:update_type]
@@ -70,6 +79,7 @@ class EventsController < ApplicationController
     end
   end
 
+  # Actualiza los asistentes de un evento y redirige a la vista del evento
   def update_attendats
     @user = current_user
     @event = Event.find(params[:id])
@@ -81,6 +91,7 @@ class EventsController < ApplicationController
     end
   end
 
+  # Elimina un asistente de un evento y redirige a la vista del evento
   def leave
     @event = Event.find(params[:id])
     current_user.remove_role(:attendant, @event)
@@ -88,7 +99,7 @@ class EventsController < ApplicationController
   end
 
   private
-
+  # Retorna true si el usuario es administrador de la iniciativa, false en caso contrario
   def current_user_is_admin?()
     @event = Event.find(params[:id])
     @initiative = @event.initiative
@@ -98,11 +109,14 @@ class EventsController < ApplicationController
     end
   end
 
+  # Retorna los parametros del evento
   def event_params
     parametros= params.require(:event).permit(:initiative, :name, :description, :capacity)
     parametros[:initiative] = Initiative.find(parametros[:initiative])
     parametros
   end
+
+  # Retorna los parametros del nuevo evento
   def new_event_params
     parametros= params.permit(:initiative, :name, :description, :capacity)
     parametros[:initiative] = Initiative.find(parametros[:initiative])

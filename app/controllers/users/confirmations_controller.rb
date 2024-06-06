@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Controlador que maneja la confirmación de cuentas de usuario, gestionado por Devise.
 class Users::ConfirmationsController < Devise::ConfirmationsController
   # GET /resource/confirmation/new
   # def new

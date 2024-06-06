@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Controlador que maneja las sesiones de usuario, gestionado por Devise.
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 

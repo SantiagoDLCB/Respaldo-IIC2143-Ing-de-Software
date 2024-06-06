@@ -1,3 +1,4 @@
+# Clase que representa la imagen de perfil de un usuario.
 class AvatarUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick

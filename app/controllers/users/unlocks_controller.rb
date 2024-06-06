@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Controlador que maneja el desbloqueo de cuentas de usuario, gestionado por Devise.
 class Users::UnlocksController < Devise::UnlocksController
   # GET /resource/unlock/new
   # def new

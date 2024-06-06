@@ -70,3 +70,7 @@ Para realizar el testing general de la aplicación, se debe ejecutar en consola 
 Luego se podrá revisar el coverage entregado por SimpleCov abriendo el archivo *coverage/index.html* en el browser, siempre y cuando la línea 23 de `test/test_helper.rb` esté comentada, es decir, solamente se habilite un procesador como worker.
 
 De lo contrario, al activar la opción de *parallelize* para ejecutar los tests, al revisar la cobertura de los test para modelos, controladores y helpers, es posible obtener inconsistencia en los porcentajes de cobertura por la ejecución paralela de tests.
+
+## Documentación
+
+Se puede encontrar en [Documentación](doc/index.html)

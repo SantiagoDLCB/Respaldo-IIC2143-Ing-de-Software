@@ -1,3 +1,4 @@
+# Clase que representa un reporte hecho por un usuario a una iniciativa.
 class Report < ApplicationRecord
   belongs_to :user
   belongs_to :initiative

@@ -1,3 +1,4 @@
+# Clase que representa la imagen de una iniciativa o evento.
 class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick

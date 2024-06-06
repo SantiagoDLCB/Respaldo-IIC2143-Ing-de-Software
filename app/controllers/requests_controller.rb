@@ -1,11 +1,16 @@
+# Clase que controla las solicitudes de participación en una iniciativa.
 class RequestsController < ApplicationController
   before_action :authenticate_user!
+  # Retorna todas las solicitudes de una iniciativa
+  # @return [Request] todas las solicitudes
   def index
     @initiative = Initiative.find(params[:initiative_id])
     @all_requests = @initiative.requests
     @active_requests = @initiative.requests.where(status: :pending)
     @old_requests = @initiative.requests.where(status: [:accepted, :denied])
   end
+
+  # Crea una nueva solicitud y redirige a la vista de la iniciativa
   def create
     @request = Request.new
     @request.user = current_user
@@ -20,6 +25,7 @@ class RequestsController < ApplicationController
     end
   end
 
+  # Actualiza una solicitud y redirige a la vista de la iniciativa
   def update
     @request = Request.find(params[:id])
     @request.status = request_params[:status]
@@ -37,7 +43,7 @@ class RequestsController < ApplicationController
   end
 
   private
-
+  # Parametros permitidos para la creación de una solicitud
   def request_params
     params.require(:request).permit(:status, :initiative)
   end

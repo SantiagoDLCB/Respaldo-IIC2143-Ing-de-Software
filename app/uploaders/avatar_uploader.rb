@@ -1,19 +1,24 @@
 # Clase que representa la imagen de perfil de un usuario.
+# Clase que representa la imagen de perfil de un usuario.
 class AvatarUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include Cloudinary::CarrierWave
+  include CarrierWave::MiniMagick
 
   # Procesamiento opcional
   process convert: 'jpg'
   process tags: ['post_picture']
 
+  # Procesar archivos grandes para reducir su tamaño
+  process :compress_large_files
+
   version :thumb do
-    process resize_to_fit: [50, 50]
+    process resize_to_fit: [200, 200]
   end
 
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w(jpg jpeg gif png webp)
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -44,4 +49,18 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg"
   # end
+
+  private
+
+  def compress_large_files
+    manipulate! do |img|
+      img.combine_options do |cmd|
+        if file.size > 10.megabytes
+          cmd.quality "75"
+          cmd.resize "2048x2048>"
+        end
+      end
+      img
+    end
+  end
 end

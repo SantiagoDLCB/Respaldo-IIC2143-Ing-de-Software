@@ -10,3 +10,9 @@ production:
   api_key: "798791972666396"
   api_secret: "a5w0E-h07XAT-eX7_qsQPlCJ7DA"
   secure: true
+
+staging:
+  cloud_name: "ds4ryxijh"
+  api_key: "798791972666396"
+  api_secret: "a5w0E-h07XAT-eX7_qsQPlCJ7DA"
+  secure: true

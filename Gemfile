@@ -85,6 +85,4 @@ gem 'devise-i18n'
 gem 'rails_admin-i18n'
 gem 'cloudinary'
 gem 'carrierwave'
-gem 'google-apis-calendar_v3'
-gem 'dotenv-rails'
-
+gem 'mini_magick'

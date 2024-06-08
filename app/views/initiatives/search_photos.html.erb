@@ -2,7 +2,10 @@
 
 <% if @photos.present? %>
   <div class="block">
-    <h2 style="text-align: center;">Resultados de Búsqueda</h2><br>
+    <h2 style="text-align: center;">Resultados de Búsqueda</h2>
+    <div class="has-text-centered">
+      <%= link_to "Volver a Iniciativa", initiative_path(@initiative), class: "button is-primary" %>
+    </div><br>|
     <div class="columns is-multiline">
       <% @photos.each do |photo| %>
         <div class="column is-one-quarter">
@@ -15,8 +18,8 @@
             <div class="card-content">
               <div class="content">
                 <h5><strong><%= photo.user.name %></strong></h5>
-                <p><%= photo.description %></p>
-                
+                <p>Haga click en "Descargar" para ver las dimensiones reales</p>
+
                 <a href="<%= photo.links['download'] %>?force=true" class="button is-primary is-small" target="_blank">Descargar</a>
               </div>
             </div>
@@ -26,5 +29,7 @@
     </div>
   </div>
 <% end %>
-
+<div class="has-text-centered">
+  <%= link_to "Volver a Iniciativa", initiative_path(@initiative), class: "button is-primary" %>
+</div>
 </div>

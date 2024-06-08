@@ -109,6 +109,17 @@ class InitiativesController < ApplicationController
     render partial: 'chat', locals: { initiative: @initiative, chat: @chat }
   end
 
+  # Acción para buscar fotos en la API de Unsplash
+  def search_photos
+    puts 'HOLAAAAAAAAAAAAAAAAAAAAAAAAA'
+    @initiative = Initiative.find(params[:id])
+    if params[:query].present?
+      @photos = Unsplash::Photo.search(params[:query], page = 1, per_page = 10)
+    else
+      @photos = []
+    end
+  end
+
   private
   # Agrega un usuario como administrador de una iniciativa y redirige a la vista de la iniciativa
   # @param user [User] el usuario

@@ -1,4 +1,3 @@
-
 function openModal(id) {
   // Add is-active class on the modal
   // Clear form inputs
@@ -52,8 +51,3 @@ function displayFlashMessage(message) {
   // Implementation to show flash message, e.g., using a modal or a flash message div
   alert(message); // Simple alert, replace with your flash message display logic
 }
-
-
-
-
-

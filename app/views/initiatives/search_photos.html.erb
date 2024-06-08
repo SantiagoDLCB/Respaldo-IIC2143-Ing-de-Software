@@ -1,0 +1,28 @@
+<div data-theme="light">
+
+<% if @photos.present? %>
+  <div class="block">
+    <h3>Resultados de la búsqueda</h3>
+    <div class="columns">
+      <% @photos.each do |photo| %>
+        <div class="column is-one-quarter">
+          <div style='max-width: 600px; margin: 0 auto;'>
+            <div class="card-image">
+              <figure class="image">
+                <img src="<%= photo.urls['small'] %>" alt="<%= photo.alt_description %>">
+              </figure>
+            </div>
+            <div style='max-height: 600px;overflow: hidden; display: flex;flex-direction: column;'>
+              <div class="content">
+                <h5><strong><%= photo.user.name %></strong></h5>
+                <a href="<%= photo.links['download'] %>?force=true" class="button is-primary is-small" target="_blank">Descargar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+</div>

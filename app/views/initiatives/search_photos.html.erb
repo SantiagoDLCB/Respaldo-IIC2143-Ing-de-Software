@@ -2,19 +2,21 @@
 
 <% if @photos.present? %>
   <div class="block">
-    <h3>Resultados de la búsqueda</h3>
-    <div class="columns">
+    <h2 style="text-align: center;">Resultados de Búsqueda</h2><br>
+    <div class="columns is-multiline">
       <% @photos.each do |photo| %>
         <div class="column is-one-quarter">
-          <div style='max-width: 600px; margin: 0 auto;'>
+          <div class="card custom-card">
             <div class="card-image">
-              <figure class="image">
+              <figure class="image is-1by1" style="object-fit: cover">
                 <img src="<%= photo.urls['small'] %>" alt="<%= photo.alt_description %>">
               </figure>
             </div>
-            <div style='max-height: 600px;overflow: hidden; display: flex;flex-direction: column;'>
+            <div class="card-content">
               <div class="content">
                 <h5><strong><%= photo.user.name %></strong></h5>
+                <p><%= photo.description %></p>
+                
                 <a href="<%= photo.links['download'] %>?force=true" class="button is-primary is-small" target="_blank">Descargar</a>
               </div>
             </div>

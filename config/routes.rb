@@ -78,4 +78,10 @@ end
 
 get '/after_sign_out', to: 'application#after_sign_out', as: :after_sign_out
 
+resources :initiatives do
+  member do
+    get 'search_photos', to: 'initiatives#search_photos', as: 'search_photos'
+  end
+end
+
 end

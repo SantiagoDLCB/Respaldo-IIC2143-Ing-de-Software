@@ -48,7 +48,8 @@
         <!-- <p>Contraseña: <%= current_user.encrypted_password %></p> -->
       </div>
       <div class="column is-flex is-justify-content-center is-align-items-center">
-        <button onclick="openModal('search_photos1_popup');" class="button is-primary">Buscar Foto</button>
+        <div data-theme="light"> <%= render 'search_photos_popup' %></div>
+        <button onclick="openModal('search_photos_popup');" class="button is-primary">Buscar Foto</button>
       </div>
     </div> <!-- Cierre Columns -->
     </div>

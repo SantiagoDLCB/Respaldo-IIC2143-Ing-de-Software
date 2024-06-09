@@ -47,10 +47,13 @@
         <p>Apellido: <%= current_user.last_name %></p>
         <!-- <p>Contraseña: <%= current_user.encrypted_password %></p> -->
       </div>
-      <div class="column is-flex is-justify-content-center is-align-items-center">
-        <div data-theme="light"> <%= render 'search_photos_popup' %></div>
-        <button onclick="openModal('search_photos_popup');" class="button is-primary">Buscar Foto</button>
+      <div class="column is-justify-content-center is-align-items-center">
+      <div data-theme="light"> <%= render 'search_photos_popup' %></div>
+      <div class="has-text-centered"> <!-- Alineación vertical y horizontal -->
+        <p>¿Necesitas una foto de perfil?</p>
+        <button onclick="openModal('search_photos_popup');" class="button is-primary">Buscar Fotos</button>
       </div>
+    </div>
     </div> <!-- Cierre Columns -->
     </div>
   </div>

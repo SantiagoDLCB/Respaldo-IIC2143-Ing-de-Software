@@ -51,6 +51,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:account_update, keys: [:username,:name, :last_name, :avatar])
   end
 
+  # Acción para buscar fotos en la API de Unsplash
+  def search_photos
+    if params[:query].present?
+      @photos = Unsplash::Photo.search(params[:query], page = 1, per_page = 12)
+    else
+      @photos = []
+    end
+  end
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
   #   super(resource)

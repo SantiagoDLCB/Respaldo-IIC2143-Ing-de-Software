@@ -1,0 +1,26 @@
+<div class="modal" id="search_photos_popup">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Buscar Fotos con API de Unsplash</p>
+      <label class="delete" aria-label="close"></label>
+        </header>
+
+        <section class="modal-card-body">
+          <%= form_with(url: search_photos_user_registration_path, method: :get, remote: true) do |form| %>
+          <div class="field has-addons">
+            <div class="control">
+            <%= form.text_field :query, placeholder: "Busca una foto", class: "input" %>
+            </div>
+          <div class="control">
+            <%= form.submit "Buscar", class: "button is-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </section>
+
+    <footer class="modal-card-foot">
+      <button class="button is-danger" onclick="closeModal('search_photos_popup');">Cancelar</button>
+    </footer>
+  </div>
+</div>

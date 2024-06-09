@@ -4,7 +4,7 @@
   <div class="block">
     <h2 style="text-align: center;">Resultados de Búsqueda</h2>
     <div class="has-text-centered">
-      <%= link_to "Volver a Iniciativa", initiative_path(@initiative), class: "button is-primary" %>
+      <%= link_to "Volver", :back , class: "button is-primary" %>
     </div><br>|
     <div class="columns is-multiline">
       <% @photos.each do |photo| %>
@@ -30,6 +30,6 @@
   </div>
 <% end %>
 <div class="has-text-centered">
-  <%= link_to "Volver a Iniciativa", initiative_path(@initiative), class: "button is-primary" %>
+  <%= link_to "Volver", edit_user_registration_path, class: "button is-primary" %>
 </div>
 </div>

@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords' },
                    path: '', path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'}
+                     
+  get 'search_photos', to: 'users/registrations#search_photos'
+
 
   get 'render/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -83,5 +86,5 @@ resources :initiatives do
     get 'search_photos', to: 'initiatives#search_photos', as: 'search_photos'
   end
 end
-
 end
+

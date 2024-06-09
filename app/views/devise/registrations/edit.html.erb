@@ -40,10 +40,17 @@
   </header>
   <div class="card-content ">
     <div class="content">
-      <p>Correo: <%= current_user.email %></p>
-      <p>Nombre: <%= current_user.name %></p>
-      <p>Apellido: <%= current_user.last_name %></p>
-      <!-- <p>Contraseña: <%= current_user.encrypted_password %></p> -->
+    <div class="columns">
+      <div class="column is-one-third">
+        <p>Correo: <%= current_user.email %></p>
+        <p>Nombre: <%= current_user.name %></p>
+        <p>Apellido: <%= current_user.last_name %></p>
+        <!-- <p>Contraseña: <%= current_user.encrypted_password %></p> -->
+      </div>
+      <div class="column is-flex is-justify-content-center is-align-items-center">
+        <button onclick="openModal('search_photos1_popup');" class="button is-primary">Buscar Foto</button>
+      </div>
+    </div> <!-- Cierre Columns -->
     </div>
   </div>
 </div>
@@ -158,7 +165,8 @@
   <div class="field ">
   <%= f.label 'Foto de Perfil' %>
   <div class="control">
-    <div class="file is-link is-light has-name is-small">
+  <div class="is-flex is-align-items-center">
+    <div class="file is-link is-light has-name is-small mr-2">
       <label class="file-label">
         <%= f.file_field :avatar, class: "file-input", accept: "image/*", onchange: "updateFileName(this)" %>
         <span class="file-cta">
@@ -171,6 +179,8 @@
       </label>
     </div>
   </div>
+</div>
+
 </div>
     
     </div>

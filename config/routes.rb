@@ -88,4 +88,3 @@ resources :initiatives do
   end
 end
 end
-

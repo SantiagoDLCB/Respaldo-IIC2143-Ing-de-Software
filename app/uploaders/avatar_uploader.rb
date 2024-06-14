@@ -58,6 +58,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
     def compress_large_files
       quality = 100 # Start with high quality and reduce it incrementally
       manipulate! do |img|
+        img.resize "1920x1080>"
         while file.size > 10.megabytes
           img.combine_options do |cmd|
             cmd.quality quality.to_s

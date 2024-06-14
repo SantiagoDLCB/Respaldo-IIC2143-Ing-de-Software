@@ -17,12 +17,7 @@ class InitiativesController < ApplicationController
       current_user.add_role :admin_initiative, @initiative
       redirect_to initiative_path(@initiative.id) , notice: 'La iniciativa fue creada de manera exitosa.'
     else
-
-      error1 = "No se ha podido crear la iniciativa, por favor revise que los datos esten bien ingresados."
-      if @initiative.errors[:name].include?("has already been taken")
-        error1 = "El nombre de la iniciativa ya existe. Por favor, elige un nombre diferente."
-        end
-        redirect_to root_path, alert: error1
+      handle_initiative_creation_error
     end
   end
 
@@ -157,5 +152,19 @@ class InitiativesController < ApplicationController
   # Retorna los parametros de la nueva iniciativa
   def new_initiative_params
     params.permit(:name, :topic, :description, :image)
+  end
+
+  # Maneja los errores de creacion de la iniciativa
+
+  def handle_initiative_creation_error
+    error1 = "No se ha podido crear la iniciativa, por favor revise que los datos esten bien ingresados."
+
+      if @initiative.errors[:name].include?("has already been taken")
+        error1 = "El nombre de la iniciativa ya existe. Por favor, elige un nombre diferente."
+      end
+      if @initiative.errors[:image].include?("debe ser menor a 10MB")
+        error1= "La imagen debe ser menor a 10MB."
+      end
+        redirect_to root_path, alert: error1
   end
 end

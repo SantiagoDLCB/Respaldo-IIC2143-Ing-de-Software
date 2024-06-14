@@ -69,4 +69,10 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :name, presence: true
   validates :last_name, presence: true
+  validate :image_size
+  def image_size
+    if image.size > 10.megabytes
+      errors.add("Imagen debe ser menor a 10MB")
+    end
+  end
 end

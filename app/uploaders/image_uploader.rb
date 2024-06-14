@@ -63,7 +63,6 @@ class ImageUploader < CarrierWave::Uploader::Base
         puts 'HOLA2'
         img.combine_options do |cmd|
           cmd.quality quality.to_s
-          cmd.resize "1920x1080>"
         end
         file.recreate_versions! if file.respond_to?(:recreate_versions!)
         break if quality <= 10

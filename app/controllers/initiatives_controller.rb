@@ -113,7 +113,7 @@ class InitiativesController < ApplicationController
   def search_photos
     @initiative = Initiative.find(params[:id])
     if params[:query].present?
-      @photos = Unsplash::Photo.search(params[:query], page = 1, per_page = 12)
+      @photos = Unsplash::Photo.search(params[:query], 1, 12)
     else
       @photos = []
     end

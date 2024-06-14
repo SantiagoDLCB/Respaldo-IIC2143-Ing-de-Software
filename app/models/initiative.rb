@@ -1,4 +1,3 @@
-# Clase que representa una iniciativa en el sistema.
 class Initiative < ApplicationRecord
   resourcify
   before_destroy :delete_associated_events
@@ -18,6 +17,8 @@ class Initiative < ApplicationRecord
   validates :name, uniqueness: true,  presence: true, length: { maximum: 20 }
   validates :topic, presence: true, length: { maximum: 30 }
   validates :description, presence: true
+  validate :image_size
+
   after_create :create_roles
 
   # Retorna todos los administradores de la iniciativa
@@ -57,4 +58,10 @@ class Initiative < ApplicationRecord
     self.events.destroy_all
   end
 
+  # Validación de tamaño de la imagen
+  def image_size
+    if image.size > 10.megabytes
+      errors.add(:base, "Imagen debe ser menor a 10MB.")
+    end
+  end
 end

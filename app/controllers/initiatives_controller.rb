@@ -66,7 +66,7 @@ class InitiativesController < ApplicationController
       if @initiative.update(initiative_params)
         redirect_to initiative_path(@initiative) , notice: "La iniciativa fue actualizada exitosamente."
       else
-        render :edit
+        redirect_to initiative_path(@initiative) , alert: @initiative.errors.full_messages.join(', ')
       end
     else
       @user = User.find(params[:initiative][:user_id])

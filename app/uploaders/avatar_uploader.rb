@@ -52,15 +52,24 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   private
 
-  def compress_large_files
-    manipulate! do |img|
-      img.combine_options do |cmd|
-        if file.size > 10.megabytes
-          cmd.quality "75"
-          cmd.resize "2048x2048>"
+  class ImageUploader < CarrierWave::Uploader::Base
+    include CarrierWave::MiniMagick
+
+    def compress_large_files
+      quality = 100 # Start with high quality and reduce it incrementally
+      manipulate! do |img|
+        while file.size > 10.megabytes
+          img.combine_options do |cmd|
+            cmd.quality quality.to_s
+            cmd.resize "2048x2048>"
+          end
+          file.recreate_versions! if file.respond_to?(:recreate_versions!)
+          break if quality <= 10 # Stop if quality is too low to avoid excessive degradation
+          quality -= 5
         end
+        img
       end
-      img
     end
   end
+
 end

@@ -11,6 +11,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
   process tags: ['post_picture']
 
   # Procesar archivos grandes para reducir su tamaño
+  process :resize_to_limit => [1920, 1080]
+
+  # Procesar archivos grandes para reducir su tamaño
   process :compress_large_files
 
   version :thumb do
@@ -52,18 +55,19 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   private
 
-  def compress_large_files
-    quality = 100
-    puts 'HOLA'
+  def resize_to_limit(width, height)
     manipulate! do |img|
-      puts img
-      img.resize "1920x1080>"
-      puts 'HOLA2'
+      img.resize "#{width}x#{height}>"
+      img
+    end
+  end
+
+  def compress_large_files
+    quality = 95
+    manipulate! do |img|
       while file.size > 10.megabytes
-        puts 'HOLA3'
         img.combine_options do |cmd|
           cmd.quality quality.to_s
-          cmd.resize "1920x1080>"
         end
         file.recreate_versions! if file.respond_to?(:recreate_versions!)
         break if quality <= 10

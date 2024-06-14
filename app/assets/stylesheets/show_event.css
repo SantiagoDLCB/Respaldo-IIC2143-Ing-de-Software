@@ -69,9 +69,15 @@ body {
     margin-bottom: 10px;
 }
 
+
 .background-image {
     position: relative;
     overflow: hidden;
+    background-size: cover;
+    /* Ensures the image covers the entire section */
+    background-position: center center;
+    /* Centers the image */
+    background-repeat: no-repeat;
 }
 
 .background-image::before {
@@ -85,6 +91,21 @@ body {
     background-position: center;
     opacity: 0.5;
     z-index: 0;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    /* Vertically centers the content */
+    justify-content: center;
+    /* Horizontally centers the content */
+    text-align: center;
+    /* Ensures the text inside is centered */
+}
+
+.hero-body {
+    width: 100%;
+    /* Ensures the hero body takes full width */
 }
 
 .button.is-primary1 {

@@ -53,9 +53,13 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def compress_large_files
     quality = 100
+    puts 'HOLA'
     manipulate! do |img|
+      puts img
       img.resize "1920x1080>"
+      puts 'HOLA2'
       while file.size > 10.megabytes
+        puts 'HOLA3'
         img.combine_options do |cmd|
           cmd.quality quality.to_s
           cmd.resize "1920x1080>"

@@ -54,7 +54,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # Acción para buscar fotos en la API de Unsplash
   def search_photos
     if params[:query].present?
-      @photos = Unsplash::Photo.search(params[:query], 1, 12)
+      @photos = Unsplash::Photo.search(params[:query], 1, 20)
     else
       @photos = []
     end

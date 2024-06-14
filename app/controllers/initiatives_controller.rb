@@ -162,7 +162,7 @@ class InitiativesController < ApplicationController
       if @initiative.errors[:name].include?("has already been taken")
         error1 = "El nombre de la iniciativa ya existe. Por favor, elige un nombre diferente."
       end
-      if @initiative.errors[:image].include?("debe ser menor a 10MB")
+      if @initiative.errors[:image].include?("Imagen debe ser menor a 10MB.")
         error1= "La imagen debe ser menor a 10MB."
       end
         redirect_to root_path, alert: error1

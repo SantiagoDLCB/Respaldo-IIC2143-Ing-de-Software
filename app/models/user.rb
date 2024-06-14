@@ -72,7 +72,7 @@ class User < ApplicationRecord
   validate :image_size
   def image_size
     if avatar.size > 10.megabytes
-      errors.add(:base,"Imagen debe ser menor a 10MB")
+      errors.add(:base,"Imagen debe ser menor a 10MB.")
     end
   end
 end

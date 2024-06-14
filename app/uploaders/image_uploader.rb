@@ -58,6 +58,7 @@ class ImageUploader < CarrierWave::Uploader::Base
       puts img
       img.resize "1920x1080>"
       puts 'HOLA2'
+      puts file.size
       while file.size > 10.megabytes
         puts 'HOLA3'
         img.combine_options do |cmd|

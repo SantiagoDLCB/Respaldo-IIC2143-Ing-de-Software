@@ -61,7 +61,7 @@ class Initiative < ApplicationRecord
   # Validación de tamaño de la imagen
   def image_size
     if image.size > 10.megabytes
-      errors.add("Imagen debe ser menor a 10MB")
+      errors.add(:image, "Imagen debe ser menor a 10MB")
     end
   end
 end

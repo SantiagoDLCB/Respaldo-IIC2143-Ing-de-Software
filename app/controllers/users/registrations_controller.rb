@@ -44,6 +44,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # Configura los parametros permitidos para el registro de un usuario
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username,:name, :last_name, :avatar])
+    if params[:avatar] && params[:avatar].size > 10.megabytes
+      flash[:alert] = "El tamaño de la imagen del avatar debe ser menor a 10MB."
+      redirect_to new_user_registration_path
+    end
   end
 
   # Configura los parametros permitidos para la actualización de un usuario

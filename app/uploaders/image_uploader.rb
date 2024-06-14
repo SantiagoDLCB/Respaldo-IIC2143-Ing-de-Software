@@ -59,15 +59,15 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def compress_large_files
-    quality = 95
+    quality = 90
     manipulate! do |img|
       while file.size > 10.megabytes
         img.combine_options do |cmd|
           cmd.quality quality.to_s
         end
         file.recreate_versions! if file.respond_to?(:recreate_versions!)
-        break if quality <= 10
-        quality -= 5
+        break if quality <= 20
+        quality -= 10
       end
       img
     end

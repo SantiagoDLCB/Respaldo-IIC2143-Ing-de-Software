@@ -53,6 +53,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # Configura los parametros permitidos para la actualización de un usuario
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:username,:name, :last_name, :avatar])
+    if params[:avatar] && params[:avatar].size > 10.megabytes
+      flash[:alert] = "El tamaño de la imagen del avatar debe ser menor a 10MB."
+      redirect_to new_user_registration_path
+    end
   end
 
   # Acción para buscar fotos en la API de Unsplash

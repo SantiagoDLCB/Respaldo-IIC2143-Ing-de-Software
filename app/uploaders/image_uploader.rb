@@ -56,6 +56,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     puts 'HOLA'
     manipulate! do |img|
       puts img
+      puts 'HOLA1'
       img.resize "1920x1080>"
       puts 'HOLA2'
       puts file.size

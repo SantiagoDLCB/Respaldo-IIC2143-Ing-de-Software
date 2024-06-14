@@ -52,16 +52,16 @@ class ImageUploader < CarrierWave::Uploader::Base
   private
 
   def compress_large_files
-    quality = 100 # Start with high quality and reduce it incrementally
+    quality = 100
     manipulate! do |img|
       img.resize "1920x1080>"
       while file.size > 10.megabytes
         img.combine_options do |cmd|
           cmd.quality quality.to_s
-          cmd.resize "2048x2048>"
+          cmd.resize "1920x1080>"
         end
         file.recreate_versions! if file.respond_to?(:recreate_versions!)
-        break if quality <= 10 # Stop if quality is too low to avoid excessive degradation
+        break if quality <= 10
         quality -= 5
       end
       img

@@ -7,6 +7,7 @@
           <div data-theme="light"> <%= render 'requests_popup' %></div>
           <div data-theme="light"> <%= render 'roles_popup' %></div>
           <div data-theme="light"> <%= render 'edit' %></div>
+          <div data-theme="light"> <%= render 'search_photos_popup' %></div>
 
           <p class="menu-label">Administrador</p>
           <ul class="menu-list">
@@ -15,6 +16,7 @@
             <li><button onclick="openModal('request_popup');" class="button is-primary1">Solicitudes</button><li>
             <li><button onclick="openModal('roles_popup');" class="button is-primary1">Administrar Roles</button></li>
             <li><button onclick="openModal('edit_initiative_popup');" class="button is-primary1">Editar Iniciativa</button></li>
+            <li><button onclick="openModal('search_photos_popup');" class="button is-primary1">Buscar Fotos</button></li>
             <%= button_to "Eliminar iniciativa", initiative_path(@initiative), method: :delete, class: "button is-danger1", data: { turbo_confirm: "¿Estás seguro de que deseas eliminar esta iniciativa?" } %>
             <!-- Mostrar el botón para salir de iniciativa si hay más de un admin -->
 

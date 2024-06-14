@@ -3,9 +3,13 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' },
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords' },
                    path: '', path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'}
 
+
+  devise_scope :user do
+    get 'users/search_photos', to: 'users/registrations#search_photos', as: :search_photos_user_registration
+  end
   get 'render/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -78,4 +82,9 @@ end
 
 get '/after_sign_out', to: 'application#after_sign_out', as: :after_sign_out
 
+resources :initiatives do
+  member do
+    get 'search_photos', to: 'initiatives#search_photos', as: 'search_photos'
+  end
+end
 end

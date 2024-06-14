@@ -1,5 +1,9 @@
+# Clase que maneja la lógica de los mensajes de una iniciativa.
 class MessagesController < ApplicationController
   before_action :authenticate_user!
+
+  # Crea un nuevo mensaje
+  # @return [Message] el mensaje creado
   def create
     @message = Message.new(message_params)
     @message.user = current_user
@@ -9,7 +13,7 @@ class MessagesController < ApplicationController
 
 
   private
-
+  # Parametros permitidos para la creación de un mensaje
   def message_params
     params.require(:message).permit(:content, :user_id, :initiative_id)
   end

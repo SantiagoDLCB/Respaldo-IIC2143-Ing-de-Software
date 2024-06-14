@@ -7,10 +7,10 @@
 <div class="columns is-centered">
 <div class="column is-one-third is-offset-1">
 <div class="container">
-<% if current_user.persisted? && current_user.avatar.attached? %>
+<% if current_user.persisted? && current_user.avatar.present? %>
 <div style="display: flex;justify-content: center;">
 <figure class="image" >
-<%= image_tag url_for(current_user.avatar), class: "is-rounded", style: "border-radius: 50%; width: 256px; height: 256px; object-fit: cover" %>
+<%= image_tag current_user.avatar.url, class: "is-rounded", style: "border-radius: 50%; width: 256px; height: 256px; object-fit: cover" %>
 </figure>
 </div>
 <% else %>
@@ -40,10 +40,21 @@
   </header>
   <div class="card-content ">
     <div class="content">
-      <p>Correo: <%= current_user.email %></p>
-      <p>Nombre: <%= current_user.name %></p>
-      <p>Apellido: <%= current_user.last_name %></p>
-      <!-- <p>Contraseña: <%= current_user.encrypted_password %></p> -->
+    <div class="columns">
+      <div class="column is-two-thirds">
+        <p>Correo: <%= current_user.email %></p>
+        <p>Nombre: <%= current_user.name %></p>
+        <p>Apellido: <%= current_user.last_name %></p>
+        <!-- <p>Contraseña: <%= current_user.encrypted_password %></p> -->
+      </div>
+      <div class="column is-justify-content-center is-align-items-center">
+      <div data-theme="light"> <%= render 'search_photos_popup' %></div>
+      <div class="has-text-centered"> <!-- Alineación vertical y horizontal -->
+        <p>¿Necesitas una foto de perfil?</p>
+        <button onclick="openModal('search_photos_popup');" class="button is-primary">Buscar Fotos</button>
+      </div>
+    </div>
+    </div> <!-- Cierre Columns -->
     </div>
   </div>
 </div>
@@ -158,7 +169,8 @@
   <div class="field ">
   <%= f.label 'Foto de Perfil' %>
   <div class="control">
-    <div class="file is-link is-light has-name is-small">
+  <div class="is-flex is-align-items-center">
+    <div class="file is-link is-light has-name is-small mr-2">
       <label class="file-label">
         <%= f.file_field :avatar, class: "file-input", accept: "image/*", onchange: "updateFileName(this)" %>
         <span class="file-cta">
@@ -171,6 +183,8 @@
       </label>
     </div>
   </div>
+</div>
+
 </div>
     
     </div>
@@ -234,8 +248,8 @@
 <div class="columns  is-centered">
 <div class="card" , style= "height: 170px; width: 400px" data-theme="light">
 <br>
-<p style="text-align: center">Creación de la cuenta: <%= current_user.created_at %></p>
-<p style="text-align: center">Última modificación: <%= current_user.updated_at %></p>
+<p style="text-align: center">Creación de la cuenta: <%= current_user.created_at.to_time.localtime.strftime("%Y-%m-%d %H:%M:%S") %></p>
+<p style="text-align: center">Última modificación: <%= current_user.updated_at.to_time.localtime.strftime("%Y-%m-%d %H:%M:%S") %></p>
 <br>
 
 <div style="display: flex; justify-content: center; align-items: center;">

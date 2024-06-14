@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Controlador que maneja la recuperación de contraseñas, gestionado por Devise.
 class Users::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
   # def new

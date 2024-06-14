@@ -1,11 +1,15 @@
+# Clase que maneja la lógica de las iniciativas.
 class InitiativesController < ApplicationController
   before_action :authenticate_user!
   before_action :current_user_is_admin?, only: [:destroy, :update]
 
+  # Crea una nueva iniciativa
+  # @return [Initiative] la iniciativa creada
   def new
     @initiative = Initiative.new
   end
 
+  # Crea una nueva iniciativa y redirige a la vista de la iniciativa
   def create
     @initiative = Initiative.new(new_initiative_params)
 
@@ -22,10 +26,14 @@ class InitiativesController < ApplicationController
     end
   end
 
+  # Retorna todas las iniciativas
+  # @return [Initiative] todas las iniciativas
   def index
     @all_initiatives = Initiative.all
   end
 
+  # Retorna una iniciativa determinada
+  # @return [Initiative] la iniciativa
   def show
     @initiative = Initiative.find(params[:id])
     @message = Message.new
@@ -42,13 +50,14 @@ class InitiativesController < ApplicationController
     @old_events = Event.where(capacity: false).where(initiative: @initiative)
   end
 
+  # Elimina una iniciativa y redirige a la vista principal
   def destroy
     @initiative = Initiative.find(params[:id])
     @initiative.destroy
     redirect_to root_path, notice: 'La iniciativa fue eliminada.'
   end
 
-
+  # Actualiza una iniciativa y redirige a la vista de la iniciativa
   def update
     @initiative = Initiative.find(params[:id])
     @type =params[:initiative][:update_type]
@@ -87,18 +96,33 @@ class InitiativesController < ApplicationController
     end
   end
 
+  # Busca usuario por email
+  # @return [User] el usuario
   def search_users
     @users = User.where("email LIKE ?", "%#{params[:query]}%")
   end
 
+  # Recarga la vista de chat
   def chat_reload
     @initiative = Initiative.find(params[:id])
     @chat = @initiative.messages
     render partial: 'chat', locals: { initiative: @initiative, chat: @chat }
   end
 
-    private
+  # Acción para buscar fotos en la API de Unsplash
+  def search_photos
+    @initiative = Initiative.find(params[:id])
+    if params[:query].present?
+      @photos = Unsplash::Photo.search(params[:query], 1, 12)
+    else
+      @photos = []
+    end
+  end
 
+  private
+  # Agrega un usuario como administrador de una iniciativa y redirige a la vista de la iniciativa
+  # @param user [User] el usuario
+  # @param initiative [Initiative] la iniciativa
   def add_admin(user, initiative)
     # user = User.find(params[:initiative][:user_id])
     user.remove_role :member, initiative
@@ -116,6 +140,7 @@ class InitiativesController < ApplicationController
     end
   end
 
+  # Retorna true si el usuario es administrador de la iniciativa, false en caso contrario
   def current_user_is_admin?()
     @initiative = Initiative.find(params[:id])
     check =current_user.has_role? :admin_initiative, @initiative
@@ -124,10 +149,12 @@ class InitiativesController < ApplicationController
     end
   end
 
+  # Retorna los parametros de la iniciativa
   def initiative_params
     params.require(:initiative).permit(:name, :topic, :description, :image)
   end
 
+  # Retorna los parametros de la nueva iniciativa
   def new_initiative_params
     params.permit(:name, :topic, :description, :image)
   end

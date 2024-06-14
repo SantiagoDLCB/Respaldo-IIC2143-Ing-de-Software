@@ -11,7 +11,7 @@
         </header>
         <%= form_with(model: @initiative,  url: initiative_path(@initiative), method: :patch, local: true) do |form| %>
         <section class="modal-card-body" style="text-align: center;">
-          
+
             <% if @initiative.errors.any? %>
                 <div id="error_explanation">
                 <h4><%= pluralize(@initiative.errors.count, "error") %> prohibited this initiative from being saved:</h4>
@@ -62,8 +62,12 @@
               </div>
             </div>
           </div>
-          
-           
+
+
+
+
+
+
         </section>
         <footer class="modal-card-foot">
           <div class="field is-grouped">
@@ -71,7 +75,7 @@
               <%= form.hidden_field :update_type, value: "data" %>
               <%= form.submit "Guardar cambios", class: "button is-primary", onclick: "closeModal('edit_initiative_popup')"  %>
             </div>
-            
+
             <div class="control">
               <button class="button is-danger" onclick="closeModal('edit_initiative_popup');" data: { turbo: false }>
                 Cancelar
@@ -80,14 +84,8 @@
           </div>
           <% end %>
         </footer>
-        
+
       </div>
     </div>
 
 <% end %>
-
- 
-
-	
-
-

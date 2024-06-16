@@ -18,9 +18,11 @@
             <div class="card-content">
               <div class="content">
                 <h5><strong><%= photo.user.name %></strong></h5>
-                <p>Haga click en "Descargar" para ver las dimensiones reales</p>
-
-                <a href="<%= photo.links['download'] %>?force=true" class="button is-primary is-small" target="_blank">Descargar</a>
+                <p>Haga click en "Seleccionar" para utilizar esta imagen</p>
+                <%= form_with url: update_image_user_registration_path, method: :patch, local: true do %>
+                  <%= hidden_field_tag :image, photo.urls['full'] %>
+                  <%= submit_tag "Seleccionar", class: "button is-primary is-small" %>
+                <% end %>
               </div>
             </div>
           </div>

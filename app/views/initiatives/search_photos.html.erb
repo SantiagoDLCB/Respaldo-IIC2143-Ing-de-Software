@@ -18,9 +18,8 @@
             <div class="card-content">
               <div class="content">
                 <h5><strong><%= photo.user.name %></strong></h5>
-                <p>Haga click en "Descargar" para ver las dimensiones reales</p>
-
-                <a href="<%= photo.links['download'] %>?force=true" class="button is-primary is-small" target="_blank">Descargar</a>
+                <p>Haga click en "Seleccionar" para utilizar esta imagen</p>
+                <%= link_to "Seleccionar", update_image_path(@initiative, image: photo.urls['full']), method: :patch, class: "button is-primary is-small" %>
               </div>
             </div>
           </div>

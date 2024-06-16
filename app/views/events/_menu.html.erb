@@ -1,8 +1,11 @@
 <div class="card custom-card">
   <div class="card-content">
       <aside class="menu">
-        <% if current_user.has_role?(:admin_initiative, @initiative) %>
-          
+        <%if not @event.is_active?%>
+          <ul class="menu-list">
+            <li><div data-theme="light"><button onclick="window.location.href = '<%= initiative_path(@initiative) %>';" class="button is-primary1">Volver a la iniciativa</button></div></li>
+          </ul>
+        <% elsif current_user.has_role?(:admin_initiative, @initiative) %>
           <% if @event.is_active? %>
               <div data-theme="light"> <%= render 'notice_popup' %></div>
               <div data-theme="light"> <%= render 'attendants_popup' %></div>

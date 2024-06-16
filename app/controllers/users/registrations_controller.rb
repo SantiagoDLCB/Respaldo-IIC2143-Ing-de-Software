@@ -67,6 +67,35 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @photos = []
     end
   end
+
+  require 'open-uri'
+  def update_image
+    @user = current_user
+    nueva = { image: params[:image] }
+    nueva[:image] = URI.open(nueva[:image])
+    begin
+      # Descargar la imagen desde el enlace proporcionado
+      downloaded_image = URI.open(params[:image])
+
+      # Crear un archivo temporal con la imagen descargada
+      temp_file = Tempfile.new(['downloaded_image', '.jpg'])
+      temp_file.binmode
+      temp_file.write(downloaded_image.read)
+      temp_file.rewind
+      @user.avatar = temp_file
+
+      if @user.save
+        redirect_to edit_user_registration_path, notice: 'Avatar actualizado exitosamente.'
+      else
+        redirect_to edit_user_registration_path, alert: 'Hubo un problema al actualizar el avatar.'
+      end
+    rescue => e
+      redirect_to edit_user_registration_path, alert: "Error al descargar el avatar #{e.message}"
+    ensure
+      temp_file.close
+      temp_file.unlink if temp_file
+    end
+  end
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
   #   super(resource)

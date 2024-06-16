@@ -114,6 +114,37 @@ class InitiativesController < ApplicationController
     end
   end
 
+  require 'open-uri'
+  def update_image
+    @initiative = Initiative.find(params[:id])
+    nueva = { image: params[:image] }
+    nueva[:image] = URI.open(nueva[:image])
+    begin
+      # Descargar la imagen desde el enlace proporcionado
+      downloaded_image = URI.open(params[:image])
+
+      # Crear un archivo temporal con la imagen descargada
+      temp_file = Tempfile.new(['downloaded_image', '.jpg'])
+      temp_file.binmode
+      temp_file.write(downloaded_image.read)
+      temp_file.rewind
+
+      # Asignar la imagen descargada al campo image del initiative usando CarrierWave
+      @initiative.image = temp_file
+
+      if @initiative.save
+        redirect_to @initiative, notice: 'Imagen actualizada exitosamente.'
+      else
+        redirect_to @initiative, alert: 'Hubo un problema al actualizar la imagen.'
+      end
+    rescue => e
+      redirect_to @initiative, alert: "Error al descargar la imagen: #{e.message}"
+    ensure
+      temp_file.close
+      temp_file.unlink if temp_file
+    end
+  end
+
   private
   # Agrega un usuario como administrador de una iniciativa y redirige a la vista de la iniciativa
   # @param user [User] el usuario

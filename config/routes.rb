@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get 'users/search_photos', to: 'users/registrations#search_photos', as: :search_photos_user_registration
+    patch 'users/update_image', to: 'users/registrations#update_image', as: :update_image_user_registration
   end
   get 'render/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -87,4 +88,7 @@ resources :initiatives do
     get 'search_photos', to: 'initiatives#search_photos', as: 'search_photos'
   end
 end
+
+get 'initiatives/:id/update_image', to: 'initiatives#update_image', as: :update_image
+
 end

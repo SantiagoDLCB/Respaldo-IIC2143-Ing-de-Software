@@ -20,7 +20,7 @@
             <div class="media-left">
                 <figure class="image ">
                   <% if attendant.persisted? && attendant.avatar.present? %>
-                    <%= image_tag url_for(attendant.avatar), class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
+                    <%= image_tag attendant.avatar.url, class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
                   <% else %>
                     <%= image_tag asset_path('user_blank.jpg'), class: "is-rounded", style: "border-radius: 50%; width: 32px; height: 32px; object-fit: cover"  %>
                   <% end %>
